@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <link rel="stylesheet" href="../css/blog.css" />
+
+    <title>GSoC '23 - Week 2: Still finals...</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div id="gsocHeaderImg" alt="Banner image">
+            <img class="logo" src="assets/logo_google.svg" id="google-logo" />
+            <img class="logo" src="assets/logo_gsoc.svg" id="gsoc-logo" />
+            <span id="single-character-at">@</span>
+            <img class="logo" src="assets/logo_enigma.png" id="enigma-logo" />
+        </div>
+        <div class="header">
+            <div class="title">GSoC '23 - Week 2: Still finals...</div>
+            <div class="date">06 June 2023</div>
+            <br />
+            <hr class="separator" />
+        </div>
+        <div class="links">
+            <a href="../index.html">home</a>
+            <span class="list-separator">|</span>
+            <a href="../blog/index.html">blogs</a>
+        </div>
+        <div class="content">
+            <p>
+                This blog post is related to my
+                <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
+                    2023 Project</a>.
+            </p>
+            <p>
+                Finally, <a href="https://www.gamedev.tv">GameDev.tv</a>'s
+                <a href="https://itch.io/jam/gamedevtv-jam-2023">Game Jam 2023</a> is over and as GameDev.tv promised,
+                any submission will get a free course from their list. I submitted 4 simple games to the competition and
+                got 4 free courses. I picked:
+            <ul>
+                <li><a href="https://www.udemy.com/course/unrealcourse"> Unreal Engine 5 C++ Developer: Learn C++ & Make
+                        Video Games</a>.</li>
+                <li><a href="https://www.udemy.com/course/unrealmultiplayer"> Unreal C++ Multiplayer Master:
+                        Intermediate Game Development</a>.</li>
+                <li><a href="https://www.udemy.com/course/cpp-fundamentals"> C++ Fundamentals: Game Programming For
+                        Beginners</a>.</li>
+                <li><a href="https://www.udemy.com/course/unity-multiplayer"> Unity Multiplayer: Intermediate C# Coding
+                        & Networking</a>.</li>
+            </ul>
+            </p>
+            <p>
+                You might be wondering, how these courses will benefit me in GSoC? Well, Not all of them will benefit
+                me in GSoC, but the multiplayer courses will help me to understand more about Steamworks API in action.
+                In section 3, in the <a href="https://www.udemy.com/course/unrealmultiplayer">
+                    Unreal C++ Multiplayer Master: Intermediate Game Development</a> course, I will learn how to
+                integrate Steamworks API to create a multiplayer game. I actually didn't watch the whole section due to
+                my finals, but I will watch it after my finals, then I will answer the question <code>how?</code>
+                in a future blog post.
+            </p>
+            <p>
+                Although I have final exams running, I started implemented the
+                <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Overlay">Overlay API</a>, check my Midterm
+                Evaluation <a href="https://github.com/enigma-dev/enigma-dev/pull/2343">PR</a>, and I actually finished
+                some of the <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/General">General API</a> which
+                helped me figured out that I need to test all those APIs in a game, no way I can just implement them
+                and leave them like this because although ENIGMA is based on GameMaker, it's not GameMaker, and I need
+                to make sure that all those APIs are working as expected. Decision is made, I will create a game to test
+                all those APIs, and I will place it in my <code>Steamworks</code> extension directory
+                <code>/enigma-dev/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/</code>.
+            </p>
+            <p>
+                I started to write the example game and I did not expect that it will be that easy, I just created the
+                starter <code>Rooms</code> and <code>Objects</code>, and it is working as expected actually. There are
+                still some unimplemented functions but I am working on it and this is how it looks for now:
+            <div class="image-container">
+                <img class="image-content"
+                    src="assets/gsoc_2023_week_2_2023_06_06/enigma_steamworks_main_screen_initial_look.jpg"
+                    alt="ENIGMA Steamworks main screen initial look" />
+            </div>
+            </p>
+            <p>
+                and this is the final output I wish to reach:
+            <div class="image-container">
+                <img class="image-content"
+                    src="assets/gsoc_2023_week_2_2023_06_06/gms_steamworks_main_screen_final_look.jpg"
+                    alt="GMS Steamworks main screen final look" />
+            </div>
+            </p>
+        </div>
+        <br />
+        <div class="goto-top links">
+            <a href="#container">go to top</a>
+        </div>
+        <br />
+        <div class="links">
+            <a href="gsoc_2023_week_1_2023_05_29.html">previous blog</a>
+            <span class="list-separator">|</span>
+            <a href="gsoc_2023_week_3_2023_06_15.html">next blog</a>
+        </div>
+        <br />
+        <div class="embed">
+            <span>GSoC '23 - Week 2: Still finals...</span>
+            <span>Saif Kandil</span>
+            <span>06 June 2023</span>
+            <span class="links"><a href="https://k0T0z.github.io/blog/gsoc_2023_week_2_2023_06_06.html">
+                    https://k0T0z.github.io/blog/gsoc_2023_week_2_2023_06_06.html</a></span>
+        </div>
+        <br />
+        <hr class="finish-line" />
+    </div>
+</body>
+
+</html>
