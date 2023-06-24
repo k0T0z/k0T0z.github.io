@@ -38,6 +38,36 @@
                 <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
                     2023 Project</a>.
             </p>
+            <p>
+                When I installed Linux successfully on my machine, and tried to run the example game, it worked
+                somehow. No ABI errors, no segmentation faults, no nothing. It just worked. I think that's because
+                Steam.exe is compiled also using MinGW on Linux, it is not like Windows where it is compiled using
+                MSVC. Anyway, I was happy that it worked, and let's move on.
+            </p>
+            <p>
+                Now let's implement the rest of the General API and start with the Overlay API. I am really off
+                schedule, and I need to catch up. When I started implementing the Overlay API, I found that there
+                is a function called <code>steam_is_overlay_activated();</code>. How can I implement this function?
+                well, I can create a variable and mofiy it whenever the overlay activated using
+                <code>steam_activate_overlay();</code> function. But, how can I know when the overlay is deactivated?
+                so the only way is to use Callbacks. I don't understand how Callbacks work with Steamworks, but I
+                start with the official example game and see how they implemented it. I started looking at the
+                official documentation, and the official example game at the same time. I realized that there are no
+                Callbacks implemented in the official example game for the Steam Overlay. Let's add it and see what
+                happens. I added the code inside <code>OverlayExamples.cpp</code> file, like they did in other
+                Callbacks. I ran the Spacewar game, and when I press SHIFT+TAB, the overlay is activated, and a 
+                message is popped up saying "yaaay", and when I close it, another message is popped up saying "nooo".
+                I also tried to remove the call to <code>SteamAPI_RunCallbacks();</code> function inside
+                <code>SpaceWarClient.cpp</code> file to see when will happen, and the messages are not popped up.
+            </p>
+            <p>
+                Now I think I understand how Callbacks work. But in order to implement Callbacks in my project, I
+                need to change the whole plan. Actually I don't know how I have been accepted in GSoC &#128517;.
+                I don't need to create a Wrapper in my project, I need to create a layer between Steamworks
+                ENIGMA's extension and the official Steamworks SDK. This layer is some sort of an architecture
+                of classes, like composition for example. I looked at the Spacewar example game, and it has all
+                I need. Let's modify the code I wrote so far.
+            </p>
         </div>
         <br />
         <div class="goto-top links">
