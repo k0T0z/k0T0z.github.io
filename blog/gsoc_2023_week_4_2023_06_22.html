@@ -55,7 +55,7 @@
                 official documentation, and the official example game at the same time. I realized that there are no
                 Callbacks implemented in the official example game for the Steam Overlay. Let's add it and see what
                 happens. I added the code inside <code>OverlayExamples.cpp</code> file, like they did in other
-                Callbacks. I ran the Spacewar game, and when I press SHIFT+TAB, the overlay is activated, and a 
+                Callbacks. I ran the Spacewar game, and when I press SHIFT+TAB, the overlay is activated, and a
                 message is popped up saying "yaaay", and when I close it, another message is popped up saying "nooo".
                 I also tried to remove the call to <code>SteamAPI_RunCallbacks();</code> function inside
                 <code>SpaceWarClient.cpp</code> file to see when will happen, and the messages are not popped up.
@@ -67,6 +67,32 @@
                 ENIGMA's extension and the official Steamworks SDK. This layer is some sort of an architecture
                 of classes, like composition for example. I looked at the Spacewar example game, and it has all
                 I need. Let's modify the code I wrote so far.
+            </p>
+            <p>
+                I made some progress regarding the example game:
+            <div class="image-container">
+                <img class="image-content"
+                    src="assets/gsoc_2023_week_4_2023_06_22/enigma_steamworks_main_screen_3rd_version_look.jpg"
+                    alt="ENIGMA Steamworks main screen 3rd version look" />
+            </div>
+            <div class="image-container">
+                <img class="image-content"
+                    src="assets/gsoc_2023_week_4_2023_06_22/enigma_steamworks_overlay_screen_1st_version_look.gif"
+                    alt="ENIGMA Steamworks overlay screen initial look" />
+            </div>
+            </p>
+            <p>
+                Here's the look I wish to reach:
+            <div class="image-container">
+                <img class="image-content"
+                    src="assets/gsoc_2023_week_2_2023_06_06/gms_steamworks_main_screen_final_look.jpg"
+                    alt="GMS Steamworks main screen final look" />
+            </div>
+            <div class="image-container">
+                <img class="image-content"
+                    src="assets/gsoc_2023_week_4_2023_06_22/gms_steamworks_overlay_screen_final_look.gif"
+                    alt="GMS Steamworks overlay screen final look" />
+            </div>
             </p>
         </div>
         <br />
