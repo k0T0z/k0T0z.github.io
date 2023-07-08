@@ -137,33 +137,36 @@
                 The game crashed for some reason and when I remove the call to <code>steam_get_user_steam_id();</code>
                 function, the game works fine. Remember when I tried to call this function in a standalone program and
                 nothing happens? well, we are here now. I tried to debug it and I found an interesting error message
+            <div
+                style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                <pre style="margin: 0; line-height: 125%">
+    Thread 1 "MainThrd" received signal SIGSEGV, Segmentation fault.
+    0x00007ffe35878be5 in steamclient64!Steam_TerminateGameConnection ()
+        from C:\Program Files (x86)\Steam\steamclient64.dll
+                </pre>
+            </div>
             <p>
-                <code>
-                        Thread 1 "MainThrd" received signal SIGSEGV, Segmentation fault.
-                        0x00007ffe35878be5 in steamclient64!Steam_TerminateGameConnection ()
-                        from C:\Program Files (x86)\Steam\steamclient64.dll
-                    </code>
-            </p>
-            Let's view the stack trace
-            <p>
-                <code>
-                        (gdb) bt
-                        #0  0x00007ffe35878be5 in steamclient64!Steam_TerminateGameConnection ()
-                        from C:\Program Files (x86)\Steam\steamclient64.dll
-                        #1  0x00007ffe357586a3 in steamclient64!Steam_TerminateGameConnection ()
-                        from C:\Program Files (x86)\Steam\steamclient64.dll
-                        #2  0x00007ff733c6886d in enigma_user::steam_get_user_steam_id() ()
-                        #3  0x00007ff733b84bf7 in enigma::OBJ_Obj_Steam_GeneralInfo::myevent_draw() ()
-                        #4  0x00007ff733bdc11b in draw_tiles() ()
-                        #5  0x00007ff733bddfce in enigma_user::screen_redraw() ()
-                        #6  0x00007ff733b862ea in enigma::ENIGMA_events() ()
-                        #7  0x00007ff733b8f67e in enigma::enigma_main(int, char**) ()
-                        #8  0x00007ff733b99c1a in WinMain ()
-                        #9  0x00007ff733b812ee in __tmainCRTStartup ()
-                            at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:272
-                        #10 0x00007ff733b81406 in mainCRTStartup () at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:193
-                    </code>
-            </p>
+                Let's view the stack trace
+            <div
+                style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                <pre style="margin: 0; line-height: 125%">
+    (gdb) bt
+    #0  0x00007ffe35878be5 in <span style='color:#0000ff; '>steamclient64!Steam_TerminateGameConnection ()</span>
+        from <span style='color:#0000ff; '>C:\Program Files (x86)\Steam\steamclient64.dll</span>
+    #1  0x00007ffe357586a3 in <span style='color:#0000ff; '>steamclient64!Steam_TerminateGameConnection ()</span>
+        from <span style='color:#0000ff; '>C:\Program Files (x86)\Steam\steamclient64.dll</span>
+    #2  0x00007ff733c6886d in <span style='color:#0000ff; '>enigma_user::steam_get_user_steam_id() ()</span>
+    #3  0x00007ff733b84bf7 in enigma::OBJ_Obj_Steam_GeneralInfo::myevent_draw() ()
+    #4  0x00007ff733bdc11b in draw_tiles() ()
+    #5  0x00007ff733bddfce in enigma_user::screen_redraw() ()
+    #6  0x00007ff733b862ea in enigma::ENIGMA_events() ()
+    #7  0x00007ff733b8f67e in enigma::enigma_main(int, char**) ()
+    #8  0x00007ff733b99c1a in WinMain ()
+    #9  0x00007ff733b812ee in __tmainCRTStartup ()
+        at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:272
+    #10 0x00007ff733b81406 in mainCRTStartup () at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:193       
+                </pre>
+            </div>
             </p>
             <p>
                 That is right, I couldn't understand a single word. I tried to look at other wrappers, the
