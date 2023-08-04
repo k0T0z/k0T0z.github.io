@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+    <link rel="stylesheet" href="../../css/home.css">
+
+    <title></title>
+</head>
+
+<body>
+    <!-- <embed id="gsoc2023HeaderImg" alt="Banner image" src="gsoc_2023_header.html"></embed> -->
+    <header class="site-header" role="banner">
+        <div class="wrapper">
+            <div id="site-header-v-card">
+                <a class="site-title" rel="author" href="../../index.html">k0T0z</a>
+                <span id="what-is-this">
+                    Just a place for me to dump my thoughts.
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <header class="post-header">
+                    <h1 id="post-title" class="post-title p-name" itemprop="name headline"></h1>
+                    <span class="post-meta">
+                        <time id="post-created-on-date" class="dt-published" itemprop="datePublished"></time>
+                    </span>
+                </header>
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC 2023
+                            Project</a>.
+                    </p>
+                    <p>
+                        After 1 year of waiting, I have finally been selected for GSoC 2023! I really can't wait to work
+                        with
+                        my mentors <a href="https://github.com/RobertBColton">Robert</a>,
+                        <a href="https://github.com/JoshDreamland">Josh</a>,
+                        <a href="https://github.com/rpjohnst">rpjohnst</a>, and
+                        <a href="https://github.com/hpgDesigns">Hugar</a> this summer.
+                    </p>
+                    <p>
+                        I decided to work on the <a href="https://github.com/enigma-dev/enigma-dev/issues/1881">
+                            <code>Steam Workshop SDK/Third Party Integration</code>
+                        </a> idea for GSoC 2023. The idea is to implement a wrapper around the Steamworks API, and then
+                        implement User functions' APIs for ENIGMA game engine. Game developers can then use these
+                        functions
+                        (sometimes called scripts) to integrate their games with Steamworks.
+                    </p>
+                    <p>
+                        This was a very important period for me, I can't say it's special, I figured out that creating
+                        the
+                        wrapper itself isn't the project. ENIGMA is used for creating games by writing EDL scripts, it's
+                        not
+                        like Unreal Engine for example, as it uses C++ mainly for creating games, but for ENIGMA, we
+                        will create
+                        the wrapper itself and then write the necessary user functions for different APIs mentioned in
+                        my
+                        proposal. This is not enough, ENIGMA uses EDL for creating games but it's written in C++ so why
+                        create a
+                        wrapper in the first place? Steam SDK is also written in C++ so I can directly go ahead and
+                        write the
+                        user functions. "I think it'd be better if you did that and did not use the abstraction" Robert
+                        replied,
+                        he meant that it will be better if I implemented the wrapper, although it is not really that
+                        useful, so
+                        I guess it's a good coding practice, who knows?
+                    </p>
+                    <p>
+                        Before getting started, I must familiarize myself with ENIGMA's extension system as it is the
+                        basis of
+                        this project. I wrote a Makefile file (thanks to rpjohnst) to link the Steam lib with the
+                        executable.
+                        This <a
+                            href="https://github.com/enigma-dev/enigma-dev/blob/
+                            bdcec060f0d9d805fc5a472803bda9ba90802b04/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/Makefile">
+                            Makefile</a> file is written before getting accepted into the program, I will be using it
+                        through
+                        the summer, and will be modified if needed.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+            <h3>
+                <span>Post manual update on: <span id="post-updated-on-date"></span></span>
+            </h3>
+            <h3>
+                <span>Post added on: <span id="post-added-on-date"></span></span>
+            </h3>
+            <h2>
+                <a href="#site-header">go to top</a>
+            </h2>
+            <h2>
+                <a id="prev-post">previous post</a>
+                <span class="list-separator">|</span>
+                <a id="next-post">next post</a>
+            </h2>
+            <div class="embed">
+                <span id="embed-title"></span>
+                <span id="embed-author"></span>
+                <span id="embed-created-on-date"></span>
+                <span><a id="post-link"></a></span>
+            </div>
+        </div>
+    </main>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+    <script src="js/GSoC_2023_bonding_period_getting_started.js"></script>
+</body>
+
+</html>
