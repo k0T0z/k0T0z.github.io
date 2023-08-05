@@ -10,17 +10,22 @@
     <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../css/main-bar.css" />
     <link rel="stylesheet" href="../css/social.css" />
-    <title>About</title>
+    <link rel="icon" type="image/jpeg" href="../assets/main-logo.jpeg">
+
+    <title></title>
 </head>
 
 <body>
     <header class="site-header" role="banner">
         <div class="wrapper">
-            <div id="site-header-v-card">
-                <a class="site-title" rel="author" href="../index.html">k0T0z</a>
-                <span id="what-is-this">
-                    Just a place for me to dump my thoughts.
-                </span>
+            <div id="site-header-h-card">
+                <img id="site-header-avatar" src="../assets/main-logo.jpeg" alt="k0T0z avatar" />
+                <div id="site-header-v-card">
+                    <a class="site-title" rel="author" href="index.html">k0T0z</a>
+                    <span id="what-is-this">
+                        Just a place for me to dump my thoughts.
+                    </span>
+                </div>
             </div>
         </div>
     </header>
@@ -28,9 +33,9 @@
     <main-bar>
         <div class="wrapper">
             <h2>
-                <a href="../index.html">home</a>
+                <a href="../index.html">Home</a>
                 <span class="list-separator">|</span>
-                <a href="../assets/my_resume.pdf">resume <span id="resume-updated-on-date-text">
+                <a href="../assets/my_resume.pdf">Resume <span id="resume-updated-on-date-text">
                         (updated on <span id="resume-updated-on-date"></span>)
                     </span></a></a>
                 <!-- <span class="list-separator">|</span> -->
@@ -69,27 +74,36 @@
                         Although I have passion for C++, I have gained experience working with other programming
                         languages, including C, Python, Java, JavaScript, Objective-C, Kotlin, Dart and Assembly.
                         Additionally, I am proficient in mobile development using Kotlin for Android, and I am
-                        highly proficient in the Flutter framework. Currently, I am working on a Flutter project
-                        that will be released shortly. Furthermore, I have also completed two significant Android
-                        projects using Kotlin.
+                        highly proficient in the Flutter framework. Currently, I am working on a novel idea - using
+                        python and Discord SDK - that will solve a very big problem we face every day.
                     </p>
                     <p>
                         I have worked on a few projects over the past couple of years, they are:
                     <ul>
                         <li>
-                            <a href="https://github.com/k0T0z/muslim-map">muslim-map</a> : a Flutter application
-                            that
-                            makes it very simple to calculate prayer times and Qibla direction.
+                            <a href="https://github.com/k0T0z/chat-reader-abbreviator-model">
+                                chat-reader-abbreviator-model</a> : a Discord bot that will solve a big problem we
+                            face every day. It's private and secret for now &#x1F92B;.
                         </li>
                         <li>
                             <a href="https://github.com/k0T0z/tiny-language-compiler">tiny-language-compiler</a> : a
                             Qt application that demonstrates the process of scanning & parsing tiny programming
                             language.
+                            <p>
+                                <span class="post-meta">
+                                    Last updated on: <time id="tiny-language-compiler-updated-on-date"></time>
+                                </span>
+                            </p>
                         </li>
                         <li>
                             <a href="https://github.com/Mohammed84Farouk/Schedulers-Algorithms">CPU-scheduler</a> :
                             a JavaFX application that simulates the process of CPU scheduling using different
                             algorithms such as FCFS, SJF, RR, and Priority.
+                            <p>
+                                <span class="post-meta">
+                                    Last updated on: <time id="schedulers-algorithms-updated-on-date"></time>
+                                </span>
+                            </p>
                         </li>
                     </ul>
                     </p>
@@ -130,6 +144,7 @@
     </footer>
     <script src="../js/utils.js"></script>
     <script src="../js/resume_updated_on_date_automation.js"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

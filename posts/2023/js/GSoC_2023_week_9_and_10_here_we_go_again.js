@@ -1,4 +1,4 @@
-const postId = 9;
+const postId = 10;
 
 title = posts[postId].title;
 
@@ -7,7 +7,7 @@ postFileName = posts[postId].fileName;
 postTitle = posts[postId].postTitle;
 
 previousPostFileName = posts[postId - 1].fileName;
-nextPostFileName = posts[postId + 1].fileName;
+nextPostFileName = null;
 
 document.title = title;
 

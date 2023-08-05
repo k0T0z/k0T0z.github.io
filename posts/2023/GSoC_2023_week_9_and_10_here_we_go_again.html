@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <header class="site-header" role="banner">
+        <div class="wrapper">
+            <div id="site-header-h-card">
+                <img id="site-header-avatar" src="../../assets/main-logo.jpeg" alt="k0T0z avatar" />
+                <div id="site-header-v-card">
+                    <a class="site-title" rel="author" href="../../index.html">k0T0z</a>
+                    <span id="what-is-this">
+                        Just a place for me to dump my thoughts.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <header class="post-header">
+                    <h1 id="post-title" class="post-title p-name" itemprop="name headline"></h1>
+                    <span class="post-meta">
+                        <time id="post-created-on-date" class="dt-published" itemprop="datePublished"></time>
+                    </span>
+                </header>
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
+                            2023 Project</a>.
+                    </p>
+                    <p>
+                        I still didn't finish the Leaderboard API, so let's talk about the next steps.
+                    </p>
+                    <p>
+                        First of all, the Async system is working fine but I don't know how the
+                        <code>DataStructures</code> extension works, so lets look at the code and see
+                        what we can do.
+                    </p>
+                    <p>
+                        Actually, the problem is not with the new Async system because I already tested it
+                        before. The problem is with my new code I added. When I looked closer at the code, I
+                        found that I am returning <code>std::string&</code> and assigning it to my event map.
+                        Let's try to remove it and see what happens.
+                    </p>
+                    <p>
+                        The code is worked just fined, so let's add a TODO for studying this behavior later.
+                    </p>
+                    <p>
+                        Now, let's understand more about how ENIGMA's Async system works. From the output
+                        when firing an event it looks like this:
+                    <div
+                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                        <pre style="margin: 0; line-height: 125%">
+    INFO: Steam ASYNC: {  }
+                    </pre>
+                    </div>
+                    </p>
+                    <p>
+                        When I run the GMS official example game, the Async output is between those parenthesis.
+                        My output looks like this for now:
+                    <div
+                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                        <pre style="margin: 0; line-height: 125%">
+    INFO: Steam ASYNC: {  }
+    INFO: leaderboard_download
+                    </pre>
+                    </div>
+                    </p>
+                    <p>
+                        I don't it is not inside the parenthesis, let's try to fix it. A new idea came to my mind
+                        to find out where the code that prints this output in the console. I remembered my old
+                        conversation with Josh, and he said that ENIGMA has a code generation system. I don't
+                        know how it works yet, but this means that the code in the main repo is not the full running
+                        code. Maybe if I can get to this generated code, I can find what I need so let's try that.
+                    </p>
+                    <p>
+                        Inside <code>~/.enigma/Preprocessor_Environment_Editable/</code>
+                        directory, I used VSCode search in files feature. I love VSCode because of this one by the way.
+                        I found that there is a file called <code>IDE_EDIT_objectfunctionality.h</code> that has the
+                        what I was looking for:
+                    <div
+                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                        <pre style="margin: 0; line-height: 125%">
+    variant enigma::OBJ_Obj_Steam::myevent_steam()
+    {
+        enigma::temp_event_scope ENIGMA_PUSH_ITERATOR_AND_VALIDATE(this);
+        
+        {
+        show_debug_message("Steam ASYNC: "+ json_encode(async_load));
+        
+        }
+        ;
+        
+        return 0;
+    }
+                    </pre>
+                    </div>
+                    </p>
+                    <p>
+                        From what I see is that it uses <code>async_load</code> variable to get the output. This
+                        means that there is no output inside, which means that there is a problem with the new
+                        Async system I implemented. Let's try to fix it.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+            <h3>
+                <span>Post manual update on: <span id="post-updated-on-date"></span></span>
+            </h3>
+            <h3>
+                <span>Post added on: <span id="post-added-on-date"></span></span>
+            </h3>
+            <h2>
+                <a href="#site-header">go to top</a>
+            </h2>
+            <h2>
+                <a id="prev-post">previous post</a>
+                <span class="list-separator">|</span>
+                <a id="next-post">next post</a>
+            </h2>
+            <div class="embed">
+                <span id="embed-title"></span>
+                <span id="embed-author"></span>
+                <span id="embed-created-on-date"></span>
+                <span><a id="post-link"></a></span>
+            </div>
+        </div>
+    </main>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+    <script src="js/GSoC_2023_week_9_and_10_here_we_go_again.js"></script>
+</body>
+
+</html>
