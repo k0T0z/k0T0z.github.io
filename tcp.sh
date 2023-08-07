@@ -4,6 +4,15 @@
 
 #!/bin/bash
 
+confirm_push() {
+    read -p "Do you want to push these changes? (y/n): " choice
+    case "$choice" in
+        y|Y ) return 0;;
+        n|N ) return 1;;
+        * ) echo "Invalid choice. Please enter y or n."; return 1;;
+    esac
+}
+
 # Check if git is installed
 if ! which git >/dev/null; then
   echo "Please install Git first or add it to your PATH if installed already."
@@ -21,6 +30,11 @@ git add .
 echo "Commiting..."
 git commit -s -m "$1"
 
+if ! confirm_push; then
+    echo "Pushing canceled."
+    exit 1
+fi
+
 echo "Pushing..."
-git push origin master
+git push origin temp
 

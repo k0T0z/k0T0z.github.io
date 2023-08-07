@@ -1,27 +1,3 @@
-// const fetch = require('node-fetch');
-
-// Stores the <title></title> tag content.
-let title = null;
-
-// Stores the file name of the post on GitHub repo. This is used to fetch data related to that file directly using GitHub API.
-let postFileName = null;
-
-// Stores the author name of the post.
-let postAuthor = "Saif Kandil";
-
-// Stores the <h1 id="post-title"></h1> content. This is can be HTML string.
-let postTitle = null;
-
-// Stores the file name of previous post on GitHub repo to be easily reached using ``previous post`` button.
-let previousPostFileName = null;
-
-// Stores the file name of next post on GitHub repo to be easily reached using ``next post`` button.
-let nextPostFileName = null;
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 // Fetches the date in which this post is created.
 async function getPostFirstCommitDate(filePath) {
     let json = null;
@@ -69,4 +45,46 @@ async function getPostLastCommitDate(filePath) {
 
     document.getElementById("post-updated-on-date").textContent = postLastCommitDate.toLocaleDateString('en-US', options);
 }
+
+// const fetch = require('node-fetch');
+
+// Stores the <title></title> tag content.
+const title = posts[postId].title;
+
+// Stores the file name of the post on GitHub repo. This is used to fetch data related to that file directly using GitHub API.
+const postFileName = posts[postId].fileName;
+
+// Stores the author name of the post.
+const postAuthor = "Saif Kandil";
+
+// Stores the <h1 id="post-title"></h1> content. This is can be HTML string.
+const postTitle = posts[postId].postTitle;
+
+document.title = title;
+
+document.getElementById("post-title").innerHTML = postTitle;
+
+if (previousPostFileName !== null)
+    document.getElementById("prev-post").href = `${previousPostFileName}.html`;
+
+document.getElementById("prev-post").textContent = "previous post";
+
+if (nextPostFileName !== null)
+    document.getElementById("next-post").href = `${nextPostFileName}.html`;
+
+document.getElementById("next-post").textContent = "next post";
+
+document.getElementById("u-url-id").href = `${postFileName}.html`;
+
+document.getElementById("embed-title").innerHTML = postTitle;
+
+document.getElementById("embed-author").textContent = postAuthor;
+
+document.getElementById("post-link").href = `https://k0T0z.github.io/posts/${posts[postId].year}/${postFileName}.html`;
+document.getElementById("post-link").textContent = `https://k0T0z.github.io/posts/${posts[postId].year}/${postFileName}.html`;
+
+// Setting the global ``filePath`` variable before fetching dates for the current post.
+filePath = `posts/${posts[postId].year}/${postFileName}.html`;
+getPostLastCommitDate(filePath);
+getPostFirstCommitDate(filePath);
 

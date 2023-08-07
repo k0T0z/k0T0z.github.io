@@ -8,11 +8,20 @@
 ###################################################################################
 
 # This file is made for resetting repo quicker.
-# [For Linux only] Before running this file, run 'chmod +x tcp.sh' to grant permissions for tcp.sh.
+# [For Linux only] Before running this file, run 'chmod +x reset_repo.sh' to grant permissions for reset_repo.sh.
 
 #!/bin/bash
 
-confirm() {
+confirm_force_push() {
+    read -p "Do you want to force push these changes? (y/n): " choice
+    case "$choice" in
+        y|Y ) return 0;;
+        n|N ) return 1;;
+        * ) echo "Invalid choice. Please enter y or n."; return 1;;
+    esac
+}
+
+confirm_delete() {
     read -p "Are you sure you want to remove the .git folder? (y/n): " choice
     case "$choice" in
         y|Y ) return 0;;
@@ -21,7 +30,7 @@ confirm() {
     esac
 }
 
-if confirm; then
+if confirm_delete; then
     if [ ! -d ".git" ]; then
         echo ".git folder does not exist in the current directory."
     else
@@ -55,5 +64,10 @@ git commit -s -m "$1"
 echo "Adding remote..."
 git remote add origin https://github.com/k0T0z/k0T0z.github.io.git
 
+if ! confirm_force_push; then
+    echo "Force pushing canceled."
+    exit 1
+fi
+
 echo "Force pushing..."
-git push -f origin master
+git push -f origin temp

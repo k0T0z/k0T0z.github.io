@@ -361,12 +361,12 @@
                         <div
                             style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
                             <pre style="margin: 0; line-height: 125%">
-            myOpenDialogIsOpen = useState<boolean>(false)
-        
-                <span><</span>MyDialog
-                    isOpen={myOpenDialogIsOpen}<span>></span>
-                    ...
-                <span><</span>/MyDialog<span>></span>    
+    myOpenDialogIsOpen = useState<boolean>(false)
+
+        <span><</span>MyDialog
+            isOpen={myOpenDialogIsOpen}<span>></span>
+            ...
+        <span><</span>/MyDialog<span>></span>    
                         </pre>
                         </div>
                         <p>
@@ -436,12 +436,12 @@
                         <div
                             style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
                             <pre style="margin: 0; line-height: 125%">
-            load_me_a_leaderboard_async(my_leaderboard_callback);
-        
-            // this might happen on a thread
-            void my_leaderboard_callback(LeaderboardData leaderboard_data) {
-                // do something with leaderboard data
-            }  
+    load_me_a_leaderboard_async(my_leaderboard_callback);
+
+    // this might happen on a thread
+    void my_leaderboard_callback(LeaderboardData leaderboard_data) {
+        // do something with leaderboard data
+    }  
                         </pre>
                         </div>
                         <p>
@@ -450,16 +450,16 @@
                         <div
                             style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
                             <pre style="margin: 0; line-height: 125%">
-            load_me_a_leaderboard();
-        
-            // you should poll on the main thread
-            // inside main loop....
-            leaderboard_data = poll_leaderboard_data_async();
-            if (leaderboard_data != nullptr) {
-                // do something with leaderboard data
-            } else {
-                // leaderboard data not ready yet, try again next frame
-            }
+    load_me_a_leaderboard();
+
+    // you should poll on the main thread
+    // inside main loop....
+    leaderboard_data = poll_leaderboard_data_async();
+    if (leaderboard_data != nullptr) {
+        // do something with leaderboard data
+    } else {
+        // leaderboard data not ready yet, try again next frame
+    }
                         </pre>
                         </div>
                         <p>
@@ -541,8 +541,8 @@
     </main>
     <script src="../../js/posts.js"></script>
     <script src="../../js/utils.js"></script>
-    <script src="../../js/posts-utils.js"></script>
     <script src="js/GSoC_2023_week_6_and_7_ooooh_great_async_is_the_big_boss_now.js"></script>
+    <script src="../../js/posts-utils.js"></script>
 </body>
 
 </html>
