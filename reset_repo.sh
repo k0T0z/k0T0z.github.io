@@ -70,4 +70,4 @@ if ! confirm_force_push; then
 fi
 
 echo "Force pushing..."
-git push -f origin temp
+git push -f origin master

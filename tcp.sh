@@ -36,5 +36,5 @@ if ! confirm_push; then
 fi
 
 echo "Pushing..."
-git push origin temp
+git push origin master
 

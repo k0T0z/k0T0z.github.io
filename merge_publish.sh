@@ -20,28 +20,28 @@ if ! which git >/dev/null; then
   exit 1
 fi
 
-echo "Switching to temp branch if not already..."
-git switch master
+echo "Switching to master-published branch if not already..."
+git switch master-published
 
-echo "Merging temp branch into master branch..."
-git merge temp
+echo "Merging master branch into master-published branch..."
+git merge master
 
 echo "Tracking..."
 git add .
 
 echo "Commiting..."
-git commit -s -m "Merge temp branch into master branch"
+git commit -s -m "Merge master branch into master-published branch"
 
 if ! confirm_push; then
     echo "Pushing canceled."
-    echo "Switching back to temp branch..."
-    git switch temp
+    echo "Switching back to master branch..."
+    git switch master
     exit 1
 fi
 
 echo "Pushing..."
-git push origin master
+git push origin master-published
 
 echo "Switching back to temp branch..."
-git switch temp
+git switch master
 
