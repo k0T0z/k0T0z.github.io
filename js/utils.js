@@ -7,6 +7,9 @@ const accessToken = "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";
 // My GitHub repository name.
 const repo = 'k0T0z.github.io';
 
+// Branch name.
+const branch = 'master-published';
+
 // Date format for displaying dates on the website.
 const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -18,7 +21,7 @@ async function fetchFromGiHubAPI(filePath) {
     let response = null;
 
     try {
-        const url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${filePath}`;
+        const url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${filePath}&sha=${branch}`;
         response = await fetch(url, {
             headers: {
                 Authorization: accessToken,
