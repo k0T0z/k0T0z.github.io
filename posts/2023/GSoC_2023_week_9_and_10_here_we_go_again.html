@@ -118,6 +118,77 @@
                         means that there is no output inside, which means that there is a problem with the new
                         Async system I implemented. Let's try to fix it.
                     </p>
+                    <p>
+                        I found that it's working perfectly nothing wrong with my code but where's the string
+                        inside the parenthesis? you know what, this means one thing the problem is with
+                        <code>json_encode()</code> function. Ooooh my god I rememebered now, I have already
+                        worked on that Json extension before getting accepted at GSoC. I have already talked
+                        with fundies about this but I also remember that he didn't say anything about this
+                        function being broken.
+                    <blockquote>
+                        <p>
+                            this function is useless
+                        </p>
+                        <p>
+                            then why it exists, dk
+                        </p>
+                        <cite>Saif — 17/03/2023 22:57</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            first person i blame wrote it
+                        </p>
+                        <p>
+                            that looks like a place holder
+                        </p>
+                        <p>
+                            its just there so game doesnt error
+                        </p>
+                        <p>
+                            its not functional
+                        </p>
+                        <cite>gfundies — 17/03/2023 22:58</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        It look like this now:
+                    <div
+                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                        <pre style="margin: 0; line-height: 125%">
+    string json_encode(variant ds_map)
+    {
+        Json::Value root;
+        return string("{  }");
+    }
+                    </pre>
+                    </div>
+                    </p>
+                    <p>
+                        Let's modify it now to return the data inside the <code>ds_map</code> variable.
+                    </p>
+                    <p>
+                        So I provided this patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a>
+                        to fix this issue. It still needs some tests so here's the TODO:
+                    <ul>
+                        <li>Implement some tests.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Finally, thanks to Robert for merging my patch
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> which is provided to fix
+                        both <a href="https://github.com/enigma-dev/enigma-dev/issues/1951">#1951</a> and
+                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>. There are still some
+                        changes that need to be done to the patch but it's good for now.
+                    <ul>
+                        <li>Implement the error system.</li>
+                        <li>Improve tests and makefiles that links them.</li>
+                        <li>The number values are not fully implemented. Check
+                            <a href="https://leetcode.com/problems/valid-number">this</a>. Add GTests for them.
+                        </li>
+                        <li>Add SOGs.</li>
+                        <li>Improve documentation.</li>
+                    </ul>
+                    </p>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
