@@ -1,5 +1,5 @@
 // Stores the <title></title> tag content.
-const title = "Home";
+const title = "k0T0z";
 
 document.title = title;
 
