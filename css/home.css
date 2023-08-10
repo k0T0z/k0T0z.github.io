@@ -500,6 +500,11 @@ pre>code {
     font-style: italic;
 }
 
+.highlight .c2 {
+    color: rgb(30, 214, 61);
+    font-style: italic;
+}
+
 .highlight .cs {
     color: #999;
     font-weight: bold;

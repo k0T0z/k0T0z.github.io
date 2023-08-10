@@ -358,17 +358,16 @@
                         <p>
                             typically you do this...
                         </p>
-                        <div
-                            style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                            <pre style="margin: 0; line-height: 125%">
+                        <figure class="highlight">
+                            <pre><code class="language-cpp" data-lang="c++">
     myOpenDialogIsOpen = useState<boolean>(false)
 
         <span><</span>MyDialog
             isOpen={myOpenDialogIsOpen}<span>></span>
             ...
         <span><</span>/MyDialog<span>></span>    
-                        </pre>
-                        </div>
+                                </code></pre>
+                        </figure>
                         <p>
                             this sounds detached but i'm telling you abstractly the answer to your question above
                         </p>
@@ -433,23 +432,21 @@
                             @Saif let me give pseudo code example (ignore ENIGMA/GM, think only C++)
                             Async version:
                         </p>
-                        <div
-                            style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                            <pre style="margin: 0; line-height: 125%">
+                        <figure class="highlight">
+                            <pre><code class="language-cpp" data-lang="c++">
     load_me_a_leaderboard_async(my_leaderboard_callback);
 
     // this might happen on a thread
     void my_leaderboard_callback(LeaderboardData leaderboard_data) {
         // do something with leaderboard data
     }  
-                        </pre>
-                        </div>
+                                </code></pre>
+                        </figure>
                         <p>
                             Async polling version:
                         </p>
-                        <div
-                            style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                            <pre style="margin: 0; line-height: 125%">
+                        <figure class="highlight">
+                            <pre><code class="language-cpp" data-lang="c++">
     load_me_a_leaderboard();
 
     // you should poll on the main thread
@@ -459,9 +456,9 @@
         // do something with leaderboard data
     } else {
         // leaderboard data not ready yet, try again next frame
-    }
-                        </pre>
-                        </div>
+    }   
+                                </code></pre>
+                        </figure>
                         <p>
                             @Saif the latter is like how we do input in XInput extension for Xbox 360 controller,
                             extension

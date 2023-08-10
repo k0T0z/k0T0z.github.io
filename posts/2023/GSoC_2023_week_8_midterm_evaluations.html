@@ -54,10 +54,22 @@
                         tracked multiple definitions of the same variable. To solve this problem, the definition
                         will be in the source file, and <code>extern</code> to this variable in the header file
                         like so:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    <span class="c2">//=&gt; leaderboards.cpp</span>
+    unsigned lb_max_entries{10};
+                            </code></pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    <span class="c2">//=&gt; leaderboards.h</span>
+    extern unsigned lb_max_entries;
+                            </code></pre>
+                    </figure>
                     </p>
-                    <p>
+                    <!-- <p>
                         <script src="https://gist.github.com/k0T0z/7111a1f22bf1eeb1bd3fe91064f5e043.js"></script>
-                    </p>
+                    </p> -->
                     <p>
                         Another thing I learned is that compilers has unexpected behavior so you must be careful
                         especially when you are using a build system such as GNU Make. Employ macros for header

@@ -159,19 +159,17 @@
                         program and
                         nothing happens? well, we are here now. I tried to debug it and I found an interesting error
                         message
-                    <div
-                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                        <pre style="margin: 0; line-height: 125%">
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
     Thread 1 "MainThrd" received signal SIGSEGV, Segmentation fault.
     0x00007ffe35878be5 in steamclient64!Steam_TerminateGameConnection ()
         from C:\Program Files (x86)\Steam\steamclient64.dll
-                        </pre>
-                    </div>
+                            </code></pre>
+                    </figure>
                     <p>
                         Let's view the stack trace
-                    <div
-                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                        <pre style="margin: 0; line-height: 125%">
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
     (gdb) bt
     #0  0x00007ffe35878be5 in <span style='color:#0000ff; '>steamclient64!Steam_TerminateGameConnection ()</span>
         from <span style='color:#0000ff; '>C:\Program Files (x86)\Steam\steamclient64.dll</span>
@@ -186,9 +184,9 @@
     #8  0x00007ff733b99c1a in WinMain ()
     #9  0x00007ff733b812ee in __tmainCRTStartup ()
         at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:272
-    #10 0x00007ff733b81406 in mainCRTStartup () at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:193       
-                        </pre>
-                    </div>
+    #10 0x00007ff733b81406 in mainCRTStartup () at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:193  
+                            </code></pre>
+                    </figure>
                     </p>
                     <p>
                         That is right, I couldn't understand a single word. I tried to look at other wrappers, the

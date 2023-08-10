@@ -68,23 +68,21 @@
                     <p>
                         Now, let's understand more about how ENIGMA's Async system works. From the output
                         when firing an event it looks like this:
-                    <div
-                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                        <pre style="margin: 0; line-height: 125%">
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
     INFO: Steam ASYNC: {  }
-                    </pre>
-                    </div>
+                        </code></pre>
+                    </figure>
                     </p>
                     <p>
                         When I run the GMS official example game, the Async output is between those parenthesis.
                         My output looks like this for now:
-                    <div
-                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                        <pre style="margin: 0; line-height: 125%">
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
     INFO: Steam ASYNC: {  }
     INFO: leaderboard_download
-                    </pre>
-                    </div>
+                        </code></pre>
+                    </figure>
                     </p>
                     <p>
                         I don't it is not inside the parenthesis, let's try to fix it. A new idea came to my mind
@@ -98,23 +96,22 @@
                         directory, I used VSCode search in files feature. I love VSCode because of this one by the way.
                         I found that there is a file called <code>IDE_EDIT_objectfunctionality.h</code> that has the
                         what I was looking for:
-                    <div
-                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                        <pre style="margin: 0; line-height: 125%">
-    variant enigma::OBJ_Obj_Steam::myevent_steam()
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    <span class="k">variant</span> enigma::OBJ_Obj_Steam::<span class="nf">myevent_steam</span><span class="p">(</span><span class="p">)</span>
     {
-        enigma::temp_event_scope ENIGMA_PUSH_ITERATOR_AND_VALIDATE(this);
+        enigma::temp_event_scope ENIGMA_PUSH_ITERATOR_AND_VALIDATE<span class="p">(</span><span class="nb">this</span><span class="p">)</span>;
         
-        {
-        show_debug_message("Steam ASYNC: "+ json_encode(async_load));
+        <span class="si">{</span>
+        <span class="n">show_debug_message</span>(<span class="s2">"</span><span class="s2">Steam ASYNC: </span><span class="s2">"</span>+ json_encode(async_load));
         
-        }
+        <span class="si">}</span>
         ;
         
         return 0;
     }
-                    </pre>
-                    </div>
+                        </code></pre>
+                    </figure>
                     </p>
                     <p>
                         From what I see is that it uses <code>async_load</code> variable to get the output. This
@@ -155,16 +152,15 @@
                     </p>
                     <p>
                         It look like this now:
-                    <div
-                        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                        <pre style="margin: 0; line-height: 125%">
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
     string json_encode(variant ds_map)
     {
         Json::Value root;
         return string("{  }");
     }
-                    </pre>
-                    </div>
+                        </code></pre>
+                    </figure>
                     </p>
                     <p>
                         Let's modify it now to return the data inside the <code>ds_map</code> variable.
@@ -192,6 +188,8 @@
                         <li>Improve documentation.</li>
                     </ul>
                     </p>
+
+
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
