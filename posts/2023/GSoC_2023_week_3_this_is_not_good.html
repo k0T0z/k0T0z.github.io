@@ -7,7 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal website" />
-    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/index.css">
+
     <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
 
     <title></title>
@@ -29,13 +30,15 @@
     </header>
 
     <main class="page-content" aria-label="Content">
-        <div class="wrapper">
+        <div id="post-main-wrapper" class="wrapper">
             <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
                 <header class="post-header">
                     <h1 id="post-title" class="post-title p-name" itemprop="name headline"></h1>
                     <span class="post-meta">
-                        <time id="post-created-on-date" class="dt-published" itemprop="datePublished"></time>
+                        <time id="post-created-on-date" class="dt-published" itemprop="datePublished">
+                            <span class="spinner"></span><span class="post-meta-placeholder">Fetching date...</span>
+                        </time>
                     </span>
                 </header>
 
@@ -249,26 +252,6 @@
 
                 <a id="u-url-id" class="u-url" hidden></a>
             </article>
-            <h3>
-                <span>Post manual update on: <span id="post-updated-on-date"></span></span>
-            </h3>
-            <h3>
-                <span>Post added on: <span id="post-added-on-date"></span></span>
-            </h3>
-            <h2>
-                <a href="#site-header">go to top</a>
-            </h2>
-            <h2>
-                <a id="prev-post">previous post</a>
-                <span class="list-separator">|</span>
-                <a id="next-post">next post</a>
-            </h2>
-            <div class="embed">
-                <span id="embed-title"></span>
-                <span id="embed-author"></span>
-                <span id="embed-created-on-date"></span>
-                <span><a id="post-link"></a></span>
-            </div>
         </div>
     </main>
     <script src="../../js/posts.js"></script>

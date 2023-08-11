@@ -1,3 +1,9 @@
+@import "header.css";
+@import "footer.css";
+@import "posts.css";
+@import "spinner.css";
+
+
 /**
  * Reset some basic elements
  */
@@ -22,8 +28,8 @@ figure {
 }
 
 /**
-  * Basic styling
-  */
+   * Basic styling
+   */
 body {
     font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: #111;
@@ -40,52 +46,8 @@ body {
 }
 
 /**
- * Site header
- */
-.site-header {
-    border-top: 5px solid #424242;
-    border-bottom: 1px solid #e8e8e8;
-    min-height: 55.95px;
-    position: relative;
-}
-
-.site-title {
-    font-size: 26px;
-    font-weight: 300;
-    line-height: 54px;
-    letter-spacing: -1px;
-    margin-bottom: 0;
-    float: left;
-}
-
-.site-title,
-.site-title:visited {
-    color: #424242;
-}
-
-#site-header-h-card {
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    justify-content: flex-start;
-}
-
-#site-header-v-card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-}
-
-#what-is-this {
-    font-size: 24px;
-    color: #666;
-}
-
-/**
- * Wrapper
- */
+  * Wrapper
+  */
 .wrapper {
     max-width: -webkit-calc(800px - (30px * 2));
     max-width: calc(800px - (30px * 2));
@@ -105,8 +67,8 @@ body {
 }
 
 /**
- * Set `margin-bottom` to maintain vertical rhythm
- */
+  * Set `margin-bottom` to maintain vertical rhythm
+  */
 h1,
 h2,
 h3,
@@ -125,84 +87,16 @@ figure,
 }
 
 /**
- * `main` element
- */
+  * `main` element
+  */
 main {
     display: block;
     /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
 /**
- * Site footer
- */
-.site-footer {
-    border-top: 1px solid #e8e8e8;
-    padding: 30px 0;
-}
-
-.footer-heading {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-.contact-list,
-.social-media-list {
-    list-style: none;
-    margin-left: 0;
-}
-
-.footer-col-wrapper {
-    font-size: 15px;
-    color: #828282;
-    margin-left: -15px;
-}
-
-.footer-col {
-    float: left;
-    margin-bottom: 15px;
-    padding-left: 15px;
-}
-
-.footer-col-1 {
-    width: -webkit-calc(35% - (30px / 2));
-    width: calc(35% - (30px / 2));
-}
-
-.footer-col-2 {
-    width: -webkit-calc(20% - (30px / 2));
-    width: calc(20% - (30px / 2));
-}
-
-.footer-col-3 {
-    width: -webkit-calc(45% - (30px / 2));
-    width: calc(45% - (30px / 2));
-}
-
-@media screen and (max-width: 800px) {
-
-    .footer-col-1,
-    .footer-col-2 {
-        width: -webkit-calc(50% - (30px / 2));
-        width: calc(50% - (30px / 2));
-    }
-
-    .footer-col-3 {
-        width: -webkit-calc(100% - (30px / 2));
-        width: calc(100% - (30px / 2));
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .footer-col {
-        float: none;
-        width: -webkit-calc(100% - (30px / 2));
-        width: calc(100% - (30px / 2));
-    }
-}
-
-/**
- * Page content
- */
+  * Page content
+  */
 .page-content {
     padding: 30px 0;
     flex: 1;
@@ -235,70 +129,22 @@ main {
     font-size: 24px;
 }
 
-/**
-   * Posts
-   */
-.post-header {
-    margin-bottom: 30px;
-}
-
-.post-title {
-    font-size: 42px;
-    letter-spacing: -1px;
-    line-height: 1;
-}
-
-@media screen and (max-width: 800px) {
-    .post-title {
-        font-size: 36px;
-    }
-}
-
-.post-content {
-    margin-bottom: 30px;
-}
-
-.post-content h2 {
-    font-size: 32px;
-}
-
-@media screen and (max-width: 800px) {
-    .post-content h2 {
-        font-size: 28px;
-    }
-}
-
-.post-content h3 {
-    font-size: 26px;
-}
-
-@media screen and (max-width: 800px) {
-    .post-content h3 {
-        font-size: 22px;
-    }
-}
-
-.post-content h4 {
-    font-size: 20px;
-}
-
-@media screen and (max-width: 800px) {
-    .post-content h4 {
-        font-size: 18px;
-    }
+.post-meta-placeholder {
+    margin-left: 25px;
+    /* Add spacing between spinner and post-meta placeholder */
 }
 
 /**
- * Images
- */
+  * Images
+  */
 img {
     max-width: 100%;
     vertical-align: middle;
 }
 
 /**
- * Clearfix
- */
+  * Clearfix
+  */
 .footer-col-wrapper:after,
 .wrapper:after {
     content: "";
@@ -307,8 +153,8 @@ img {
 }
 
 /**
- * Icons
- */
+  * Icons
+  */
 .svg-icon {
     width: 16px;
     height: 16px;
@@ -323,8 +169,8 @@ img {
 }
 
 /**
-   * Figures
-   */
+    * Figures
+    */
 figure>img {
     display: block;
 }
@@ -334,8 +180,8 @@ figcaption {
 }
 
 /**
- * Tables
- */
+  * Tables
+  */
 table {
     margin-bottom: 30px;
     width: 100%;
@@ -365,8 +211,8 @@ table td {
 }
 
 /**
-   * Lists
-   */
+    * Lists
+    */
 ul,
 ol {
     margin-left: 30px;
@@ -378,8 +224,8 @@ li>ol {
 }
 
 /**
-   * Headings
-   */
+    * Headings
+    */
 h1,
 h2,
 h3,
@@ -390,8 +236,8 @@ h6 {
 }
 
 /**
-   * Links
-   */
+    * Links
+    */
 a {
     color: #2a7ae2;
     text-decoration: none;
@@ -415,8 +261,8 @@ a:hover {
 }
 
 /**
-   * Blockquotes
-   */
+    * Blockquotes
+    */
 blockquote {
     color: #828282;
     border-left: 4px solid #e8e8e8;
@@ -431,8 +277,8 @@ blockquote> :last-child {
 }
 
 /**
-   * Code formatting
-   */
+    * Code formatting
+    */
 pre,
 code {
     font-size: 15px;
@@ -457,8 +303,8 @@ pre>code {
 }
 
 /**
- * Syntax highlighting styles
- */
+  * Syntax highlighting styles
+  */
 .highlight {
     background: #fff;
 }
@@ -724,68 +570,10 @@ pre>code {
 }
 
 /**
- * Site Header Avatar
- */
-
-#site-header-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-right: 20px;
-    display: block;
-}
-
-/**
- * Sections separator
- */
+  * Sections separator
+  */
 .separator {
     width: 60%;
     border-bottom: 1px solid;
     margin-bottom: 20px;
 }
-
-/**
- * Blog
- */
-.embed {
-    background: #ffffff;
-    overflow: auto;
-    width: auto;
-    border: solid gray;
-    border-width: 0.1em 0.1em 0.1em 0.8em;
-    padding: 0.2em 0.6em;
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
-}
-
-#post-updated-on-date {
-    text-decoration: underline;
-}
-
-#post-added-on-date {
-    text-decoration: underline;
-}
-
-/*
-    * Loading spinner
-    */
-/* .loader {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 2s linear infinite;
-    display: none;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-} */

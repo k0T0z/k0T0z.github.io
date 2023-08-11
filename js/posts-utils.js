@@ -64,6 +64,34 @@ document.title = title;
 
 document.getElementById("post-title").innerHTML = postTitle;
 
+const postMainWrapper = document.getElementById("post-main-wrapper");
+postMainWrapper.insertAdjacentHTML("beforeend",
+    `
+<h3>
+    <span>Post manual update on: <span id="post-updated-on-date"><span class="spinner"></span></span></span>
+</h3>
+<h3>
+    <span>Post added on: <span id="post-added-on-date"><span class="spinner"></span></span></span>
+</h3>
+<h2>
+    <a href="#site-header">go to top</a>
+</h2>
+<h2>
+    <a id="prev-post">previous post</a>
+    <span class="list-separator">|</span>
+    <a id="next-post">next post</a>
+</h2>
+<div class="embed">
+    <span id="embed-title"></span>
+    <span id="embed-author"></span>
+    <span id="embed-created-on-date">
+        <span class="spinner"></span><span class="embed-created-on-date-placeholder">Fetching date...</span>
+    </span>
+    <span><a id="post-link"></a></span>
+</div>
+    `
+);
+
 if (previousPostFileName !== null)
     document.getElementById("prev-post").href = `${previousPostFileName}.html`;
 

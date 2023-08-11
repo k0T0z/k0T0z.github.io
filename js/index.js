@@ -57,7 +57,7 @@ function displayPosts(page) {
         const post = posts[i];
         const postElement = document.createElement("li");
         postElement.innerHTML = `
-          <span id="post-${i}" class="post-meta"></span>
+          <span id="post-${i}" class="post-meta"><span class="spinner"></span><span class="post-meta-placeholder">Fetching date...</span></span>
           <h3>
             <a class="post-link" href="posts/${post.year}/${post.fileName}.html">
               ${post.postTitle}
