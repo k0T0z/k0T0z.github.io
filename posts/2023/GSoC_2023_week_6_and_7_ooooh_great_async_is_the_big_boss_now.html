@@ -180,52 +180,44 @@
                     <blockquote>
                         <p>
                             probably make the layer class core/universal system or something like add a way to register
-                            event
-                            types in an extension by string name with pointer function that the process queue uses to
-                            dispatch,
-                            idk
+                            event types in an extension by string name with pointer function that the process queue uses
+                            to dispatch, idk
                         </p>
                         <cite>R0bert — 23/07/2023 20:12</cite>
                     </blockquote>
                     </p>
                     <p>
                         Now let's keep that aside and talk about another changes requested (if possible) by Robert
-                        regarding
-                        Steam <code>Callbacks</code>. The problem is ENIGMA is single threaded and we don't know if
-                        Steam
-                        <code>Callbacks</code> are using threads or not.
+                        regarding Steam <code>Callbacks</code>. The problem is ENIGMA is single threaded and we don't
+                        know if Steam <code>Callbacks</code> are using threads or not.
                     <blockquote>
                         <p>
                             normally nothing in ENIGMA is threaded, so it doesn't matter when we check for things
                         </p>
                         <p>
                             but in this case, some 3-p API is using threads, and we want to adapt that to our
-                            single-thread
-                            system
+                            single-thread system
                         </p>
                         <cite>Josh — 23/07/2023 20:25</cite>
                     </blockquote>
                     <blockquote>
                         <p>
                             idk that it's using threads, Saif can't prove that yet, it's not in any Steamworks docs or
-                            anything
-                            but, yeh
+                            anything but, yeh
                         </p>
                         <cite>R0bert — 23/07/2023 20:26</cite>
                     </blockquote>
                     <blockquote>
                         <p>
                             if there's a single-threaded routine that checks if something has happened, then we don't
-                            need the
-                            system you're proposing at all
+                            need the system you're proposing at all
                         </p>
                         <cite>Josh — 23/07/2023 20:25</cite>
                     </blockquote>
                     <blockquote>
                         <p>
                             if it weren't using threads, it would be using semaphores and locks itself or something to
-                            have IPC
-                            internally
+                            have IPC internally
                         </p>
                         <p>
                             hypothetically ofc
@@ -266,25 +258,21 @@
                     <blockquote>
                         <p>
                             i.e, the only way the API gives us to know that something has happened is to give it a
-                            routine to
-                            run in a
-                            background thread
+                            routine to run in a background thread
                         </p>
                         <p>
                             because we have a way to just check, in the main thread, if something has occurred?
                         </p>
                         <p>
                             in that case, no need for new infrastructure; continue using the system I created for
-                            extensions
-                            which iiuc Saif has already successfully done &#x1F61B;
+                            extensions which iiuc Saif has already successfully done &#x1F61B;
                         </p>
                         <cite>Josh — 23/07/2023 20:27</cite>
                     </blockquote>
                     <blockquote>
                         <p>
                             @Saif look for a non callback version, one that lets you poll it directly is what Josh is
-                            asking me
-                            now
+                            asking me now
                         </p>
                         <p>
                             then you can just poll it once a frame and say "Hey steam, have the leaderboards loaded
@@ -298,25 +286,20 @@
                     </p>
                     <p>
                         So the problem is basically without using <code>Callbacks</code>, I need to handle the State
-                        Management
-                        code myself and the reason I said possible above is that I don't know if that's possible with
-                        Steamworks
-                        API or not. I told Robert that it's not a good time for that change but I will add it as a TODO
-                        for
-                        later.
+                        Management code myself and the reason I said possible above is that I don't know if that's
+                        possible with Steamworks API or not. I told Robert that it's not a good time for that change but
+                        I will add it as a TODO for later.
                     </p>
                     <p>
                         To wrap what will be done after the midterms evaluation:
                     <ul>
                         <li>Implement the rest APIs.</li>
                         <li>Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because we
-                            need
-                            Steam to be running in order the tests to pass.
+                            need Steam to be running in order the tests to pass.
                         </li>
                         <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
                         <li>Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
-                            Management
-                            manually.</li>
+                            Management manually.</li>
                     </ul>
                     </p>
                     <p>
@@ -325,14 +308,10 @@
                         <p>
                             callbacks are very important because for example when the user opens the Overlay i can set a
                             variable to true but what happens when close it, i don't call a function to close the
-                            overlay the
-                            user can close it from the X button at the top right so no way i can know if it's closed or
-                            not
-                            that's why callbacks are very important, any event happens like closing or opening the
-                            overlay the
-                            callback function is called and i know the event type as well, how im gonna build that
-                            behavior
-                            without callbacks idk
+                            overlay the user can close it from the X button at the top right so no way i can know if
+                            it's closed or not that's why callbacks are very important, any event happens like closing
+                            or opening the overlay the callback function is called and i know the event type as well,
+                            how im gonna build that behavior without callbacks idk
                         </p>
                         <cite>Saif — 23/07/2023 20:32</cite>
                     </blockquote>
@@ -373,8 +352,7 @@
                         </p>
                         <p>
                             just like how modern OpenGL and Vulkan don't give you ANY state management, you have to do
-                            it
-                            yourself
+                            it yourself
                         </p>
                         <p>
                             did you ever do any older OpenGL with immediate mode glBegin and stuff?
@@ -396,13 +374,11 @@
                         </p>
                         <p>
                             all the Graphics APIs, D3D, GL, Vulkan (it started with AMD Mantle and Apple Metal) moved to
-                            being
-                            low-level
+                            being low-level
                         </p>
                         <p>
                             that dropped everything but triangle primitives (no quads, fans etc) and all the upper-level
-                            state
-                            management and provided only programmable graphics shaders
+                            state management and provided only programmable graphics shaders
                         </p>
                         <p>
                             so basically people/game engines have had to reimplement state machines on top of that
@@ -412,9 +388,8 @@
                         </p>
                         <p>
                             they are low-level, which is very efficient, but they are NOT providing that state
-                            management for us
-                            (we don't know, that was Josh's question!), but we end up having to write a queue and do
-                            synchronization ourselves
+                            management for us (we don't know, that was Josh's question!), but we end up having to write
+                            a queue and do synchronization ourselves
                         </p>
                         <p>
                             @Saif which again as i said is totally normally expected with libraries
@@ -436,9 +411,9 @@
                             <pre><code class="language-cpp" data-lang="c++">
     load_me_a_leaderboard_async(my_leaderboard_callback);
 
-    // this might happen on a thread
+    <span class="c2">// this might happen on a thread</span>
     void my_leaderboard_callback(LeaderboardData leaderboard_data) {
-        // do something with leaderboard data
+        <span class="c2">// do something with leaderboard data</span>
     }  
                                 </code></pre>
                         </figure>
@@ -449,37 +424,32 @@
                             <pre><code class="language-cpp" data-lang="c++">
     load_me_a_leaderboard();
 
-    // you should poll on the main thread
-    // inside main loop....
+    <span class="c2">// you should poll on the main thread</span>
+    <span class="c2">// inside main loop....</span>
     leaderboard_data = poll_leaderboard_data_async();
     if (leaderboard_data != nullptr) {
-        // do something with leaderboard data
+        <span class="c2">// do something with leaderboard data</span>
     } else {
-        // leaderboard data not ready yet, try again next frame
+        <span class="c2">// leaderboard data not ready yet, try again next frame</span>
     }   
                                 </code></pre>
                         </figure>
                         <p>
                             @Saif the latter is like how we do input in XInput extension for Xbox 360 controller,
-                            extension
-                            polls the state of the controller 1-time every single frame, caches that, and all the
-                            functions are
-                            just returning state from that cached value, ideally if Steam had an API to do that for
-                            leaderboards
-                            it would be great and that's what Josh was questioning if existed
+                            extension polls the state of the controller 1-time every single frame, caches that, and all
+                            the functions are just returning state from that cached value, ideally if Steam had an API
+                            to do that for leaderboards it would be great and that's what Josh was questioning if
+                            existed
                         </p>
                         <p>
                             again idk if Steam supports that way of doing it or not, but feel free to look into the docs
-                            and let
-                            us know
+                            and let us know
                         </p>
                         <p>
                             the reason Josh favors that way is because, albeit it looks slightly more verbose than the
-                            other
-                            way, but it's not when you consider the other way required us to add a queue and
-                            synchronization
-                            primitive which are exactly the things Josh feels "wrong" about muddying up our main loop
-                            with
+                            other way, but it's not when you consider the other way required us to add a queue and
+                            synchronization primitive which are exactly the things Josh feels "wrong" about muddying up
+                            our main loop with
                         </p>
                         <cite>R0bert — 23/07/2023 20:39</cite>
                     </blockquote>

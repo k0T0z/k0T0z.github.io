@@ -60,15 +60,11 @@
                         I started looking into these wrappers before I start coding
                         <a href="https://github.com/Facepunch/Facepunch.Steamworks">Facepunch.Steamworks</a> &
                         <a href="https://github.com/code-disaster/steamworks4j">steamworks4j</a>, then I started to
-                        enhance the
-                        <code>General API</code> I implemented before. Something funny happened, I used the same naming
-                        convention as Steam SDK does, with the header guards also. The include was correct, but the
-                        compiler was
-                        unable to read <code>SteamAPI_Init();</code> & <code>SteamAPI_Shutdown();</code> functions.
-                        That's
-                        because I defined the header before Steam SDK does, so those functions were not defined yet.
-                        Waste of
-                        time!
+                        enhance the <code>General API</code> I implemented before. Something funny happened, I used the
+                        same naming convention as Steam SDK does, with the header guards also. The include was correct,
+                        but the compiler was unable to read <code>SteamAPI_Init();</code> &
+                        <code>SteamAPI_Shutdown();</code> functions. That's because I defined the header before Steam
+                        SDK does, so those functions were not defined yet. Waste of time!
                     </p>
                 </div>
 
