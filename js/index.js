@@ -98,6 +98,19 @@ function newerPosts() {
     updatePaginationButtons();
 }
 
+/*
+    Setting attributes for the elements in the header.
+*/
+document.getElementById("main-header-avatar").href = "index.html";
+document.getElementById("main-avatar").setAttribute("src", "assets/main-logo.jpeg");
+document.getElementById("home-page").href = "index.html";
+document.getElementById("about-page").href = "about/index.html";
+
+/*
+    Setting attributes for the elements in the footer.
+*/
+document.getElementById("u-url-id").href = "index.html";
+
 // Add event listeners to the pagination buttons.
 document.getElementById("older-posts-button").addEventListener("click", olderPosts);
 document.getElementById("newer-posts-button").addEventListener("click", newerPosts);

@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Personal website" />
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/main-bar.css" />
     <link rel="stylesheet" href="../css/social.css" />
     <link rel="icon" type="image/jpeg" href="../assets/main-logo.jpeg">
 
@@ -16,21 +15,7 @@
 </head>
 
 <body>
-    <header class="site-header" role="banner">
-        <div class="wrapper">
-            <div id="site-header-h-card">
-                <img id="site-header-avatar" src="../assets/main-logo.jpeg" alt="k0T0z avatar" />
-                <div id="site-header-v-card">
-                    <a class="site-title" rel="author" href="index.html">k0T0z</a>
-                    <span id="what-is-this">
-                        Just a place for me to dump my thoughts.
-                    </span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main-bar>
+    <!-- <main-bar>
         <div class="wrapper">
             <h2>
                 <a href="../index.html">Home</a>
@@ -38,11 +23,9 @@
                 <a href="../assets/my_resume.pdf">Resume <span id="resume-updated-on-date-text">
                         (updated on <span id="resume-updated-on-date"></span>)
                     </span></a></a>
-                <!-- <span class="list-separator">|</span> -->
-                <!-- <a href="resume.html">resume-web-test</a> -->
             </h2>
         </div>
-    </main-bar>
+    </main-bar> -->
 
     <!-- <div class="wrapper" id="number-of-views-stats">
         <img src="https://views.gonzalohirsch.com/gh?user=k0T0z&color=cornflowerblue" alt="Number of profile views" />
@@ -58,9 +41,9 @@
         </figure>
     </div> -->
 
-    <main class="page-content" aria-label="Content">
+    <main id="main-content" class="page-content" aria-label="Content">
         <div class="wrapper">
-            <hr class="separator" />
+            <!-- <hr class="separator" /> -->
             <article class="post">
 
                 <header class="post-header">
@@ -143,33 +126,20 @@
     <footer class="site-footer h-card">
         <data class="u-url" href="index.html"></data>
         <div class="wrapper">
-            <h2 class="footer-heading">k0T0z</h2>
-            <div class="footer-col-wrapper">
-                <div class="footer-col footer-col-3">
-                    <p>
-                        This personal website is built with HTML, CSS and deployed with GitHub pages. The code
-                        is licensed MIT license and can be found in the
-                        <a href="https://github.com/k0T0z/k0T0z.github.io/tree/master-published">GitHub repo</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <footer class="site-footer h-card">
-        <data class="u-url" href="index.html"></data>
-        <div class="wrapper">
             <div class="social">
                 <a href="https://github.com/k0T0z"><img src="assets/github.svg" alt="GitHub" /></a>
                 <a href="https://www.linkedin.com/in/saifkandil02"><img src="assets/linkedin.svg" alt="LinkedIn" /></a>
                 <a href="https://t.me/k0T0z"><img src="assets/telegram.svg" alt="Telegram" /></a>
                 <a href="https://stackoverflow.com/users/14629018/saif"><img src="assets/stackoverflow.svg"
                         alt="StackOverflow" /></a>
+                <a href="my_resume.html"><img src="assets/resume.svg" alt="Resume" /></a>
             </div>
         </div>
     </footer>
+
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
     <script src="../js/utils.js"></script>
-    <script src="../js/resume_updated_on_date_automation.js"></script>
     <script src="js/index.js"></script>
 </body>
 

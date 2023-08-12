@@ -11,7 +11,7 @@
 .site-title {
     font-size: 26px;
     font-weight: 300;
-    line-height: 54px;
+    line-height: 46px;
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
@@ -24,6 +24,12 @@
 
 #site-header-h-card {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#main-avatar-h-card {
+    display: flex;
     flex-direction: row;
     align-items: left;
     margin-bottom: 20px;
@@ -35,10 +41,11 @@
     display: flex;
     flex-direction: column;
     align-items: left;
+    justify-content: space-evenly;
 }
 
 #what-is-this {
-    font-size: 24px;
+    font-size: 18px;
     color: #666;
 }
 
@@ -46,10 +53,13 @@
   * Site Header Avatar
   */
 
-#site-header-avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+#main-header-avatar {
     margin-right: 20px;
+}
+
+#main-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     display: block;
 }

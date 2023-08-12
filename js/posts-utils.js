@@ -48,29 +48,16 @@ async function getPostLastCommitDate(filePath) {
     document.getElementById("post-updated-on-date").textContent = postLastCommitDate.toLocaleDateString('en-US', options);
 }
 
-const postMainPageContent = document.getElementById("post-main-page-content");
-postMainPageContent.insertAdjacentHTML("beforebegin",
-    `
-<div id="top"></div> <!-- Reference for Back to top button -->
+/*
+    Setting attributes for the elements in the header.
+*/
+document.getElementById("main-header-avatar").href = "../../index.html";
+document.getElementById("main-avatar").setAttribute("src", "../../assets/main-logo.jpeg");
+document.getElementById("home-page").href = "../../index.html";
+document.getElementById("about-page").href = "../../about/index.html";
 
-<header class="site-header" role="banner">
-    <div class="wrapper">
-        <div id="site-header-h-card">
-            <img id="site-header-avatar" src="../../assets/main-logo.jpeg" alt="k0T0z avatar" />
-            <div id="site-header-v-card">
-                <a class="site-title" rel="author" href="../../index.html">k0T0z</a>
-                <span id="what-is-this">
-                    Just a place for me to dump my thoughts.
-                </span>
-            </div>
-        </div>
-    </div>
-</header>
-    `
-);
-
-const postMainHEntry = document.getElementById("post-main-h-entry");
-postMainHEntry.insertAdjacentHTML("afterbegin",
+const postMainContent = document.getElementById("post-main-content");
+postMainContent.insertAdjacentHTML("afterbegin",
     `
 <header class="post-header">
 <h1 id="post-title" class="post-title p-name" itemprop="name headline"></h1>
@@ -99,8 +86,7 @@ document.title = title;
 
 document.getElementById("post-title").innerHTML = postTitle;
 
-const postMainWrapper = document.getElementById("post-main-h-entry");
-postMainWrapper.insertAdjacentHTML("afterend",
+postMainContent.insertAdjacentHTML("afterend",
     `
 <h3>
     <span>Post manual update on: <span id="post-updated-on-date"><span class="spinner"></span></span></span>
@@ -109,7 +95,7 @@ postMainWrapper.insertAdjacentHTML("afterend",
     <span>Post added on: <span id="post-added-on-date"><span class="spinner"></span></span></span>
 </h3>
 <h2>
-    <a href="#top">Back to top &uarr;</a>
+    <a href="#main-header">Back to top &uarr;</a>
 </h2>
 <h2>
     <a id="prev-post">previous post</a>
