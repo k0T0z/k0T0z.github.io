@@ -1,3 +1,5 @@
+// const fetch = require('node-fetch');
+
 // Fetches the date in which this post is created.
 async function getPostFirstCommitDate(filePath) {
     let json = null;
@@ -46,7 +48,40 @@ async function getPostLastCommitDate(filePath) {
     document.getElementById("post-updated-on-date").textContent = postLastCommitDate.toLocaleDateString('en-US', options);
 }
 
-// const fetch = require('node-fetch');
+const postMainPageContent = document.getElementById("post-main-page-content");
+postMainPageContent.insertAdjacentHTML("beforebegin",
+    `
+<div id="top"></div> <!-- Reference for Back to top button -->
+
+<header class="site-header" role="banner">
+    <div class="wrapper">
+        <div id="site-header-h-card">
+            <img id="site-header-avatar" src="../../assets/main-logo.jpeg" alt="k0T0z avatar" />
+            <div id="site-header-v-card">
+                <a class="site-title" rel="author" href="../../index.html">k0T0z</a>
+                <span id="what-is-this">
+                    Just a place for me to dump my thoughts.
+                </span>
+            </div>
+        </div>
+    </div>
+</header>
+    `
+);
+
+const postMainHEntry = document.getElementById("post-main-h-entry");
+postMainHEntry.insertAdjacentHTML("afterbegin",
+    `
+<header class="post-header">
+<h1 id="post-title" class="post-title p-name" itemprop="name headline"></h1>
+<span class="post-meta">
+    <time id="post-created-on-date" class="dt-published" itemprop="datePublished">
+        <span class="spinner"></span><span class="post-meta-placeholder">Fetching date...</span>
+    </time>
+</span>
+</header>
+    `
+);
 
 // Stores the <title></title> tag content.
 const title = posts[postId].title;
@@ -64,8 +99,8 @@ document.title = title;
 
 document.getElementById("post-title").innerHTML = postTitle;
 
-const postMainWrapper = document.getElementById("post-main-wrapper");
-postMainWrapper.insertAdjacentHTML("beforeend",
+const postMainWrapper = document.getElementById("post-main-h-entry");
+postMainWrapper.insertAdjacentHTML("afterend",
     `
 <h3>
     <span>Post manual update on: <span id="post-updated-on-date"><span class="spinner"></span></span></span>
@@ -74,7 +109,7 @@ postMainWrapper.insertAdjacentHTML("beforeend",
     <span>Post added on: <span id="post-added-on-date"><span class="spinner"></span></span></span>
 </h3>
 <h2>
-    <a href="#site-header">go to top</a>
+    <a href="#top">Back to top &uarr;</a>
 </h2>
 <h2>
     <a id="prev-post">previous post</a>
