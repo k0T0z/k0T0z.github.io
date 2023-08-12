@@ -4,7 +4,7 @@ const title = "k0T0z";
 document.title = title;
 
 // Stores how many posts to show per page.
-const postsPerPage = 6;
+const postsPerPage = 10;
 
 // Stores the current page number.
 let currentPage = 1;
