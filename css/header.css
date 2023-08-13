@@ -2,10 +2,17 @@
  * Site header
  */
 .site-header {
-    border-top: 5px solid #424242;
+    /* border-top: 5px solid #424242; */
     border-bottom: 1px solid #e8e8e8;
     min-height: 55.95px;
     position: relative;
+    padding: 20px 0;
+}
+
+@media screen and (max-width: 640px) {
+    .site-header {
+        text-align: center;
+    }
 }
 
 .site-title {
@@ -22,44 +29,86 @@
     color: #424242;
 }
 
-#site-header-h-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.site-avatar {
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
 }
 
-#main-avatar-h-card {
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    justify-content: flex-start;
+@media screen and (max-width: 640px) {
+    .site-avatar {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
 }
 
-#site-header-v-card {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: space-evenly;
+.site-avatar img {
+    border-radius: 5px;
 }
 
-#what-is-this {
-    font-size: 18px;
+.site-info {
+    float: left;
+}
+
+@media screen and (max-width: 640px) {
+    .site-info {
+        float: none;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.site-name {
+    margin: 0;
+    color: #333;
+    cursor: pointer;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.site-description {
+    margin: -5px 0 0 0;
     color: #666;
+    font-size: 16px;
 }
 
-/**
-  * Site Header Avatar
-  */
-
-#main-header-avatar {
-    margin-right: 20px;
+@media screen and (max-width: 640px) {
+    .site-description {
+        margin: 3px 0;
+    }
 }
 
-#main-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: block;
+nav {
+    float: right;
+    margin-top: 23px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 640px) {
+    nav {
+        float: none;
+        margin-top: 9px;
+        display: block;
+        font-size: 16px;
+    }
+}
+
+nav a {
+    margin-left: 20px;
+    color: #333;
+    text-align: right;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+@media screen and (max-width: 640px) {
+    nav a {
+        margin: 0 10px;
+        color: #4183C4;
+    }
 }

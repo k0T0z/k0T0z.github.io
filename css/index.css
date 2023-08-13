@@ -55,6 +55,7 @@ body {
     margin-left: auto;
     padding-right: 30px;
     padding-left: 30px;
+    width: 100%;
 }
 
 @media screen and (max-width: 800px) {
@@ -573,7 +574,7 @@ pre>code {
   * Sections separator
   */
 .separator {
-    width: 60%;
+    width: 20%;
     border-bottom: 1px solid;
     margin-bottom: 20px;
 }

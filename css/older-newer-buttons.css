@@ -25,6 +25,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    margin-top: 20px;
     /* Add some spacing between the buttons and other content */
 }
 
