@@ -285,7 +285,45 @@
                         It's just the <code>lb_name</code> is empty but it's a simple issue we can fix later. Let's move
                         to the next phase.
                     </p>
-                    <h2>Back to the track</h2>
+                    <h2>More diverging...</h2>
+                    <p>
+                        There are two important TODOs that must be done here which are:
+                    <ul>
+                        <li>
+                            Updating my patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a>
+                            to use <code>sstream</code> instead of <code>std::string</code>.
+                        </li>
+                        <li>
+                            For functions such as <code>steam_download_scores</code>, with <code>id</code>
+                            to be saved for each download request, I will use the new ENIGMA's approach for
+                            that with is: <code>AssetArray</code> from <code>Universal System</code>.
+                        </li>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        This patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a> solves the
+                        first TODO.
+                    </p>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
