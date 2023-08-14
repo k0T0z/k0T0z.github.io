@@ -70,8 +70,37 @@
                     <p>
                         I didn't faced something like this before, so Jsoh resommended to use
                         <a href="https://valgrind.org/">Valgrind</a>, <code>TSAN</code>, and <code>ASAN</code> to find
-                        the problem. He says that it's probably a a synchronization issue. Maybe multiple threads are
-                        writing to the same memory location. Now that's a higher level of debugging. I started using
+                        the problem.
+                    <blockquote>
+                        <p>
+                            two possibilities:
+                        <ul>
+                            <li>Someone is stashing a pointer to that string somewhere out-of-thread</li>
+                            <li>You have a buffer overflow somewhere and are facing memory corruption</li>
+                        </ul>
+                        </p>
+                        <p>
+                            try building your code with TSAN/ASAN enabled to see if you can detect that
+                        </p>
+                        <p>
+                            if you're on Linux, another option is Valgrind; it will find everything wrong, but will slow
+                            the code to a crawl, so make sure you can reproduce the problem quickly and easily
+                        </p>
+                        <p>
+                            these are good tools to have under your belt and will help you later
+                        </p>
+                        <p>
+                            cool; make sure the game is built with debugging symbols (-g) so Valgrind output will be
+                            useful
+                        </p>
+                        <p>
+                            set the "mode" var to DEBUG for ENIGMA's make system
+                        </p>
+                        <cite>Josh — 13/08/2023 18:15</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Now that's a higher level of debugging and we are diverging. I started using
                         <a href="https://valgrind.org/">Valgrind</a> and by the way found a large memory leak in ENIGMA,
                         that explains why it was freezing my 8GB Virtual Machine.
                     </p>
@@ -256,6 +285,7 @@
                         It's just the <code>lb_name</code> is empty but it's a simple issue we can fix later. Let's move
                         to the next phase.
                     </p>
+                    <h2>Back to the track</h2>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
