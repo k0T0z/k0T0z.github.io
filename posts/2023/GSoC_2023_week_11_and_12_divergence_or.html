@@ -324,6 +324,85 @@
                         This patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a> solves the
                         first TODO.
                     </p>
+                    <p>
+                        Let's move to the second TODO. I will use the <code>AssetArray</code> to save the id for each
+                        download request made by the player. In order to do that, I will follow simple approach of
+                        preventing any requests as long as we have a pending request. The tricky part here is that
+                        when we are ready to accpet a new request? Well, when we save the entries we got in the
+                        <code>AssetArray</code>, we are ready. So set the <code>loading_</code> to <code>false</code>
+                        after saving the entries.
+                    </p>
+                    <p>
+                        Working with <code>AssetArray</code> is very easy. I guess now we are done with the second
+                        TODO.
+                    </p>
+                    <p>
+                        Another thing that I need to mention here is that GMS has a function called
+                        <code>instance_create_depth()</code>, while ENIGMA has <code>instance_create()</code> and
+                        <code>depth</code> variable. I may provide a patch to combine them both as GMS does to
+                        maintain compatibility. But for now I will just use <code>instance_create()</code> and
+                        set the depth manually.
+                    </p>
+                    <p>
+                        Here's the TODO list again:
+                    <ul>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Implement <code>instance_create_depth()</code> user function.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Now the problem is with the <code>json_decode()</code> user function. It took me the whole day
+                        to find the problem which is bascially <code>Json</code> extension doesn't convert the Json to
+                        DS map correctly. It parses Jsons correctly and also the <code>DataStructures</code> extension
+                        working fine. The layer between them both is broken.
+                    </p>
+                    <p>
+                        I provided Patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2355">#2355</a> for
+                        issue <a href="https://github.com/enigma-dev/enigma-dev/issues/2354">#2354</a>:
+                    <ul>
+                        <li>Fixes <code>Json</code> extension not converting to DS map properly.</li>
+                        <li>Wrote SOG file to test the changes.</li>
+                        <li>
+                            Renamed a SOG file which belongs to short Json PR (I renamed it to better naming while I am
+                            here).
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        After fixing the <code>json_decode()</code> user function, the leaderboard entries started to
+                        view some data. Here is the output:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC_2023_week_11_and_12_divergence_or/ENIGMA_steamworks_leaderboard_screen_1st_version_look.jpg"
+                            alt="ENIGMA Steamworks leaderboard screen first look" />
+                    </p>
+                    <p>
+                        Here is the GMS output:
+                    </p>
+                    <p>
+                        <img class="image-content" src="assets/GSoC_2023_week_11_and_12_divergence_or/"
+                            alt="GMS Steamworks leaderboard screen final look" />
+                    </p>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
