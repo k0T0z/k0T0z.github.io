@@ -13,7 +13,8 @@ const posts = [
     { id: 8, title: "GSoC '23 - Week 6 & 7: Ooooh great, Async is the big boss now...", postTitle: "GSoC &#39;23 - Week 6 &amp; 7: Ooooh great, <code>Async</code> is the big boss now...", fileName: "GSoC_2023_week_6_and_7_ooooh_great_async_is_the_big_boss_now", year: 2023 },
     { id: 9, title: "GSoC '23 - Week 8: Passing Midterm Evaluations", postTitle: "GSoC &#39;23 - Week 8: Passing Midterm Evaluations &#128525;", fileName: "GSoC_2023_week_8_midterm_evaluations", year: 2023 },
     { id: 10, title: "GSoC '23 - Week 9 & 10: Here we go again", postTitle: "GSoC &#39;23 - Week 9 &amp; 10: Here we go again", fileName: "GSoC_2023_week_9_and_10_here_we_go_again", year: 2023 },
-    { id: 11, title: "GSoC '23 - Week 11 & 12: Divergence? or...", postTitle: "GSoC &#39;23 - Week 11 &amp; 12: Divergence? or...", fileName: "GSoC_2023_week_11_and_12_divergence_or", year: 2023 }
+    { id: 11, title: "GSoC '23 - Week 11 & 12: Divergence? or...", postTitle: "GSoC &#39;23 - Week 11 &amp; 12: Divergence? or...", fileName: "GSoC_2023_week_11_and_12_divergence_or", year: 2023 },
+    { id: 12, title: "GSoC '23 - Week 13: Extension? Definitely!", postTitle: "GSoC &#39;23 - Week 13: Extension? Definitely!", fileName: "GSoC_2023_week_13_extension_definitely", year: 2023 }
 ];
 
 // Upcoming posts:

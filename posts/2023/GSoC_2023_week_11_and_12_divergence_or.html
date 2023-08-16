@@ -400,8 +400,109 @@
                         Here is the GMS output:
                     </p>
                     <p>
-                        <img class="image-content" src="assets/GSoC_2023_week_11_and_12_divergence_or/"
+                        <img class="image-content"
+                            src="assets/GSoC_2023_week_11_and_12_divergence_or/GMS_steamworks_leaderboard_screen_final_look.jpg"
                             alt="GMS Steamworks leaderboard screen final look" />
+                    </p>
+                    <p>
+                        Robert finished my 3rd TODO in patch
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2356">#2356</a>. I tested it and it's
+                        working fine. Besides that he talked to me about attaching the id of the download request to
+                        the Callback function somehow instead of saving it statically so I think we have got another
+                        TODO here.
+                    <ul>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Changing the way I save download requests' ids.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        There is something wrong with Json extension again!!! The keys are there, but there values are
+                        contain garbage values like weird integers. I debugged the code and fixed the problem for the
+                        100 time in patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2357">#2357</a>.
+                    </p>
+                    <p>
+                        Now the Leaderboards API looks complete:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC_2023_week_11_and_12_divergence_or/ENIGMA_steamworks_leaderboard_screen_final_look.jpg"
+                            alt="ENIGMA Steamworks leaderboard screen final look" />
+                    </p>
+                    <p>
+                        Here is the TODO for the next week:
+                    <ul>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Changing the way I save download requests' ids.</li>
+                        <li>Implement the rest APIs.</li>
+                        <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
+                        <li>Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
+                            we need Steam to be running in order the tests to pass.
+                        </li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>
+                            Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
+                            Management manually.
+                        </li>
+                        <li>CPP source files need to be documented.</li>
+                        <li>Check the license for committing DLLs and headers.</li>
+                        <li>Check Steamworks's official example comments.</li>
+                        <li>Check GMS Manual for documenting user function's layer.</li>
+                        <li>
+                            Check Robert's PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>
+                        </li>
+                        <li>
+                            Creating stub for Steamworks extension to take its place when disabled.
+                            <p>
+                            <blockquote>
+                                <p>
+                                    you need a stub for when the extension isnt enabled
+                                </p>
+                                <p>
+                                    its just an empty function
+                                </p>
+                                <cite>gfundies — 16/08/2023 10:44</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                    </ul>
                     </p>
                 </div>
 
@@ -412,7 +513,7 @@
     <script src="../../js/header.js"></script>
     <script src="../../js/posts.js"></script>
     <script src="../../js/utils.js"></script>
-    <script src="js/GSoC_2023_week_11_and_12_they_are_every_where.js"></script>
+    <script src="js/GSoC_2023_week_11_and_12_divergence_or.js"></script>
     <script src="../../js/posts-utils.js"></script>
 </body>
 

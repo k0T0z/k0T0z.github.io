@@ -1,14 +1,12 @@
 # Assumptions
 
-  - File name inside ``posts/${year}/`` and ``posts/${year}/js/`` must match.
-  - Any new post added, you need to add a Javascript file with the same name inside ``posts/${year}/js/`` and modify ``js/posts.js``.
-
 # Adding a new post
 
-  - Add a Javascript file inside ``posts/${year}/js/`` directory and name it just like your new HTML file name.
+  - Add a new Javascript file inside ``posts/${year}/js/`` and paste a copied old Javascript file content from 
+    the same directory then modify the id or set it to ``null``.
+  - Add a new HTML file inside ``posts/${year}/`` directory and paste a copied old HTML post file content from 
+    the same directory then modify the script tag to point to the new Javascript file and delete the old content.
   - Add post details inside ``js/posts.js`` Javascript file.
-  - Modify the ``script`` tags inside HTML files to point to the right Javascript file.
-  - Modify ``previousPostFileName`` and ``nextPostFileName`` in other posts to point to the right HTML file.
 
 # DON'Ts
 
