@@ -44,7 +44,7 @@
                     </p>
                     <figure class="highlight">
                         <pre><code class="language-cpp" data-lang="c++">
-    INFO: Steam ASYNC: {<span style='color:#0000ff; '>"entries":"{</span><span style='color:#ff0000; '>wnload scores from lDownloaded scores from leaderboaleaderboard_downSteamClient020</span><span style='color:#0000ff; '>[</span>
+    INFO: Steam ASYNC: { <span style='color:#0000ff; '>"entries":"{</span><span style='color:#ff0000; '>wnload scores from lDownloaded scores from leaderboaleaderboard_downSteamClient020</span><span style='color:#0000ff; '>[</span>
     <span style='color:#0000ff; '>AlEw</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>196198</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>1</span><span style='color:#ff0000; '>m/Extensions/Steamworks/</span>
     <span style='color:#ff0000; '>game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198448852929</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,El Pice</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span>
     <span style='color:#0000ff; '>58158</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>2</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198376924302</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,saif</span><span style='color:#ff0000; '>ersal_System/Extensions</span>
@@ -59,7 +59,7 @@
     <span style='color:#ff0000; '>/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>0</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>9</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span>
     <span style='color:#0000ff; '>76561199095741658</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,HappyStarXiXi</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>0</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>10</span><span style='color:#ff0000; '>m/</span>
     <span style='color:#ff0000; '>Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198963365650</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>]}","event_type":"leaderboard_download","id":1,"lb_name":"",</span>
-    <span style='color:#0000ff; '>"num_entries":10,"status":0</span>}
+    <span style='color:#0000ff; '>"num_entries":10,"status":0</span> }
                         </code></pre>
                     </figure>
                     <p>
@@ -101,8 +101,9 @@
                     </p>
                     <p>
                         Now that's a higher level of debugging and we are diverging. I started using
-                        <a href="https://valgrind.org/">Valgrind</a> and by the way found a large memory leak in ENIGMA,
-                        that explains why it was freezing my 8GB Virtual Machine.
+                        <a href="https://valgrind.org/">Valgrind</a> and by the way found a small memory leak in ENIGMA,
+                        that can be very annoying when working for long periods which explains why it was freezing my
+                        8GB Virtual Machine.
                     </p>
                     <p>
                         I have got this output right after the <code>RequestCurrentStats</code> succeeded.
@@ -278,7 +279,7 @@
     <span style='color:#0000ff; '>{"name":"Bucciarati (Couter55)","score":336,"rank":4,"userID":"76561198239127226"},{"name":"Haiyatin","score":236,"rank":5,"userID":"76561199032162694"},</span>
     <span style='color:#0000ff; '>{"name":"Kaito","score":137,"rank":6,"userID":"76561198968916658"},{"name":"gamesadasteam","score":96,"rank":7,"userID":"76561199289756099"},</span>
     <span style='color:#0000ff; '>{"name":"Bashkash2013","score":7,"rank":8,"userID":"76561198193841849"},{"name":"silveradagio","score":0,"rank":9,"userID":"76561199095741658"},</span>
-    <span style='color:#0000ff; '>{"name":"HappyStarXiXi","score":0,"rank":10,"userID":"76561198963365650"}]}","event_type":"leaderboard_download","id":1,"lb_name":"","num_entries":10,"status":0</span>}
+    <span style='color:#0000ff; '>{"name":"HappyStarXiXi","score":0,"rank":10,"userID":"76561198963365650"}]}","event_type":"leaderboard_download","id":1,"lb_name":"","num_entries":10,"status":0</span> }
                         </code></pre>
                     </figure>
                     <p>
@@ -473,7 +474,8 @@
                         <li>Changing the way I save download requests' ids.</li>
                         <li>Implement the rest APIs.</li>
                         <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
-                        <li>Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
+                        <li>
+                            Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
                             we need Steam to be running in order the tests to pass.
                         </li>
                         <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
@@ -502,6 +504,10 @@
                             </blockquote>
                             </p>
                         </li>
+                        </li>add <code>instance_create_depth()</code> user function to the WIKI.</li>
+                        <li>Document and maintain <code>Json</code> extension.</li>
+                        <li>Document and maintain <code>Asynchronous</code> system.</li>
+                        <li>Explain the Steamworks extension's structure and what goes where.</li>
                     </ul>
                     </p>
                 </div>
