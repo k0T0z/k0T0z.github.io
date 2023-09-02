@@ -99,6 +99,13 @@
                         </li>
                     </ul>
                     </p>
+                    <p>
+                        Patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> has some
+                        problems. I found out that for the short JSON <code>[[1,2],2]</code>, there are two
+                        different outputs. The first one is <code>{"0": {"0": 1, "1": 2}, "1": 2}</code> and the
+                        second one is <code>[{"0": 1, "1": 2}, 2]</code>. Both are valid JSONs so I think I need
+                        to look into that PR again.
+                    </p>
                     <h2>Starting with <code>Social</code> API</h2>
                 </div>
 
