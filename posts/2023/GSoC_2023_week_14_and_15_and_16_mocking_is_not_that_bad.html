@@ -118,6 +118,33 @@
                         There are two places I need to inject to Testharness command. The first one is the stubs'
                         location. The second one is the mock location.
                     </p>
+                    <p>
+                        The easy one was the stubs' location. However, there are some tests that are not passing
+                        but I think they are not related to the stubs. Here is new structure:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    enigma-dev
+    ├── ...
+    └── ENIGMAsystem
+        ├── ...
+        └── SHELL
+            ├── Makefile   <--------- Main Makefile
+            ├── ...
+            └── Universal_System
+                ├── ...
+                └── StubExtensions
+                    ├── ...
+                    └── Steamworks
+                        ├── About.ey
+                        ├── Makefile
+                        └── stubs.cpp
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        This is was simple as adding a condition in the main Makefile to enable the stub if
+                        the real extension is not enabled.
+                    </p>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
