@@ -20,6 +20,11 @@ if ! which git >/dev/null; then
   exit 1
 fi
 
+chmod +x tcp.sh
+
+echo "Commiting and pushing to master branch first..."
+./tcp.sh "Commiting and pushing to master branch"
+
 echo "Switching to master-published branch if not already..."
 git switch master-published
 
