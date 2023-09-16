@@ -15,7 +15,7 @@ const posts = [
     { id: 10, title: "GSoC '23 - Week 9 & 10: Here we go again", postTitle: "GSoC &#39;23 - Week 9 &amp; 10: Here we go again", fileName: "GSoC_2023_week_9_and_10_here_we_go_again", year: 2023 },
     { id: 11, title: "GSoC '23 - Week 11 & 12: Divergence? or...", postTitle: "GSoC &#39;23 - Week 11 &amp; 12: Divergence? or...", fileName: "GSoC_2023_week_11_and_12_divergence_or", year: 2023 },
     { id: 12, title: "GSoC '23 - Week 13: Extension? Definitely!", postTitle: "GSoC &#39;23 - Week 13: Extension? Definitely!", fileName: "GSoC_2023_week_13_extension_definitely", year: 2023 },
-    { id: 13, title: "GSoC '23 - Week 14 & 15 & 16: Mocking is not that bad", postTitle: "GSoC &#39;23 - Week 14 &amp; 15 &amp; 16: Mocking is not that bad", fileName: "GSoC_2023_week_14_and_15_and_16_mocking_is_not_that_bad", year: 2023 }
+    { id: 13, title: "GSoC '23 - Week 14 & 15 & 16: CI still remember me!", postTitle: "GSoC &#39;23 - Week 14 &amp; 15 &amp; 16: CI still remember me!", fileName: "GSoC_2023_week_14_and_15_and_16_ci_still_remember_me", year: 2023 }
 ];
 
 // Upcoming posts:
