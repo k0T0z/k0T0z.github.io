@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <table border="1">
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Contributor Name</td>
+                            <td>Saif Kandil</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub</td>
+                            <td><a href="https://github.com/k0T0z">k0T0z</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td><a href="https://www.linkedin.com/in/saifkandil02">saifkandil02</a></td>
+                        </tr>
+                        <tr>
+                            <td>Organization</td>
+                            <td>
+                                <a
+                                    href="https://summerofcode.withgoogle.com/programs/2023/organizations/the-enigma-team">The
+                                    ENIGMA Team</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Organization GitHub</td>
+                            <td>
+                                <a href="https://github.com/enigma-dev">enigma-dev</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Project Description</td>
+                            <td>
+                                <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">Steam
+                                    Workshop SDK/Third Party Integration For ENIGMA</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Primary Mentor's GitHub</td>
+                            <td>
+                                <ul>
+                                    <li><a href="https://github.com/RobertBColton">Robert</a></li>
+                                    <li><a href="https://github.com/JoshDreamland">Josh</a></li>
+                                    <li><a href="https://github.com/rpjohnst">rpjohnst</a></li>
+                                    <li><a href="https://github.com/hpgDesigns">Hugar</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Secondary Mentor's GitHub</td>
+                            <td>
+                                <ul>
+                                    <li><a href="https://github.com/fundies">fundies</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <h2>Project Overview:</h2>
+                    <p>
+                        ENIGMA currently lacks third-party integration with various digital distribution platforms such
+                        as Steam, Xbox, or Origin. First-class support for these services would make it easier for Indie
+                        developers to publish ENIGMA-created games. Developers would like for it to be easier to
+                        monetize their games and enable them to release bigger and better updates to their users. An
+                        integrated architectural layer will be created between Steamworks ENIGMA's extension APIs and
+                        Steamworks SDK. ENIGMA's Asynchronous system will be updated. Currently, ENIGMA's Networking
+                        system is not stable so Steam Networking features will be postponed for later for now I will add
+                        support to these APIs: Management, General, Overlay, Leaderboards, Achievements, Cloud, DLC,
+                        UGC, Social, and Steam Utilities.
+                    </p>
+                    <h2>Completed work:</h2>
+                    <ul>
+                        <li>
+                            Part 1: <a href="https://github.com/enigma-dev/enigma-dev/pull/2343">#2343</a>
+                        </li>
+                        <li>
+                            Part 2: <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>
+                        </li>
+                    </ul>
+
+                    <h2>Unfinished work:</h2>
+                    <p>
+                    <ul>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Cloud">Cloud API</a></li>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
+                        <li>
+                            Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
+                            we need Steam to be running in order the tests to pass.
+                        </li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>
+                            Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
+                            Management manually.
+                        </li>
+                        <li>CPP source files need to be documented.</li>
+                        <li>Check the license for committing DLLs and headers.</li>
+                        <li>Check Steamworks's official example comments.</li>
+                        <li>Check GMS Manual for documenting user function's layer.</li>
+                        <li>
+                            Check Robert's PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>
+                        </li>
+                        <li>
+                            Creating stub for Steamworks extension to take its place when disabled.
+                            <p>
+                            <blockquote>
+                                <p>
+                                    you need a stub for when the extension isnt enabled
+                                </p>
+                                <p>
+                                    its just an empty function
+                                </p>
+                                <cite>gfundies — 16/08/2023 10:44</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        </li>add <code>instance_create_depth()</code> user function to the WIKI.</li>
+                        <li>Document and maintain <code>Json</code> extension.</li>
+                        <li>Document and maintain <code>Asynchronous</code> system.</li>
+                        <li>Explain the Steamworks extension's structure and what goes where.</li>
+                    </ul>
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_wrapping_up.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>
