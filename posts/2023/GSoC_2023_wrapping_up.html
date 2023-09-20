@@ -94,9 +94,68 @@
                     <ul>
                         <li>
                             Part 1: <a href="https://github.com/enigma-dev/enigma-dev/pull/2343">#2343</a>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Management">
+                                        Management API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/General">
+                                        General API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Overlay">
+                                        Overlay API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Stats-and-Achievements">
+                                        Stats and Achievements API
+                                    </a>
+                                </li>
+                                <li>
+                                    Writing a new Async system for ENIGMA
+                                </li>
+                                <li>
+                                    Documentation
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             Part 2: <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Leaderboards">
+                                        Leaderboards API
+                                    </a>
+                                </li>
+                                <li>
+                                    Maintained ENIGMA's Json extension
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">
+                                        Social API
+                                    </a>
+                                    <p>
+                                        This API is tested under <code>AST-Generation</code> branch, which contains
+                                        the buffer work from previous GSoC 2022 project. Social API depends on that
+                                        buffer work.
+                                    </p>
+                                </li>
+                                <li>
+                                    Testing
+                                    <ul>
+                                        <li>SOGs</li>
+                                        <li>Extensions Stubs</li>
+                                        <li>Steamworks Fake API (AKA Mocking)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Documentation
+                                </li>
+                            </ul>
                         </li>
                     </ul>
 
@@ -105,60 +164,12 @@
                     <ul>
                         <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Cloud">Cloud API</a></li>
                         <li>Implementing a new draw function for drawing leaderboards.</li>
-                        <li>
-                            Get this done:
-                            <p>
-                            <blockquote>
-                                <p>
-                                    @Saif print that debug message three times and I'll bet you it looks different every
-                                    time
-                                </p>
-                                <p>
-                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
-                                    guessing your memory is fine
-                                </p>
-                                <p>
-                                    print the string to a file instead if you want to see it unmolested
-                                </p>
-                                <cite>Josh — 14/08/2023 17:50</cite>
-                            </blockquote>
-                            </p>
-                        </li>
                         <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
-                        <li>
-                            Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
-                            we need Steam to be running in order the tests to pass.
-                        </li>
                         <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
                         <li>
                             Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
                             Management manually.
                         </li>
-                        <li>CPP source files need to be documented.</li>
-                        <li>Check the license for committing DLLs and headers.</li>
-                        <li>Check Steamworks's official example comments.</li>
-                        <li>Check GMS Manual for documenting user function's layer.</li>
-                        <li>
-                            Check Robert's PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>
-                        </li>
-                        <li>
-                            Creating stub for Steamworks extension to take its place when disabled.
-                            <p>
-                            <blockquote>
-                                <p>
-                                    you need a stub for when the extension isnt enabled
-                                </p>
-                                <p>
-                                    its just an empty function
-                                </p>
-                                <cite>gfundies — 16/08/2023 10:44</cite>
-                            </blockquote>
-                            </p>
-                        </li>
-                        </li>add <code>instance_create_depth()</code> user function to the WIKI.</li>
-                        <li>Document and maintain <code>Json</code> extension.</li>
-                        <li>Document and maintain <code>Asynchronous</code> system.</li>
-                        <li>Explain the Steamworks extension's structure and what goes where.</li>
                     </ul>
                     </p>
                 </div>
