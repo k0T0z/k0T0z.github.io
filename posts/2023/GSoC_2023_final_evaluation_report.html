@@ -1,0 +1,372 @@
+<!-- You MUST NOT change the original link of this post which is https://k0t0z.github.io/posts/2023/GSoC_2023_final_evaluation_report.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <table border="1">
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Contributor Name</td>
+                            <td>Saif Kandil</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub</td>
+                            <td><a href="https://github.com/k0T0z">k0T0z</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td><a href="https://www.linkedin.com/in/saifkandil02">saifkandil02</a></td>
+                        </tr>
+                        <tr>
+                            <td>Organization</td>
+                            <td>
+                                <a
+                                    href="https://summerofcode.withgoogle.com/programs/2023/organizations/the-enigma-team">
+                                    The ENIGMA Team
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Organization GitHub</td>
+                            <td>
+                                <a href="https://github.com/enigma-dev">enigma-dev</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Project Description</td>
+                            <td>
+                                <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                                    Steam Workshop SDK/Third Party Integration For ENIGMA
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Primary Mentor's GitHub</td>
+                            <td>
+                                <ul>
+                                    <li><a href="https://github.com/RobertBColton">Robert</a></li>
+                                    <li><a href="https://github.com/JoshDreamland">Josh</a></li>
+                                    <li><a href="https://github.com/rpjohnst">rpjohnst</a></li>
+                                    <li><a href="https://github.com/hpgDesigns">Hugar</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Secondary Mentor's GitHub</td>
+                            <td>
+                                <ul>
+                                    <li><a href="https://github.com/fundies">fundies</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Repositories Worked On:</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev">enigma-dev/enigma-dev</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Issues Worked On:</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/1881">#1881</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/1951">#1951</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2354">#2354</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2338">#2338</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <h2>Project Goal:</h2>
+                    <p>
+                        ENIGMA currently lacks third-party integration with various digital distribution platforms such
+                        as Steam, Xbox, or Origin. First-class support for these services would make it easier for Indie
+                        developers to publish ENIGMA-created games. Developers would like for it to be easier to
+                        monetize their games and enable them to release bigger and better updates to their users. An
+                        integrated architectural layer will be created between Steamworks ENIGMA's extension APIs and
+                        Steamworks SDK. ENIGMA's Asynchronous system will be updated. Currently, ENIGMA's Networking
+                        system is not stable so Steam Networking features will be postponed for later for now I will add
+                        support to these APIs: Management, General, Overlay, Leaderboards, Achievements, Cloud, DLC,
+                        UGC, Social, and Steam Utilities.
+                    </p>
+                    <h2>Completed work:</h2>
+                    <ul>
+                        <li>
+                            Part 1: <a href="https://github.com/enigma-dev/enigma-dev/pull/2343">#2343</a>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Management">
+                                        Management API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/General">
+                                        General API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Overlay">
+                                        Overlay API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Stats-and-Achievements">
+                                        Stats and Achievements API
+                                    </a>
+                                </li>
+                                <li>
+                                    Writing a new Async system for ENIGMA
+                                </li>
+                                <li>
+                                    Documentation
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Part 2: <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Leaderboards">
+                                        Leaderboards API
+                                    </a>
+                                </li>
+                                <li>
+                                    Maintained ENIGMA's Json extension
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">
+                                        Social API
+                                    </a>
+                                    <p>
+                                        This API is tested under <code>AST-Generation</code> branch, which contains
+                                        the buffer work from previous GSoC 2022 project. Social API depends on that
+                                        buffer work.
+                                    </p>
+                                </li>
+                                <li>
+                                    Testing
+                                    <ul>
+                                        <li>GTests and SOGs</li>
+                                        <li>Extensions Stubs</li>
+                                        <li>Steamworks Fake API (AKA Mocking)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Documentation
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h2>Current State:</h2>
+                    <p>
+                        There are 2 approaches taken in this project:
+                    <ol>
+                        <li>
+                            Linking the libsteam_api.so statically in the <code>Makefile</code> file.
+                        </li>
+                        <li>
+                            Linking a Fake API (AKA Mocking) statically in the <code>Makefile</code> file
+                            and load the real <code>libsteam_api.so</code> dynamically at runtime.
+                        </li>
+                    </ol>
+                    </p>
+                    <p>
+                        I started with the first approach until I realized the CI problem. The CI needs to
+                        know which API (Fake/Real API) to link statically. We want to link the Fake API
+                        when running tests (GTests and SOGs (Single Object Games)) but at the same time
+                        we want to link the Real API when running a real game. There is only one solution
+                        for this problem:
+                    <ol>
+                        <li>
+                            Sending a flag when running tests to indicate that we are running tests and we
+                            need to link the Fake API. When running from the IDE, this flag won't be sent
+                            so we will link the Real API.
+                        </li>
+                    </ol>
+                    </p>
+                    <p>
+                        Instead my mentor <a href="https://github.com/fundies">fundies</a> suggested the second
+                        approach. This approach requires a total refactor to the code so I am working on this now.
+                    </p>
+
+                    <h2>TODO:</h2>
+                    <p>
+                    <ul>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Cloud">Cloud API</a></li>
+                        <li>
+                            Fixing the memory leak inside the Fake API. Check
+                            <code>Steamworks/gameclient/SteamFake/sdk/public/steam/fake_steam_api_internal.cpp</code>
+                        </li>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>
+                            There is a bunch of TODOs in the
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>'s description that
+                            need to be done as well.
+                        </li>
+                        <li>
+                            Currently, all the documentation is in the code files, it should exists in the
+                            <a href="https://enigma-dev.org/docs/Wiki/Category:Function:ENIGMA">WIKI</a> as well.
+                        </li>
+                        <li>
+                            Adding support for other platforms. Windows requires MSVC support for ENIGMA which is
+                            a project on its own. Upgrading the Engine's build system from GNU Make to CMake will
+                            make it more easier
+                            (<a href="https://github.com/enigma-dev/enigma-dev/pull/2334">#2334</a>). Currently,
+                            ENIGMA is failing on macOS which means we can't test the Steamworks extension on it yet.
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h2>List of patches merged:</h2>
+                    <p>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a>:
+                            <p>
+                                Create 2 user functions for dealing with short JSONs.
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2340">#2340</a>:
+                            <p>
+                                This issue was becasue of a newer GCC version used.
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2341">#2341</a>:
+                            <p>
+                                This issue was becasue of a newer GCC version used.
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a>:
+                            <p>
+                                The <code>json_encode()</code> function was unimplemented.
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a>:
+                            <p>
+
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2355">#2355</a>:
+                            <p>
+
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2357">#2357</a>:
+                            <p>
+
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2360">#2360</a>:
+                            <p>
+
+                            </p>
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h2>List of Unmerged Patches:</h2>
+                    <p>
+                    <ul>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2358">#2358</a>:
+                            <p>
+                                The <code>json_encode()</code> function requires a recursive algorithm to handle nested
+                                JSONs. Solutions to this are theoretical till now.
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2361">#2361</a>:
+                            <p>
+                                This is previous
+                                <a href="https://summerofcode.withgoogle.com/programs/2022/projects/BrXiUNA2">GSoC
+                                    2022 project
+                                </a>. It is merged into <code>AST-Generation</code> branch. I need it for
+                                <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">Social API</a>.
+                                The original PR contains a lot of changes that are not related to the project so I
+                                created a new PR with only the buffer work after having a conversation with Dhruv
+                                (Original author).
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2337">#2337</a>:
+                            <p>
+
+                            </p>
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h2>Challenges faced:</h2>
+                    <p>
+                    <ul>
+                        <li>
+                            I started working on Windows on this project until I faced an ABI (Application Binary
+                            Interface) problem. I explained this problem in my proposal and expected that I won't
+                            face it but I did. I spent nearly 3-5 days trying to figure out where is the problem
+                            until my mentor suggested building the same code using GCC and MSVC. As expected the
+                            code worked well on MSVC but it gives SEGMENTATION FAULT on GCC. I switched to Linux after
+                            this problem.
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_final_evaluation_report.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>
