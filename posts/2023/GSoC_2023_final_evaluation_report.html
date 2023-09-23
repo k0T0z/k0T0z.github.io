@@ -127,6 +127,7 @@
                         UGC, Social, and Steam Utilities.
                     </p>
                     <h2>Completed work:</h2>
+                    <p>
                     <ul>
                         <li>
                             Part 1: <a href="https://github.com/enigma-dev/enigma-dev/pull/2343">#2343</a>
@@ -195,6 +196,65 @@
                         </li>
                     </ul>
 
+                    <h3>Final Project Structure:</h3>
+                    <figure class="highlight">
+                        <pre>
+                        <code class="language-cpp" data-lang="c++">
+    Steamworks
+    ├── gameclient
+    │   ├── Binder
+    │   │   ├── SteamFake
+    │   │   │   <span style='color:#0000ff; '>└── sdk</span>
+    │   │   │   <span style='color:#0000ff; '>    ├── public</span>
+    │   │   │   <span style='color:#0000ff; '>    │   └── steam</span>    
+    │   │   │   <span style='color:#0000ff; '>    │       ├── *.h</span>
+    │   │   │   <span style='color:#0000ff; '>    │       └── *.cpp</span>    
+    │   │   │   <span style='color:#0000ff; '>    │</span>    
+    │   │   │   <span style='color:#0000ff; '>    └── Readme.txt</span>  
+    │   │   │
+    │   │   ├── SteamvXXX
+    │   │   │   <span style='color:#0000ff; '>└── sdk</span>
+    │   │   │   <span style='color:#0000ff; '>    ├── public</span>
+    │   │   │   <span style='color:#0000ff; '>    │   └── steam</span>    
+    │   │   │   <span style='color:#0000ff; '>    │       └── *.h</span>    
+    │   │   │   <span style='color:#0000ff; '>    │</span>    
+    │   │   │   <span style='color:#0000ff; '>    └── Readme.txt</span>    
+    │   │   │
+    │   │   ├── binder.h
+    │   │   └── binder.cpp
+    │   │
+    │   ├── utils
+    │   │   ├── *.h
+    │   │   └── *.cpp
+    │   │
+    │   ├── .gitignore
+    │   ├── gameclient.h
+    │   ├── gameclient.cpp
+    │   ├── *.h
+    │   └── *.cpp
+    │
+    ├── steamworks_demo
+    │   ├── *
+    │   └── demo.project.gmx
+    │
+    ├── .gitignore
+    ├── About.ey
+    ├── implement.h
+    ├── include.h
+    ├── CMakelists.txt
+    ├── Makefile
+    ├── README.md
+    ├── setup_linux.sh
+    ├── *.svg
+    ├── steamworks.h
+    ├── steamworks.cpp
+    ├── *.h
+    └── *.cpp
+                        </code>
+                    </pre>
+                    </figure>
+                    </p>
+
                     <h2>Current State:</h2>
                     <p>
                         There are 2 approaches taken in this project:
@@ -254,6 +314,11 @@
                             (<a href="https://github.com/enigma-dev/enigma-dev/pull/2334">#2334</a>). Currently,
                             ENIGMA is failing on macOS which means we can't test the Steamworks extension on it yet.
                         </li>
+                        <li>
+                            Implement user functions related to
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>.
+                        </li>
+                        <li>Work on LGM and RGM GUI with the Steamworks extension.</li>
                     </ul>
                     </p>
 
@@ -353,6 +418,10 @@
                             until my mentor suggested building the same code using GCC and MSVC. As expected the
                             code worked well on MSVC but it gives SEGMENTATION FAULT on GCC. I switched to Linux after
                             this problem.
+                        </li>
+                        <li>
+                            Implementing a new Async system for ENIGMA. As the old Async system is not thread safe,
+                            my mentor robert helped with implementing a new one.
                         </li>
                     </ul>
                     </p>
