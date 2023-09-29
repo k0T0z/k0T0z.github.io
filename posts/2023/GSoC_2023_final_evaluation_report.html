@@ -114,6 +114,7 @@
                             </td>
                         </tr>
                     </table>
+
                     <h2>Project Goal:</h2>
                     <p>
                         ENIGMA currently lacks third-party integration with various digital distribution platforms such
@@ -126,6 +127,7 @@
                         support to these APIs: Management, General, Overlay, Leaderboards, Achievements, Cloud, DLC,
                         UGC, Social, and Steam Utilities.
                     </p>
+
                     <h2>Completed work:</h2>
                     <p>
                     <ul>
@@ -153,7 +155,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    Writing a new Async system for ENIGMA
+                                    Wrote a new Async system for ENIGMA
                                 </li>
                                 <li>
                                     Documentation
@@ -202,7 +204,7 @@
                         <code class="language-cpp" data-lang="c++">
     Steamworks
     ├── gameclient
-    │   ├── Binder
+    │   ├── steambinder
     │   │   ├── SteamFake
     │   │   │   <span style='color:#0000ff; '>└── sdk</span>
     │   │   │   <span style='color:#0000ff; '>    ├── public</span>
@@ -220,14 +222,14 @@
     │   │   │   <span style='color:#0000ff; '>    │</span>    
     │   │   │   <span style='color:#0000ff; '>    └── Readme.txt</span>    
     │   │   │
-    │   │   ├── binder.h
-    │   │   └── binder.cpp
+    │   │   ├── .gitignore
+    │   │   ├── steambinder.h
+    │   │   └── steambinder.cpp
     │   │
     │   ├── utils
     │   │   ├── *.h
     │   │   └── *.cpp
     │   │
-    │   ├── .gitignore
     │   ├── gameclient.h
     │   ├── gameclient.cpp
     │   ├── *.h
@@ -244,7 +246,6 @@
     ├── CMakelists.txt
     ├── Makefile
     ├── README.md
-    ├── setup_linux.sh
     ├── *.svg
     ├── steamworks.h
     ├── steamworks.cpp
@@ -290,7 +291,21 @@
                     <h2>TODO:</h2>
                     <p>
                     <ul>
-                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Cloud">Cloud API</a></li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Lobbies">Lobbies API</a></li>
+                        <li>
+                            <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Cloud">Cloud API</a> (My only
+                            missed goal)
+                        </li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/DLC">DLC API</a></li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/UGC">UGC API</a></li>
+                        <li>
+                            <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Inventory">Inventory API</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Networking">Networking API</a>
+                        </li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Input">Input API</a></li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Utils">Utils API</a></li>
                         <li>
                             Fixing the memory leak inside the Fake API. Check
                             <code>Steamworks/gameclient/SteamFake/sdk/public/steam/fake_steam_api_internal.cpp</code>
@@ -408,7 +423,7 @@
                     </ul>
                     </p>
 
-                    <h2>Challenges faced:</h2>
+                    <h2>Challenges faced and Learnt Lessons:</h2>
                     <p>
                     <ul>
                         <li>
@@ -424,6 +439,11 @@
                             my mentor robert helped with implementing a new one.
                         </li>
                     </ul>
+                    </p>
+
+                    <h2>Project Demo:</h2>
+                    <p>
+
                     </p>
                 </div>
 
