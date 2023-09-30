@@ -14,13 +14,40 @@
     <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
 
     <title></title>
+
+    <style>
+        .custom-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: antiquewhite;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-radius: 20px;
+        }
+
+        .custom-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 1rem;
+        }
+    </style>
 </head>
 
 <body>
     <main id="main-content" class="page-content" aria-label="Content">
         <div class="wrapper">
-            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="custom-header">
+                <img class="custom-logo" src="assets/logo_GSoC.svg" alt="Google Summer of Code Logo">
+                <span style="font-size: 96px; font-weight: bold;">@</span>
+                <img class="custom-logo" src="assets/logo_ENIGMA.png" alt="The ENIGMA Team Logo">
+            </div>
 
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
                 <div class="post-content e-content" itemprop="articleBody">
                     <table border="1">
                         <tr>
@@ -120,12 +147,7 @@
                         ENIGMA currently lacks third-party integration with various digital distribution platforms such
                         as Steam, Xbox, or Origin. First-class support for these services would make it easier for Indie
                         developers to publish ENIGMA-created games. Developers would like for it to be easier to
-                        monetize their games and enable them to release bigger and better updates to their users. An
-                        integrated architectural layer will be created between Steamworks ENIGMA's extension APIs and
-                        Steamworks SDK. ENIGMA's Asynchronous system will be updated. Currently, ENIGMA's Networking
-                        system is not stable so Steam Networking features will be postponed for later for now I will add
-                        support to these APIs: Management, General, Overlay, Leaderboards, Achievements, Cloud, DLC,
-                        UGC, Social, and Steam Utilities.
+                        monetize their games and enable them to release bigger and better updates to their users.
                     </p>
 
                     <h2>Completed work:</h2>
@@ -202,93 +224,87 @@
                     <figure class="highlight">
                         <pre>
                         <code class="language-cpp" data-lang="c++">
-    Steamworks
-    ├── gameclient
-    │   ├── steambinder
-    │   │   ├── SteamFake
-    │   │   │   <span style='color:#0000ff; '>└── sdk</span>
-    │   │   │   <span style='color:#0000ff; '>    ├── public</span>
-    │   │   │   <span style='color:#0000ff; '>    │   └── steam</span>    
-    │   │   │   <span style='color:#0000ff; '>    │       ├── *.h</span>
-    │   │   │   <span style='color:#0000ff; '>    │       └── *.cpp</span>    
-    │   │   │   <span style='color:#0000ff; '>    │</span>    
-    │   │   │   <span style='color:#0000ff; '>    └── Readme.txt</span>  
-    │   │   │
-    │   │   ├── SteamvXXX
-    │   │   │   <span style='color:#0000ff; '>└── sdk</span>
-    │   │   │   <span style='color:#0000ff; '>    ├── public</span>
-    │   │   │   <span style='color:#0000ff; '>    │   └── steam</span>    
-    │   │   │   <span style='color:#0000ff; '>    │       └── *.h</span>    
-    │   │   │   <span style='color:#0000ff; '>    │</span>    
-    │   │   │   <span style='color:#0000ff; '>    └── Readme.txt</span>    
-    │   │   │
-    │   │   ├── .gitignore
-    │   │   ├── steambinder.h
-    │   │   └── steambinder.cpp
-    │   │
-    │   ├── utils
-    │   │   ├── *.h
-    │   │   └── *.cpp
-    │   │
-    │   ├── gameclient.h
-    │   ├── gameclient.cpp
-    │   ├── *.h
-    │   └── *.cpp
-    │
-    ├── steamworks_demo
-    │   ├── *
-    │   └── demo.project.gmx
-    │
-    ├── .gitignore
-    ├── About.ey
-    ├── implement.h
-    ├── include.h
-    ├── CMakelists.txt
-    ├── Makefile
-    ├── README.md
-    ├── *.svg
-    ├── steamworks.h
-    ├── steamworks.cpp
-    ├── *.h
-    └── *.cpp
+    <span style='color:#800080; '>Steamworks</span>
+    <span style='color:#800080; '>├── gameclient</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── steambinder</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── SteamFake</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>└── sdk</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    ├── public</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │   └── steam</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │       ├── *.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │       └── *.cpp</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    └── Readme.txt</span>  
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── SteamvXXX</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>└── sdk</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    ├── public</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │   └── steam</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │       └── *.h</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    └── Readme.txt</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── .gitignore</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── steambinder.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>└── steambinder.cpp</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── utils</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│   ├── *.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│   └── *.cpp</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── gameclient.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── gameclient.cpp</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── *.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>└── *.cpp</span>
+    <span style='color:#800080; '>│</span>
+    <span style='color:#800080; '>├── steamworks_demo</span>
+    <span style='color:#800080; '>│   ├── *</span>
+    <span style='color:#800080; '>│   └── demo.project.gmx</span>
+    <span style='color:#800080; '>│</span>
+    <span style='color:#800080; '>├── .gitignore</span>
+    <span style='color:#800080; '>├── About.ey</span>
+    <span style='color:#800080; '>├── implement.h</span>
+    <span style='color:#800080; '>├── include.h</span>
+    <span style='color:#800080; '>├── CMakelists.txt</span>
+    <span style='color:#800080; '>├── Makefile</span>
+    <span style='color:#800080; '>├── README.md</span>
+    <span style='color:#800080; '>├── *.svg</span>
+    <span style='color:#800080; '>├── steamworks.h</span>
+    <span style='color:#800080; '>├── steamworks.cpp</span>
+    <span style='color:#800080; '>├── *.h</span>
+    <span style='color:#800080; '>└── *.cpp</span>
                         </code>
                     </pre>
                     </figure>
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div
+                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #000080; display: inline-block; margin-right: 10px;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 1: Steamworks SDK</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div
+                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #006400; display: inline-block; margin-right: 10px;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 2: Steam Binder</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div
+                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #800000; display: inline-block; margin-right: 10px;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 3: Game Client</span>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div
+                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #800080; display: inline-block; margin-right: 10px;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">
+                            Layer 4: Steamworks Extension
+                        </span>
+                    </div>
                     </p>
 
-                    <h2>Current State:</h2>
-                    <p>
-                        There are 2 approaches taken in this project:
-                    <ol>
-                        <li>
-                            Linking the libsteam_api.so statically in the <code>Makefile</code> file.
-                        </li>
-                        <li>
-                            Linking a Fake API (AKA Mocking) statically in the <code>Makefile</code> file
-                            and load the real <code>libsteam_api.so</code> dynamically at runtime.
-                        </li>
-                    </ol>
-                    </p>
-                    <p>
-                        I started with the first approach until I realized the CI problem. The CI needs to
-                        know which API (Fake/Real API) to link statically. We want to link the Fake API
-                        when running tests (GTests and SOGs (Single Object Games)) but at the same time
-                        we want to link the Real API when running a real game. There is only one solution
-                        for this problem:
-                    <ol>
-                        <li>
-                            Sending a flag when running tests to indicate that we are running tests and we
-                            need to link the Fake API. When running from the IDE, this flag won't be sent
-                            so we will link the Real API.
-                        </li>
-                    </ol>
-                    </p>
-                    <p>
-                        Instead my mentor <a href="https://github.com/fundies">fundies</a> suggested the second
-                        approach. This approach requires a total refactor to the code so I am working on this now.
-                    </p>
-
-                    <h2>TODO:</h2>
+                    <h2>Work To Be Done</h2>
                     <p>
                     <ul>
                         <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Lobbies">Lobbies API</a></li>
@@ -337,90 +353,158 @@
                     </ul>
                     </p>
 
-                    <h2>List of patches merged:</h2>
+                    <h2>List of merged patches</h2>
                     <p>
-                    <ul>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a>:
-                            <p>
-                                Create 2 user functions for dealing with short JSONs.
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2340">#2340</a>:
-                            <p>
-                                This issue was becasue of a newer GCC version used.
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2341">#2341</a>:
-                            <p>
-                                This issue was becasue of a newer GCC version used.
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a>:
-                            <p>
-                                The <code>json_encode()</code> function was unimplemented.
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a>:
-                            <p>
+                    <table border="1">
+                        <tr>
+                            <th>Patch Link</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> (Unrelated)</td>
+                            <td>
+                                Create 2 user functions for dealing with short JSONs and fixed
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2340">#2340</a> (Unrelated)</td>
+                            <td>This issue was becasue of a newer GCC version used.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2341">#2341</a> (Unrelated)</td>
+                            <td>This issue was becasue of a newer GCC version used.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a> (Related)</td>
+                            <td>The <code>json_encode()</code> function was unimplemented.</td>
+                        </tr>
 
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2355">#2355</a>:
-                            <p>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a> (Related)</td>
+                            <td>
+                                In this one, I provided a fix for a weird issue that I explained
+                                <a
+                                    href="https://k0t0z.github.io/posts/2023/GSoC_2023_week_11_and_12_divergence_or.html##solving-seven-day-problem">here</a>
+                                and using <code>std::sstream</code> instead of <code>std::string</code> in my
+                                use case is better as recommended by
+                                <a href="https://github.com/JoshDreamland">Josh</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2355">#2355</a> (Related)</td>
+                            <td>
+                                This one is related to
+                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2354">#2354</a>. I provided
+                                a fix for the issue related to Json extension.
+                            </td>
+                        </tr>
 
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2357">#2357</a>:
-                            <p>
-
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2360">#2360</a>:
-                            <p>
-
-                            </p>
-                        </li>
-                    </ul>
+                        <tr>
+                            <td>
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2357">#2357</a> (Related)
+                            </td>
+                            <td>
+                                Fixed another bug found in the Json extension. Overall, with this
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2358">#2358</a> merged, the
+                                Json extension is now fully functional.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2360">#2360</a> (Related)</td>
+                            <td>
+                                In <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a>, I provided
+                                a fix for <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>
+                                but it was wrong solution. This patch fixes the issue with the right and perfect
+                                solution.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2297">#2297</a> (Unelated)</td>
+                            <td>
+                                This is my first patch when I started working on ENIGMA. It's simple cleaning for dead
+                                files.
+                            </td>
+                        </tr>
+                    </table>
+                    <P
+                        style="background-color: antiquewhite; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">
+                        Note that related/unrelated means that the patch is related/unrelated to the Steam SDK
+                        integration project.
+                    </P>
                     </p>
 
-                    <h2>List of Unmerged Patches:</h2>
+                    <h2>List of unmerged patches:</h2>
                     <p>
-                    <ul>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2358">#2358</a>:
-                            <p>
+                    <table border="1">
+                        <tr>
+                            <th>Patch Link</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2358">#2358</a> (Related)</td>
+                            <td>
                                 The <code>json_encode()</code> function requires a recursive algorithm to handle nested
-                                JSONs. Solutions to this are theoretical till now.
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2361">#2361</a>:
-                            <p>
-                                This is previous
-                                <a href="https://summerofcode.withgoogle.com/programs/2022/projects/BrXiUNA2">GSoC
-                                    2022 project
-                                </a>. It is merged into <code>AST-Generation</code> branch. I need it for
-                                <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">Social API</a>.
-                                The original PR contains a lot of changes that are not related to the project so I
-                                created a new PR with only the buffer work after having a conversation with Dhruv
-                                (Original author).
-                            </p>
-                        </li>
-                        <li>
-                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2337">#2337</a>:
-                            <p>
-
-                            </p>
-                        </li>
-                    </ul>
+                                JSONs. Solutions to this are theoretical till now. Currently, the function will print
+                                the ID of any nested JSON instead of printing the JSON itself.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2361">#2361</a> (Related)</td>
+                            <td>
+                                The <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">
+                                    Social API
+                                </a> requires the buffer work from the previous GSoC 2022 project as the current buffer
+                                work is completely broken. The
+                                <a href="https://summerofcode.withgoogle.com/programs/2022/projects/BrXiUNA2">
+                                    Data Buffers / Serialization
+                                </a> project is the one. This code is merged into <code>AST-Generation</code> branch
+                                so I had to test my Social API inside that branch. My both PRs in the Completed Work
+                                section are intended to be merged into <code>master</code> branch. After discussing
+                                with Dhruv (Original author of the buffer work), he suggested to split the buffer work
+                                into a separate PR and merge it into <code>master</code> branch. So, I created a new
+                                PR for the buffer work.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2337">#2337</a> (Unrelated)</td>
+                            <td>
+                                Before getting familiar with <code>pacman</code>, I downloaded GTest and built it from
+                                source. I got only the <code>*.a</code> files with no <code>*.dll</code>s. ENIGMA links
+                                to <code>*.dll</code>s so the code crashes obviously. I provided my report for
+                                <a href="https://github.com/rpjohnst">rpjohnst</a> and he suggested to use
+                                <code>pacman</code> as it downloads the <code>*.dll</code>s as well. The thing is using
+                                the <code>dll</code>, GTest will be linked dynamically. Also, using the <code>.a</code>,
+                                GTest will be linked statically. So that patch changes the way we link GTest which are
+                                two different approaches with pros and cons. I don't think this should be merged.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2334">#2334</a> (Unrelated)</td>
+                            <td>
+                                This is related to
+                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2286">#2286</a>. This is my
+                                PR for upgrading the build system from GNU Make to CMake. This was my Google Summer of
+                                Code 2022 project before getting rejected. I intend to work on it after stabilizing the
+                                Steamworks extension.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2333">#2333</a>, <a
+                                    href="https://github.com/enigma-dev/enigma-dev/pull/2321">2321</a>, and <a
+                                    href="https://github.com/enigma-dev/enigma-dev/pull/2314">#2314</a> (All unrelated)
+                            </td>
+                            <td>
+                                No longer needed PRs, these are just was for testing things out.
+                            </td>
+                        </tr>
+                    </table>
+                    <P
+                        style="background-color: antiquewhite; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">
+                        Note that related/unrelated means that the patch is related/unrelated to the Steam SDK
+                        integration project.
+                    </P>
                     </p>
 
                     <h2>Challenges faced and Learnt Lessons:</h2>
@@ -435,16 +519,65 @@
                             this problem.
                         </li>
                         <li>
-                            Implementing a new Async system for ENIGMA. As the old Async system is not thread safe,
-                            my mentor robert helped with implementing a new one.
+                            Implementing a new Async system for ENIGMA. As the old Async system is not thread safe.
+                            <a href="https://github.com/RobertBColton">Robert</a> helped with implementing the new one.
+                        </li>
+                        <li>
+                            <p>
+                                Solving CI problem by 2 steps:
+                            <ol>
+                                <li>
+                                    Creating the Steamworks Fake API.
+                                </li>
+                                <li>
+                                    Creating Stubs for the <code>Steamworks</code> and <code>DataStructures</code>
+                                    extensions.
+                                </li>
+                            </ol>
+                            </p>
+                            <p>
+                                There are 2 approaches when creating the Fake API:
+                            <ol>
+                                <li>
+                                    Linking the libsteam_api.so statically in the <code>Makefile</code> file.
+                                </li>
+                                <li>
+                                    Linking a Fake API (AKA Mocking) statically in the <code>Makefile</code> file
+                                    and load the real <code>libsteam_api.so</code> dynamically at runtime.
+                                </li>
+                            </ol>
+                            </p>
+                            <p>
+                                I started with the first approach until I realized the CI problem. The CI needs to
+                                know which API (Fake/Real API) to link statically. We want to link the Fake API
+                                when running tests (GTests and SOGs (Single Object Games)) but at the same time
+                                we want to link the Real API when running a real game. There is only one solution
+                                for this problem:
+                            <ol>
+                                <li>
+                                    Sending a flag when running tests to indicate that we are running tests and we
+                                    need to link the Fake API. When running from the IDE, this flag won't be sent
+                                    so we will link the Real API.
+                                </li>
+                            </ol>
+                            </p>
+                            <p>
+                                Instead <a href="https://github.com/fundies">fundies</a> suggested the second
+                                approach. This approach requires adding another layer between the
+                                <code>Steamworks SDK</code> and <code>Game Client</code> layers. I will call this layer
+                                <code>Steam Binder</code>.
+                            </p>
+                        </li>
+                        <li>
+                            Implementing the Steamworks Fake API. I had to dig deeper into Steamworks official
+                            headers to understand how the API works and then mock main interfaces.
                         </li>
                     </ul>
                     </p>
 
-                    <h2>Project Demo:</h2>
-                    <p>
-
-                    </p>
+                    <h2>
+                        <a href="https://youtu.be/EfhD1yMTIXk">Steam SDK Integration Demo</a> On YouTube
+                    </h2>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
