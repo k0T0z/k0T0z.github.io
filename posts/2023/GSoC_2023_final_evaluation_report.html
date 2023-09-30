@@ -35,6 +35,21 @@
             height: 150px;
             margin: 0 1rem;
         }
+
+        .custom-legend {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .custom-legend-icon {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -109,7 +124,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Repositories Worked On:</td>
+                            <td>Repositories Worked On</td>
                             <td>
                                 <ul>
                                     <li>
@@ -119,7 +134,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Issues Worked On:</td>
+                            <td>Issues Worked On</td>
                             <td>
                                 <ul>
                                     <li>
@@ -142,7 +157,7 @@
                         </tr>
                     </table>
 
-                    <h2>Project Goal:</h2>
+                    <h2>Project Goal</h2>
                     <p>
                         ENIGMA currently lacks third-party integration with various digital distribution platforms such
                         as Steam, Xbox, or Origin. First-class support for these services would make it easier for Indie
@@ -150,7 +165,7 @@
                         monetize their games and enable them to release bigger and better updates to their users.
                     </p>
 
-                    <h2>Completed work:</h2>
+                    <h2>Completed work</h2>
                     <p>
                     <ul>
                         <li>
@@ -220,7 +235,29 @@
                         </li>
                     </ul>
 
-                    <h3>Final Project Structure:</h3>
+                    <h3>Final Project Structure</h3>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #000080;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 1: Steamworks SDK</span>
+                    </div>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #006400;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 2: Steam Binder</span>
+                    </div>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #800000;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 3: Game Client</span>
+                    </div>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #800080;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">
+                            Layer 4: Steamworks Extension
+                        </span>
+                    </div>
                     <figure class="highlight">
                         <pre>
                         <code class="language-cpp" data-lang="c++">
@@ -276,32 +313,6 @@
                         </code>
                     </pre>
                     </figure>
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <div
-                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #000080; display: inline-block; margin-right: 10px;">
-                        </div>
-                        <span style="display: inline-block; vertical-align: middle;">Layer 1: Steamworks SDK</span>
-                    </div>
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <div
-                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #006400; display: inline-block; margin-right: 10px;">
-                        </div>
-                        <span style="display: inline-block; vertical-align: middle;">Layer 2: Steam Binder</span>
-                    </div>
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <div
-                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #800000; display: inline-block; margin-right: 10px;">
-                        </div>
-                        <span style="display: inline-block; vertical-align: middle;">Layer 3: Game Client</span>
-                    </div>
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <div
-                            style="width: 20px; height: 20px; border-radius: 50%; background-color: #800080; display: inline-block; margin-right: 10px;">
-                        </div>
-                        <span style="display: inline-block; vertical-align: middle;">
-                            Layer 4: Steamworks Extension
-                        </span>
-                    </div>
                     </p>
 
                     <h2>Work To Be Done</h2>
@@ -434,7 +445,7 @@
                     </P>
                     </p>
 
-                    <h2>List of unmerged patches:</h2>
+                    <h2>List of unmerged patches</h2>
                     <p>
                     <table border="1">
                         <tr>
@@ -507,7 +518,7 @@
                     </P>
                     </p>
 
-                    <h2>Challenges faced and Learnt Lessons:</h2>
+                    <h2>Challenges faced and Learnt Lessons</h2>
                     <p>
                     <ul>
                         <li>
@@ -578,6 +589,28 @@
                     <h2>
                         <a href="https://youtu.be/EfhD1yMTIXk">Steam SDK Integration Demo</a> On YouTube
                     </h2>
+
+                    <h2>Acknowledgements</h2>
+                    <p>
+                    <p>
+                        First things first, Thanks to everyone who has contributed to the success of my Google Summer of
+                        Code 2023 project. This journey would not have been possible without the support, guidance, and
+                        collaboration of many individuals and organizations.
+                    </p>
+                    <p>
+                        First and foremost, I would like to extend my deepest appreciation to Robert, Josh, Russell
+                        (rpjohnst), Patrick (Hugar), and Greg (fundies), my mentors throughout this program. Their
+                        expertise, patience, and continuous guidance have been invaluable. I have learned immeasurable
+                        skills and insights under their mentorship.
+                    </p>
+                    <p>
+                        Now it is time to say it: "I didn't expected to be selected for this project &#128515;". No,
+                        really! That was a dream of mine.
+                    </p>
+                    <p>
+                        Thank you.
+                    </p>
+                    </p>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>
