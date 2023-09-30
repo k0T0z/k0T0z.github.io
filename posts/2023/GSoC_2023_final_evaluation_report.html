@@ -371,7 +371,12 @@
                             <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> (Unrelated)</td>
                             <td>
                                 Created 2 user functions for dealing with short JSONs and fixed
-                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>.
+                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>. Actually, I
+                                need to look more into this later because I may need to redefine what is a short JSON.
+                                I found out that for example, consider this short JSON: <code>[[1,2],2]</code>, what
+                                will be its JSON? It can be <code>{ " 0 " : { " 0 " : 1 , " 1 " : 2 }, " 1 " : 2}</code>
+                                or <code>[ { " 0 " : 1 , " 1 " : 2 } , 2 ]</code>. Two different outputs for the same
+                                input. This is a complete miss!!!
                             </td>
                         </tr>
                         <tr>
