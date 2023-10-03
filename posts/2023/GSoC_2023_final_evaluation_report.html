@@ -346,11 +346,13 @@
                             <a href="https://enigma-dev.org/docs/Wiki/Category:Function:ENIGMA">WIKI</a> as well.
                         </li>
                         <li>
-                            Adding support for other platforms. Windows requires MSVC support for ENIGMA which is
-                            a project on its own. Upgrading the Engine's build system from GNU Make to CMake will
-                            make it more easier
+                            Adding support for other platforms in the Steam Binder as it currently supports Ubuntu
+                            Linux only. Testing Steamworks extension on other Linux distros is the easier part.
+                            Windows requires MSVC support for ENIGMA which is a project on its own. Upgrading the
+                            engine's build system from GNU Make to CMake will make it more easier
                             (<a href="https://github.com/enigma-dev/enigma-dev/pull/2334">#2334</a>). Currently,
                             ENIGMA is failing on macOS which means we can't test the Steamworks extension on it yet.
+
                         </li>
                         <li>
                             Implement user functions related to
@@ -395,12 +397,12 @@
                         <tr>
                             <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a> (Related)</td>
                             <td>
-                                In this one, I provided a fix for a weird issue that I explained
+                                In this one, I provided a fix for a weird issue that I explained here
                                 <a
-                                    href="https://k0t0z.github.io/posts/2023/GSoC_2023_week_11_and_12_divergence_or.html##solving-seven-day-problem">here</a>
-                                and using <code>std::sstream</code> instead of <code>std::string</code> in my
-                                use case is better as recommended by
-                                <a href="https://github.com/JoshDreamland">Josh</a>.
+                                    href="https://k0t0z.github.io/posts/2023/GSoC_2023_week_11_and_12_divergence_or.html##solving-seven-day-problem">
+                                    GSoC '23 - Week 11 & 12: Divergence? or...
+                                </a> and using <code>std::sstream</code> instead of <code>std::string</code> in my use
+                                case is better as recommended by <a href="https://github.com/JoshDreamland">Josh</a>.
                             </td>
                         </tr>
                         <tr>
