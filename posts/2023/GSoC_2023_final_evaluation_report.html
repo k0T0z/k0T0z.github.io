@@ -188,7 +188,83 @@
                                     </a>
                                 </li>
                                 <li>
-                                    Wrote a new Async system for ENIGMA
+                                    Wrote a new Async system for ENIGMA with the following structure:
+                                    <p>
+                                    <figure class="highlight">
+                                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.cpp
+
+    #include "Universal_System/Extensions/Steamworks/steamworks.h"
+
+    namespace enigma {
+    
+        std::queue<std::map<std::string, variant>> posted_async_events;
+
+        std::mutex posted_async_events_mutex;
+    
+        void fireEventsFromQueue() {
+            // Acquire lock and release it when out of scope of fireEventsFromQueue().
+            std::lock_guard<std::mutex> guard(posted_async_events_mutex);
+            while (!posted_async_events.empty()) {
+                
+                ...
+            
+                enigma::fireSteamworksEvent();
+            }
+        }
+        
+        int enigma_main(int argc, char** argv) {
+            enigma_user::async_load = enigma_user::ds_map_create();
+
+            ...
+
+            while (!game_isending) {
+
+            ...
+                
+            fireEventsFromQueue(&extension_steamworks_mutex);
+
+            ...
+
+            }
+            
+            ...
+        }
+        
+    }
+    
+    namespace enigma_user {
+    
+        int async_load;
+        
+    }
+                                            </code>
+                                        </pre>
+                                    </figure>
+                                    <figure class="highlight">
+                                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.h
+
+    namespace enigma {
+    
+        extern std::queue<std::map<std::string, variant>> posted_async_events;
+
+        extern std::mutex posted_async_events_mutex;
+
+        void fireEventsFromQueue();
+
+    }  // namespace enigma
+
+    namespace enigma_user {
+
+        extern int async_load;
+
+    }  // namespace enigma_user
+    
+                                            </code>
+                                        </pre>
+                                    </figure>
+                                    </p>
                                 </li>
                                 <li>
                                     Documentation
