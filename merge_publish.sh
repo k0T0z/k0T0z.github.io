@@ -23,7 +23,7 @@ fi
 chmod +x tcp.sh
 
 echo "Commiting and pushing to master branch first..."
-./tcp.sh "Commiting and pushing to master branch"
+./tcp.sh "Merge master branch into master-published branch"
 
 echo "Switching to master-published branch if not already..."
 git switch master-published
@@ -31,11 +31,11 @@ git switch master-published
 echo "Merging master branch into master-published branch..."
 git merge master
 
-echo "Tracking..."
-git add .
+# echo "Tracking..."
+# git add .
 
-echo "Commiting..."
-git commit -s -m "Merge master branch into master-published branch"
+# echo "Commiting..."
+# git commit -s -m "Merge master branch into master-published branch"
 
 if ! confirm_push; then
     echo "Pushing canceled."
