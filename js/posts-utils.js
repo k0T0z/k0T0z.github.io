@@ -140,8 +140,8 @@ getPostFirstCommitDate(filePath);
 // This is the path to the arrow that is used to highlight the headers.
 const highlightHeadersArrowPath = "../../assets/arrow_outward.svg";
 
-// Add the arrow to all headers with the class "highlight-headers-arrow".
-const highlightHeadersArrowElements = document.getElementsByClassName("highlight-headers-arrow");
+// Add the arrow to all headers with the class "permalink-headline-arrow".
+const highlightHeadersArrowElements = document.getElementsByClassName("permalink-headline-arrow");
 for (var i = 0; i < highlightHeadersArrowElements.length; i++) {
     highlightHeadersArrowElements[i].innerHTML =
         `
