@@ -168,13 +168,13 @@
 
     namespace enigma {
     
-        std::queue<std::map<std::string, variant>> posted_async_events;
+        std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
 
         std::mutex posted_async_events_mutex;
     
         void fireEventsFromQueue() {
             // Acquire lock and release it when out of scope of fireEventsFromQueue().
-            std::lock_guard<std::mutex> guard(posted_async_events_mutex);
+            std::lock_guard&lt;std::mutex&gt; guard(posted_async_events_mutex);
             while (!posted_async_events.empty()) {
                 
                 ...
@@ -217,7 +217,7 @@
 
     namespace enigma {
     
-        extern std::queue<std::map<std::string, variant>> posted_async_events;
+        extern std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
 
         extern std::mutex posted_async_events_mutex;
 
