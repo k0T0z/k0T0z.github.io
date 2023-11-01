@@ -59,6 +59,8 @@
                         the executable. Here's the main structure:
                     <figure class="highlight">
                         <pre><code class="language-cpp" data-lang="c++">
+    override CXXFLAGS += -I$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/steambinder/Steamv157/sdk/public/
+                    
     ifeq ($(TARGET-PLATFORM), Windows)
 
         override LDFLAGS += -L$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/steambinder/Steamv157/sdk/redistributable_bin/win64/
