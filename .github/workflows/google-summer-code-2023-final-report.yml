@@ -72,4 +72,4 @@ jobs:
         with:
           publish_branch: master-published
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: posts/
+          publish_dir: posts/2023/
