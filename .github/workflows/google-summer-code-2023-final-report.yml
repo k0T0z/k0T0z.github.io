@@ -68,7 +68,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master-published'
+        if: github.ref == 'refs/heads/master-ready'
         with:
           publish_branch: master-published
           github_token: ${{ secrets.GITHUB_TOKEN }}
