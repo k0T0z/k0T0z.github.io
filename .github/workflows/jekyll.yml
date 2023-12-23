@@ -35,6 +35,11 @@ jobs:
         # Runs 'bundle install' and caches installed gems automatically.
         bundler-cache: true
 
+    # Clean up the target directory.
+
+    - name: Clean up the target directory
+      run: bundle exec jekyll clean
+
     # Build the website.
 
     - name: Build the static website
