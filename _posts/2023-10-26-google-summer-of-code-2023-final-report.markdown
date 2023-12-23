@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Google Summer of Code 2023 Final Report"
-date:   2023-10-26 00:00:00 +0200
+date:   2023-10-26 12:00:00 +0200
 ---
 
 <!-- You MUST NOT change the original link of this post which is https://k0t0z.github.io/posts/2023/GSoC_2023_final_evaluation_report.html -->
