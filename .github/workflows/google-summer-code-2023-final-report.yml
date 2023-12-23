@@ -19,14 +19,14 @@ jobs:
       contents: write
 
     steps:
-      - name: Check if the rendering workflow was successful
+      - name: Check if the Jekyll rendering workflow was successful
         run: |
           if [ ${{ github.event.workflow_run.conclusion }} != "success" ]; then
             echo "The Jekyll rendering workflow was not successful. Exiting..."
             exit 1
           fi
 
-      - name: Checkout master-ready branch
+      - name: Checkout master-published branch
         uses: actions/checkout@v4
         with:
           ref: master-published
@@ -68,7 +68,6 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master-ready'
         with:
           publish_branch: master-published
           github_token: ${{ secrets.GITHUB_TOKEN }}
