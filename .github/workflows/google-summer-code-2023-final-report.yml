@@ -30,12 +30,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: master-published
-          
-      - name: Create target directory
-        run: mkdir -p posts/2023/
 
-      - name: Move report files
-        run: mv special/* posts/2023/
+      - name: Download the report files from the master-ready branch
+        run: |
+          url="https://github.com/k0T0z/k0T0z.github.io/tree/master-ready/special"
+
+          curl -sLOk "$url"/{GSoC_2023_final_evaluation_report.html,css/gsoc-2023-final-evaluation-report.css, \
+              assets/arrow_outward.svg, assets/logo-enigma.png, assets/logo-gsoc.svg, assets/my-google-summer-of-code-2023-proposal.pdf}
+          
+          # View the downloaded files' structure
+          ls
 
       - name: Commit and push the report to master-published
         run: |
