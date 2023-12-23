@@ -36,6 +36,8 @@ jobs:
 
       - name: Commit and push the report to master-published
         run: |
+          git config user.email "74428638+k0T0z@users.noreply.github.com"
+          git config user.name "Saif Kandil"
           git add posts/2023/*
           git commit -m "Publish Google Summer of Code 2023 final report"
           git push origin master-published
