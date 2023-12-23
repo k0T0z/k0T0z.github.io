@@ -15,18 +15,21 @@ jobs:
   move-file:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout master-ready branch
         uses: actions/checkout@v4
         with:
           ref: master-ready
 
-      # - name: Check if the rendering workflow was successful
-      #   run: |
-      #     if [ ${{ github.event.workflow_run.conclusion }} != "success" ]; then
-      #       echo "The rendering workflow was not successful. Exiting..."
-      #       exit 1
-      #     fi
+      - name: Check if the rendering workflow was successful
+        run: |
+          if [ ${{ github.event.workflow_run.conclusion }} != "success" ]; then
+            echo "The Jekyll rendering workflow was not successful. Exiting..."
+            exit 1
+          fi
 
       - name: Create target directory
         run: mkdir -p posts/2023/
