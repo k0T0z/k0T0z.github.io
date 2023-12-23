@@ -5,7 +5,7 @@ name: "Jekyll: Render website"
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ master-ready ]
 
 # Make sure jobs cannot overlap (e.g. one from push and one from schedule).
 concurrency:
@@ -24,7 +24,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        ref: 'master'
+        ref: 'master-ready'
 
     # Configure the build environment.
 
