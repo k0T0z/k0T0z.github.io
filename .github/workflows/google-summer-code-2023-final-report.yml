@@ -1,7 +1,7 @@
 # This file is a special file that is used to publish my Google Summer of Code 2023 final report to my jekyll website.
 # Link: https://k0t0z.github.io/posts/2023/GSoC_2023_final_evaluation_report.html
 
-name: Publish Report
+name: Publish Google Summer of Code 2023 final report
 
 on:
     workflow_run:
@@ -33,3 +33,11 @@ jobs:
 
       - name: Create CSS directory
         run: mv special/* posts/2023/
+
+      - name: Commit and push the report to master-published
+        run: |
+          git add posts/2023/*
+          git commit -m "Publish Google Summer of Code 2023 final report"
+          git push origin master-published
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
