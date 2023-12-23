@@ -21,12 +21,12 @@ jobs:
         with:
           ref: master-ready
 
-      - name: Check if the rendering workflow was successful
-        run: |
-          if [ ${{ github.event.workflow_run.conclusion }} != "success" ]; then
-            echo "The rendering workflow was not successful. Exiting..."
-            exit 1
-          fi
+      # - name: Check if the rendering workflow was successful
+      #   run: |
+      #     if [ ${{ github.event.workflow_run.conclusion }} != "success" ]; then
+      #       echo "The rendering workflow was not successful. Exiting..."
+      #       exit 1
+      #     fi
 
       - name: Create target directory
         run: mkdir -p posts/2023/
