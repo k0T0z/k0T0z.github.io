@@ -45,13 +45,10 @@ jobs:
     - name: Build the static website
       run: bundle exec jekyll build
 
-    - name: Deploy to the master-published branch
-      uses: JamesIves/github-pages-deploy-action@v4
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/master-ready'
       with:
-        branch: master-published
-        folder: _site/
-        # Configure the commit author.
-        git-config-name: '<>'
-        git-config-email: '<>'
-        # Remove outdated files from the target directory.
-        clean: true
+        publish_branch: master-published
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: _site/

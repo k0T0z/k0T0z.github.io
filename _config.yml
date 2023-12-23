@@ -59,6 +59,11 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - merge_public.sh
+  - merge_publish.sh
   - tcp.sh
   - special/
+  - LICENSE
+  - README.md
+  - .editorconfig
+  - .gitattributes
+  - .github/
