@@ -29,7 +29,7 @@ echo "Switching to master-ready branch if not already..."
 git switch master-ready
 
 echo "Merging master branch into master-ready branch..."
-git merge master-ready
+git merge master
 
 if ! confirm_push; then
     echo "Pushing canceled."
@@ -38,7 +38,7 @@ if ! confirm_push; then
     exit 1
 fi
 
-echo "Pushing..."
+echo "Pushing to master-ready..."
 git push origin master-ready
 
 echo "Switching back to master branch..."
