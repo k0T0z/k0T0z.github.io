@@ -1,0 +1,52 @@
+# This file is to deploy to Github pages.
+
+name: "Jekyll: Render website"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+
+# Make sure jobs cannot overlap (e.g. one from push and one from schedule).
+concurrency:
+  group: published-ci
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and deploy to the master-published branch
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: 'master'
+
+    # Configure the build environment.
+
+    - name: Install Ruby 3.1
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+        # Runs 'bundle install' and caches installed gems automatically.
+        bundler-cache: true
+
+    # Build the website.
+
+    - name: Build the static website
+      run: bundle exec jekyll build
+
+    - name: Deploy to the master-published branch
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: master-published
+        folder: _site
+        # Configure the commit author.
+        git-config-name: 'The Scorpion Anti-malware Organization'
+        git-config-email: '<>'
+        # Remove outdated files from the target directory.
+        clean: true
