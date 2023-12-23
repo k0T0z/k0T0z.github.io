@@ -51,7 +51,7 @@ jobs:
         branch: master-published
         folder: _site
         # Configure the commit author.
-        git-config-name: 'The Scorpion Anti-malware Organization'
+        git-config-name: '<>'
         git-config-email: '<>'
         # Remove outdated files from the target directory.
         clean: true
