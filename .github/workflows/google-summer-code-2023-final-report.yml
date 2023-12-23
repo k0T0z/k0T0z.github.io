@@ -1,0 +1,35 @@
+# This file is a special file that is used to publish my Google Summer of Code 2023 final report to my jekyll website.
+# Link: https://k0t0z.github.io/posts/2023/GSoC_2023_final_evaluation_report.html
+
+name: Publish Report
+
+on:
+    workflow_run:
+      workflows: ["Jekyll: Render website"]
+      types:
+        - completed
+      branches:
+        - master-ready
+
+jobs:
+  move-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout master-ready branch
+        uses: actions/checkout@v4
+        with:
+          ref: master-ready
+
+      - name: Check if the rendering workflow was successful
+        run: |
+          if [ ${{ github.event.workflow_run.conclusion }} != "success" ]; then
+            echo "The rendering workflow was not successful. Exiting..."
+            exit 1
+          fi
+
+      - name: Create target directory
+        run: mkdir -p posts/2023/
+
+      - name: Create CSS directory
+        run: mv special/* posts/2023/

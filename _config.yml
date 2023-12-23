@@ -47,6 +47,7 @@ exclude:
   - Gemfile.lock
   - merge_public.sh
   - tcp.sh
+  - special/
 
 # Exclude from processing.
 # The following items will not be processed, by default.
