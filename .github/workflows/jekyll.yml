@@ -49,7 +49,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: master-published
-        folder: _site
+        folder: _site/
         # Configure the commit author.
         git-config-name: '<>'
         git-config-email: '<>'
