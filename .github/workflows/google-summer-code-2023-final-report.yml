@@ -46,3 +46,11 @@ jobs:
           git push origin master-published
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Debug Information
+        run: |
+          git status
+          git remote -v
+          git log --oneline -n 5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
