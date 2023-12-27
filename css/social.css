@@ -1,0 +1,18 @@
+.social {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 4rem; */
+    margin-top: 4rem;
+}
+
+.social a {
+    width: 10%;
+    min-width: 30px;
+    margin: 20px 20px;
+}
+
+.social img {
+    width: 100%;
+}

@@ -1,6 +1,6 @@
-# `master` branch is for uploading changes frequently to the repo. However `master-published` branch is where
-# the actual site is hosted. So, in order to publish the changes, we need to merge `master` branch
-# to `master-ready` branch. This is where `merge_publish.sh` comes in.
+# `temp` branch is for uploading changes frequently to the repo. However `master` branch is where
+# the actual site is hosted. So, in order to publish the changes, we need to merge `temp` branch
+# to `master` branch. This is where `merge_publish.sh` comes in.
 # [For Linux only] Before running this file, run 'chmod +x merge_publish.sh' to grant permissions for merge_publish.sh.
 
 #!/bin/bash
@@ -23,13 +23,19 @@ fi
 chmod +x tcp.sh
 
 echo "Commiting and pushing to master branch first..."
-./tcp.sh "Merge master branch into master-ready branch"
+./tcp.sh "Merge master branch into master-published branch"
 
-echo "Switching to master-ready branch if not already..."
-git switch master-ready
+echo "Switching to master-published branch if not already..."
+git switch master-published
 
-echo "Merging master branch into master-ready branch..."
+echo "Merging master branch into master-published branch..."
 git merge master
+
+# echo "Tracking..."
+# git add .
+
+# echo "Commiting..."
+# git commit -s -m "Merge master branch into master-published branch"
 
 if ! confirm_push; then
     echo "Pushing canceled."
@@ -38,9 +44,9 @@ if ! confirm_push; then
     exit 1
 fi
 
-echo "Pushing to master-ready..."
-git push origin master-ready
+echo "Pushing..."
+git push origin master-published
 
-echo "Switching back to master branch..."
+echo "Switching back to temp branch..."
 git switch master
 
