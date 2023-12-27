@@ -45,7 +45,7 @@ if ! confirm_push; then
 fi
 
 echo "Pushing..."
-git push origin master-published
+git push -f origin master-published
 
 echo "Switching back to temp branch..."
 git switch master
