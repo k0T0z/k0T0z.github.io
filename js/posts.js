@@ -5,7 +5,6 @@ const posts = [
     { id: 0, title: "GSoC '22 - Rejection story", postTitle: "GSoC &#39;22 - Rejection story", fileName: "GSoC_2022_rejection_story", year: 2023 },
     { id: 1, title: "GSoC '23 - Acceptance story", postTitle: "GSoC &#39;23 - Acceptance story", fileName: "GSoC_2023_acceptance_story", year: 2023 },
     { id: 2, title: "GSoC '23 - Bonding Period: Getting started", postTitle: "GSoC &#39;23 - Bonding Period: Getting started", fileName: "GSoC_2023_bonding_period_getting_started", year: 2023 },
-    // { id: 3, title: "GSoC accepted proposal examples", postTitle: "GSoC accepted proposal examples", fileName: "GSoC_accepted_proposal_examples", year: 2023 },
     { id: 3, title: "GSoC '23 - Week 1: My finals", postTitle: "GSoC &#39;23 - Week 1: My finals", fileName: "GSoC_2023_week_1_my_finals", year: 2023 },
     { id: 4, title: "GSoC '23 - Week 2: Still finals...", postTitle: "GSoC &#39;23 - Week 2: Still finals...", fileName: "GSoC_2023_week_2_still_finals", year: 2023 },
     { id: 5, title: "GSoC '23 - Week 3: This is not good!!", postTitle: "GSoC &#39;23 - Week 3: This is not good!!", fileName: "GSoC_2023_week_3_this_is_not_good", year: 2023 },
