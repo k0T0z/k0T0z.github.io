@@ -22,8 +22,9 @@
                 <div class="post-content e-content" itemprop="articleBody">
                     <p>
                         This blog post is related to my
-                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
-                            2023 Project</a>.
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
                     </p>
                     <p>
                         My final evaluation PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>.
@@ -65,17 +66,16 @@
                     </figure>
                     </p>
                     <p>
-                        I don't it is not inside the parenthesis, let's try to fix it. A new idea came to my mind
-                        to find out where the code that prints this output in the console. I remembered my old
-                        conversation with Josh, and he said that ENIGMA has a code generation system. I don't
-                        know how it works yet, but this means that the code in the main repo is not the full running
-                        code. Maybe if I can get to this generated code, I can find what I need so let's try that.
+                        It is not inside the parenthesis, let's try to fix it. A new idea came to my mind to find out
+                        where the code that prints this output in the console. I remembered my old conversation with
+                        Josh, and he said that ENIGMA has a code generation system. I don't know how it works yet, but
+                        this means that the code in the main repo is not the full running code. Maybe if I can get to
+                        this generated code, I can find what I need so let's try that.
                     </p>
                     <p>
-                        Inside <code>~/.enigma/Preprocessor_Environment_Editable/</code>
-                        directory, I used VSCode search in files feature. I love VSCode because of this one by the way.
-                        I found that there is a file called <code>IDE_EDIT_objectfunctionality.h</code> that has the
-                        what I was looking for:
+                        Inside <code>~/.enigma/Preprocessor_Environment_Editable/</code> directory, I used VSCode search
+                        in files feature. I love VSCode because of this one by the way. I found that there is a file
+                        called <code>IDE_EDIT_objectfunctionality.h</code> that has the what I was looking for:
                     <figure class="highlight">
                         <pre><code class="language-cpp" data-lang="c++">
     <span class="k">variant</span> enigma::OBJ_Obj_Steam::<span class="nf">myevent_steam</span><span class="p">(</span><span class="p">)</span>
@@ -96,7 +96,7 @@
                     <p>
                         From what I see is that it uses <code>async_load</code> variable to get the output. This
                         means that there is no output inside, which means that there is a problem with the new
-                        Async system I implemented. Let's try to fix it.
+                        Async system I implemented. Let's look at the code again and see what we can do.
                     </p>
                     <p>
                         I found that it's working perfectly nothing wrong with my code but where's the string
@@ -173,7 +173,8 @@
                     </ul>
                     </p>
                     <p>
-                        Back to the Steam issue I was facing on my Ubuntu, the solution is pretty simple by the way.
+                        Back to the Steam issue I was facing on my Ubuntu, the problem is when I run Steam, it keeps ON
+                        and OFF without being opened. The solution is pretty simple by the way.
                         <a href="https://askubuntu.com/questions/1349490/steam-opens-and-then-just-closes">
                             askubuntu.com/questions/1349490/steam-opens-and-then-just-closes
                         </a> solves the issue and it's basically about changing the NVIDIA drivers. Just choose any

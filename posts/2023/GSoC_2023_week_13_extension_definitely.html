@@ -22,8 +22,9 @@
                 <div class="post-content e-content" itemprop="articleBody">
                     <p>
                         This blog post is related to my
-                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
-                            2023 Project</a>.
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
                     </p>
                     <p>
                         I had to discuss with my mentors about the problem of assigning a cookie to a callback function.
@@ -41,8 +42,7 @@
                     <p>
                         Robert said that instead of passing a function like we are doing above (see the blue part), try
                         to pass a lambda function or find out how Steamworks handle that. The Steamworks API is too huge
-                        to follow by the way. Even though I didn't find anything related to attach a payload to the
-                        callback.
+                        to follow by the way. Even though I found nothing related to "attach a payload to the callback".
                     </p>
                     <p>
                         I came up with a very trivial solution for this problem which is to prevent any furthur
@@ -52,12 +52,24 @@
                         will have to access the queue for pushing a new Async map which means we may have a read/write
                         at the same time. I don't understand how ENIGMA is single-threaded yet but I think the upcoming
                         stuff will explain it.
+                    <blockquote>
+                        <p>
+                            is it a problem to prevent any more requests while we are processing one?
+                        </p>
+                        <cite>Saif — 15/08/2023 20:10</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            yes, otherwise there'd be no need for a queue
+                        </p>
+                        <cite>R0bert — 16/08/2023 04:21</cite>
+                    </blockquote>
                     </p>
                     <p>
                         I was thinking about a solution every day. Even outside home. A theoritical idea came to my mind
                         and I went very quick trying to apply it. The idea is bascially about instantiating a new object
                         for every callback we create. This object will have a unique id assigned to it at the creation
-                        time. When the callback is done, we will have a unique id that the callback can use. Now we have
+                        time. When the callback is done, we will have a unique id for the callback to use. Now we have
                         2 problems:
                     <ul>
                         <li>

@@ -38,9 +38,8 @@
                     </p>
                     <p>
                         I started gathering all organizations that I am interested in such as ENIGMA, Dart, Blender,
-                        etc. Actually, I can't figure out why I decided to join the program but somehow it is working. I
-                        started prioritizing the organizations based on my interest, the difficulty of the project, and
-                        their community platform, as I prefer for example Discord over IRC.
+                        etc. Actually, I started prioritizing the organizations based on my interest, the difficulty of
+                        the project, and their community platform, as I prefer for example Discord over IRC.
                     </p>
                     <p>
                         I joined the Discord server of ENIGMA on 09/03/2022 after deciding that I will work with ENIGMA.
@@ -58,11 +57,11 @@
                     </p>
                     <p>
                         I first tried to build the software on my Windows machine using <code>make</code> but it failed.
-                        Actually, I was a very very beginner, I did stupid mistakes. In
-                        <a href="https://enigma-dev.org/docs/Wiki/Install:Windows"> step 4 </a> of the installation
+                        Actually, I was nearly unconscious (joking &#x1F605;). In
+                        <a href="https://enigma-dev.org/docs/Wiki/Install:Windows">step 4</a> of the installation
                         guide, it says: add this code snippet to bla bla bla location, and I modified it, which took a
                         lot of time for the mentors to figure out my mistake, which is I should only modify the java
-                        version in the code snippet. The mentor was smart enough to figure it out and said
+                        version in the code snippet. Thanks god my mentors know what they are doing &#x1F606;.
                     <blockquote>
                         <p>
                             did you remove $PATH from that var?
@@ -75,12 +74,11 @@
                     </blockquote>
                     </p>
                     <p>
-                        I thought I am now done with the setup, but I was wrong. I tried to launch
+                        I thought I am now done with the setup, but... I tried to launch
                         <a href="https://github.com/IsmAvatar/LateralGM">LGM</a> but it failed to launch, that is
                         because <code>make</code> didn't complete successfully. I wasn't aware of what is
-                        <code>make</code>, actually, I wasn't aware of anything, I couldn't understand what I am doing.
-                        The mentor doesn't want to repeat conversations and assumed that I can understand developers'
-                        conversations &#x1F606; and said
+                        <code>make</code>, actually, I wasn't aware of anything. The mentor doesn't want to repeat
+                        conversations and assumed that I can understand developers' conversations &#x1F606; and said
                     <blockquote>
                         <p>
                             probably failed to build. scroll up too see what @Amań is working through
@@ -91,7 +89,7 @@
                     <p>
                         I had no choice but to read that conversation and try to understand what is going on. The next
                         day I was still stuck, so I decided to ask @Amań for help, he managed to solve the problem
-                        somehow, and when I asked him he replied
+                        somehow.
                     <blockquote>
                         <p>
                             You should update the makefiles accordingly, pkg-config needs a patch, so only hard coding
@@ -99,11 +97,6 @@
                         </p>
                         <cite>Amań — 10/03/2022 11:30</cite>
                     </blockquote>
-                    </p>
-                    <p>
-                        I was perspiring while reading his reply, I didn't understand anything, I was like what is
-                        Makefile files, what is pkg-config, what is patch, what is hard coding, what is incorrect ones,
-                        what I am doing here? I don't know why I did this but I told him
                     <blockquote>
                         <p>
                             sorry but where I can find these makefiles?
@@ -116,8 +109,10 @@
                     </blockquote>
                     </p>
                     <p>
-                        At this moment I actually lost hope, I was like I can't do this, I am not good enough. I decided
-                        to walk away and surrender.
+                        I decided then to try it on my own.
+                    </p>
+                    <p>
+                        At this moment I actually lost hope, I decided to walk away and surrender.
                     </p>
                     <p>
                         After 4 days, I asked for a proposal template and Josh replied and
@@ -129,23 +124,20 @@
                         <p>
                             we're not too picky, but be sure to follow GSoC's guidelines
                             if you're choosing one of our idea suggestions, we'll already know the milestones, but if
-                            you want
-                            to do something different, please include milestones in good detail
+                            you want to do something different, please include milestones in good detail
                         </p>
                         <cite>Josh — 14/03/2022 18:19</cite>
                     </blockquote>
                     </p>
                     <p>
-                        I was actually hopeless, so I disappeared forever. But...
+                        I was actually hopeless, so I disappeared for about 2 weeks.
                     </p>
                     <p>
-                        After 2 weeks, I decided to try again, I can't remember what brings my hope back again but let's
-                        do it. I asked again for help and Josh replied
+                        After 2 weeks, I decided to try again, I asked again for help and Josh replied:
                     <blockquote>
                         <p>
                             hey when trying to run lateralgm it says that it can't find compileEGMf.dll beside when
                             running make ommand to build the compiler it give me an error
-                            https://gist.github.com/saifkandil/8157da3e5a882e01b336fe84af5fdda9
                             can you give me a brief description of the problem and how to solve it to get started?
                         </p>
                         <cite>Saif — 28/03/2022 21:07</cite>
@@ -191,7 +183,7 @@
                     </blockquote>
                     </p>
                     <p>
-                        After this conversation also, I lost hope again so I decided that's it for me.
+                        After this conversation also, I decided to wait for Josh to help.
                     </p>
                     <p>
                         The next day الحَمْدُ لِله, I received a message from Josh and Kartik. I was applying for
@@ -260,9 +252,9 @@
                     </blockquote>
                     </p>
                     <p>
-                        I tried that solution but again failed. I tried to solve it my self before asking for help again
-                        and I found another <code>Makefile</code> file that also needs hard coding. I hard-coded it and
-                        it again failed. I sent the error message again and Josh replied
+                        I tried that solution but again failed but now I can move forward with my own. I found another
+                        <code>Makefile</code> file that also needs hard coding. I hard-coded it and it again failed. I
+                        sent the error message again and Josh replied
                     <blockquote>
                         <p>
                             looks as though <code>dbghelp</code> is also missing an <code>-l</code>
@@ -276,8 +268,8 @@
                     </p>
                     <p>
                         I tried those changes and it worked. I have now understood the first
-                        <code>trivial &#x1F605;</code>
-                        concept of all time, which is <code>what is meant by a separator in Makefile files</code>.
+                        <code>trivial &#x1F605;</code> concept of all time, which is
+                        <code>what is meant by a separator in Makefile files</code>.
                     </p>
                     <p>
                         The solution in detail was
@@ -326,36 +318,11 @@
                         So I decided to work on ENIGMA's build system.
                     </p>
                     <p>
-                        Fun story: I started to work on the build system and confidently asked
-                    <blockquote>
-                        <p>
-                            all: libENIGMAShared libProtocols libEGM ENIGMA gm2egm emake emake-tests test-runner .FORCE
-                            I need a verification to better understanding this so 'all' is the goal followed by all
-                            'targets' followed by their 'rules' OR 'libENIGMAShared' is the goal? @Josh @gfundies
-                            this from main Makefile
-                        </p>
-                        <cite>Saif — 06/04/2022 22:48</cite>
-                    </blockquote>
-                    <p>
-                        and fundies replied
-                    </p>
-                    <blockquote>
-                        <p>
-                            its enigmasystem/shell/ that needs porting
-                        </p>
-                        <cite>gfundies — 06/04/2022 22:50</cite>
-                    </blockquote>
-                    </p>
-                    <p>
-                        The fun part here is that I asked him what he meant by his message, and that was a very stupid
-                        question, as the reply was very clear. I was working in an entirely different directory.
-                    </p>
-                    <p>
                         That generally was my start with ENIGMA in GSoC 2022. The next conversations are very technical
                         and related to <code>Make</code> and <code>CMake</code> build systems. Dhruv and Kartik
                         continued to help me along the road. I submitted the first version of my proposal on 09/04/2022.
                         I found out later that only 4 applicants were applying to ENIGMA in GSoC 2022. Me, Dhruv,
-                        Kartik, and Nilan. I received my first review on 10/04/2022
+                        Kartik, and Nilan. I received my first review on 10/04/2022.
                     <blockquote>
                         <p>
                             @Kartik @Dhruv Chawla @Saif I've commented on your proposals. Don't feel obliged to fix
@@ -365,8 +332,13 @@
                     </blockquote>
                     <p>
                         I submitted my first PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2297">#2297</a>
-                        for ENIGMA on 12/04/2022, it was a trivial one that cleans up some dead files. gfundies said
+                        for ENIGMA on 12/04/2022, it was a trivial one that cleans up some dead files.
                     </p>
+                    <p>
+                        fundies mentioned something interesting related to working outside Google Summer of Code for
+                        college credit. I talked to my professors and they agreed to give me credit for working on
+                        my project but that's only AFTER organizing the project with my mentors. It was too late at
+                        that moment anyway.
                     <blockquote>
                         <p>
                             well if anyone doesn't get selected and doesnt mind working w/o the stipend, we can try to

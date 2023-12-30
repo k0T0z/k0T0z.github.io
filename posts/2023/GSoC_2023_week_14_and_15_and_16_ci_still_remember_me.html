@@ -22,8 +22,9 @@
                 <div class="post-content e-content" itemprop="articleBody">
                     <p>
                         This blog post is related to my
-                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
-                            2023 Project</a>.
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
                     </p>
                     <p>
                         Social API needs the buffer work from previous GSoC 2022 project.
@@ -106,18 +107,100 @@
                     </blockquote>
                     </p>
                     <p>
-                        Let's return back now for the Social API and we will come back to the testing later. When I
-                        merged the <code>AST-Generation</code> branch to mine and started working on it, the new
-                        parser didn't like my demo game. I think the new parser hates the old parser &#129315;.
-                        Anyway let's modify the demo game so that our new parser likes it.
+                        I had a very long conversation about that with fundies:
+                    <blockquote>
+                        <p>
+                            I might’ve just made the mock steam a dll and changed which it loads at runtime using
+                            LD_LIBRARY_PATH
+                        </p>
+                        <cite>gfundies — 14/09/2023 23:30</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            You can load dlls at runtime tho
+                        </p>
+                        <p>
+                            What im unsure about is if you can build the game without linking the dll and just load it a
+                            runtime or if you can always link the mock dll and load the real one at runtime
+                        </p>
+                        <cite>gfundies — 14/09/2023 23:33</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            the CI will load nothing
+                        </p>
+                        <p>
+                            but it will always find the mock to link
+                        </p>
+                        <p>
+                            good idea
+                        </p>
+                        <cite>Saif — 14/09/2023 23:44</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Not quite what im trying to say
+                        </p>
+                        <p>
+                            The game should look for the dll at load time
+                        </p>
+                        <p>
+                            On the ci you need to tell its where ever you built the mock dll
+                        </p>
+                        <p>
+                            Using ldlibrarypath before launching the game probably
+                        </p>
+                        <p>
+                            What i need you to figure out is how to make it so it only matters what dll is available at
+                            runtime
+                        </p>
+                        <p>
+                            Compile time it just needs to be aware that something provides steam funcs
+                        </p>
+                        <p>
+                            Afaik as long as the two dlls are abi compatible you should be able to swap them at will but
+                            I haven’t done this in practice
+                        </p>
+                        <cite>gfundies — 14/09/2023 23:45</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        So what I need to do now is to finish the Social API ASAP becuase we much work for the
+                        deployment. When I merged the <code>AST-Generation</code> branch to mine and started working on
+                        it, the new parser didn't like my demo game. I think the new parser hates the old parser
+                        &#129315;. Anyway let's modify the demo game so that our new parser likes it.
                     </p>
                     <p>
                         You know what? I think I am gonna use only that branch for implementing my functions. That's
-                        becuase GMS wrote the demo game as I wrote. Anyway, I am gonna solve the CI problem now.
+                        becuase GMS wrote the demo game as I wrote.
                     </p>
                     <p>
-                        There are two places I need to inject to Testharness command. The first one is the stubs'
-                        location. The second one is the mock location.
+                        I implemented a simple demo game that runs very well with the new parser under the
+                        <code>AST-Generation</code> branch. When switching between <code>master</code> and
+                        <code>AST-Generation</code>, I have to run make which takes a noticeable time. I managed to
+                        implement most of the functions but specifically, <code>steam_image_get_rgba();</code> returns
+                        RGBA data in a buffer. Dhruv mentioned that ENIGMA expects ARGB. See the picture below:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC_2023_week_14_and_15_and_16_ci_still_remember_me/mixed_channels_image.png"
+                            alt="Mixed channels image" />
+                    </p>
+                    <p>
+                    <blockquote>
+                        <p>
+                            your channels may be mixed
+                        </p>
+                        <p>
+                            i think enigma expects ARGB
+                        </p>
+                        <cite>Dhruv Chawla — 11/09/2023 16:40</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Now I will leave the rest of the work after the deployment is done. Before working on the Fake
+                        API, I need to solve the Stub extensions problem. There are two places I need to inject to
+                        Testharness command. The first one is the stubs' location. The second one is the mock location.
                     </p>
                     <p>
                         The easy one was the stubs' location. However, there are some tests that are not passing
@@ -144,6 +227,16 @@
                     <p>
                         This is was simple as adding a condition in the main Makefile to enable the stub if
                         the real extension is not enabled.
+                    </p>
+                    <p>
+                        The fake API nearly implemented but it has a memory leak I need to fix later. The fake API was
+                        some source files for the original API headers. As fundies suggested, I will build those sources
+                        as a DLL and then load it dynamically if the real API is not available. This way the CI problem
+                        will be solved.
+                    </p>
+                    <p>
+                        After the fake API is implmeneted and tested, there is no major work left. All the upcoming work
+                        is considered as flushing, cleaning, and improving the Steamworks extension.
                     </p>
                 </div>
 

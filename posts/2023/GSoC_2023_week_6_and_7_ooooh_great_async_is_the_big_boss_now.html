@@ -24,44 +24,83 @@
 
                     <p>
                         This blog post is related to my
-                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
-                            2023 Project</a>.
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
                     </p>
                     <p>
                         When the <code>Stats and Achievements</code> API is done, I continued to work on the
-                        <code>Leaderboard</code> API. Actually, I didn't faced anything special regarding
-                        <code>Stats and Achievements</code> API but <code>Leaderboard</code> API is different.
-                        I started learning about <code>CallResults</code> because I am going to use it in the
-                        <code>Leaderboard</code> API.
+                        <code>Leaderboard</code> API. I started learning about <code>CallResults</code> because I am
+                        going to use it in the <code>Leaderboard</code> API.
                     </p>
                     <p>
                         Actually, learning about <code>CallResults</code> was not that hard as I know how to
                         use <code>Callbacks</code> which has a similar concept.
                     </p>
                     <p>
-                        <script src="https://gist.github.com/k0T0z/a3119c053d91a9a4218beabdbf533132.js"></script>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // c_leaderboards.h
+                        
+    // Called when SteamUserStats()->FindOrCreateLeaderboard() returns asynchronously
+    void on_find_leaderboard(LeaderboardFindResult_t* pFindLearderboardResult, bool bIOFailure);
+    CCallResult<c_leaderboards, LeaderboardFindResult_t> m_callResultFindLeaderboard;
+    
+    // Set the CallResult to call on_find_leaderboard function on finished
+    c_leaderboards::m_callResultFindLeaderboard.Set(steam_api_call, this, &c_leaderboards::on_find_leaderboard);
+    
+    void c_leaderboards::on_find_leaderboard(LeaderboardFindResult_t* pFindLeaderboardResult, bool bIOFailure) {
+        c_leaderboards::loading_ = false;
+    
+        if (!pFindLeaderboardResult->m_bLeaderboardFound || bIOFailure) return;
+
+        c_leaderboards::current_leaderboard_ = pFindLeaderboardResult->m_hSteamLeaderboard;
+
+        DEBUG_MESSAGE("Calling FindOrCreateLeaderboard succeeded.", M_INFO);
+    }
+                            </code>
+                        </pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // c_overlay.h
+
+    STEAM_CALLBACK(c_overlay, on_game_overlay_activated, GameOverlayActivated_t, m_CallbackGameOverlayActivated);
+
+    // The constructor be something like:
+    c_overlay::c_overlay() : m_CallbackGameOverlayActivated(this, &c_overlay::on_game_overlay_activated) {}
+    
+    void c_overlay::on_game_overlay_activated(GameOverlayActivated_t* pCallback) {
+        if (pCallback->m_bActive) {
+            c_overlay::overlay_activated_ = true;
+            DEBUG_MESSAGE("Overlay activated successfully.", M_INFO);
+        } else {
+            c_overlay::overlay_activated_ = false;
+            DEBUG_MESSAGE("Overlay deactivated successfully.", M_INFO);
+        }
+    }
+                            </code>
+                        </pre>
+                    </figure>
                     </p>
                     <p>
-                        The read problem that I faced is with ENIGMA's <code>Async</code> system. The
+                        The real problem that I faced is with ENIGMA's <code>Async</code> system. The
                         <code>Async</code> system will need some modifications as it is not Thread safe which
-                        means that I can't depend on it.
+                        means that I can't depend on it. The
+                        <a
+                            href="https://github.com/enigma-dev/enigma-dev/tree/master/ENIGMAsystem/SHELL/Universal_System/Extensions/Asynchronous">
+                            Universal_System/Extensions/Asynchronous
+                        </a> extension is the one we are talking about here. As Robert said, this extension
+                        will need some work as it's not thread safe. I will have to create an issue for that
+                        to be fixed later.
                     </p>
                     <p>
                         The <code>Async</code> system is used to send and store data inside a user variable
-                        called <code>async_load</code>. The game geveloper can then read that variable and
-                        get the value for each key inside it using <code>DataStructures</code> extension.
+                        called <code>async_load</code>. The game developer can then read that variable and
+                        get the value for each key inside it using the <code>DataStructures</code> extension.
                     </p>
                     <p>
-                        Now, I know what to do:
-                    <ul>
-                        <li>Fix ENIGMA's <code>Async</code> System.</li>
-                        <li>Finish the <code>Leaderboard</code> API.</li>
-                        <li>Document all the implemented APIs.</li>
-                        <li>(If there is time left) create SOGs for each API.</li>
-                    </ul>
-                    </p>
-                    <p>
-                        I will leave the testing for later. CReating SOGs and make the CI handles them
+                        I will leave the testing for later. Creating SOGs and make the CI handles them
                         is tricky because we need <code>Steam.exe</code> to be running in the background.
                     <blockquote>
                         <p>
@@ -153,7 +192,117 @@
                         <code>PFmain.cpp</code> files.
                     </p>
                     <p>
-                        <script src="https://gist.github.com/k0T0z/6a97fb6cd8223f8c83edb6c7358b5f1f.js"></script>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.cpp
+
+    namespace enigma {
+
+        namespace extension_cast {
+            extension_steamworks* as_extension_steamworks(object_basic*);
+        }
+        
+        }  // namespace enigma
+        
+        namespace enigma {
+        
+            std::queue<std::map<std::string, variant>> posted_async_events;
+        
+            int extension_steamworks_mutex {1}; // Must be initialized to 1.
+            
+            void wait(int* mutex) {
+                while (*mutex <= 0);
+                (*mutex)--;
+            }
+        
+            void signal(int* mutex) {
+                (*mutex)++;
+            }
+        
+            void fireEventsFromQueue(int* mutex) {
+                // wait(mutex);
+                while (!posted_async_events.empty()) {
+                    enigma_user::ds_map_clear(enigma_user::async_load);
+    
+                    std::map<std::string, variant> event = posted_async_events.front();
+    
+                    posted_async_events.pop();
+    
+                    for (auto& [key, value] : event) {
+                        enigma_user::ds_map_add(enigma_user::async_load, key, value);
+                    }
+    
+                    instance_event_iterator = &dummy_event_iterator;
+                    for (iterator it = instance_list_first(); it; ++it) {
+                        object_basic* const inst = ((object_basic*)*it);
+                        extension_steamworks* const inst_steamworks = extension_cast::as_extension_steamworks(inst);
+                        inst_steamworks->myevent_steam();
+                    }
+                }
+            }
+            
+            int enigma_main(int argc, char** argv) {
+                    enigma_user::async_load = enigma_user::ds_map_create();
+        
+                    ...
+        
+                    while (!game_isending) {
+        
+                        ...
+                        
+                        fireEventsFromQueue(&extension_steamworks_mutex);
+                        ...
+                    }
+                
+                    ...
+            }
+            
+        }
+        
+        namespace enigma_user {
+        
+            int async_load;
+            
+        }
+                                </code>
+                            </pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.h
+
+    namespace enigma {
+
+        // This queue will contain any event that will be fired inside the main loop.
+        extern std::queue<std::map<std::string, variant>> posted_async_events;
+    
+        // The following semaphore code is for the new Async system to protect the posted_async_events queue
+        // from reading and writing at the same time. Steamworks extension writes to the queue.
+        // mutex to protect the async queue from race conditions when the Steamworks extension is writing into it.
+        extern int extension_steamworks_mutex;
+        void wait(int* mutex);
+        void signal(int* mutex);
+    
+    }
+
+    namespace enigma_user {
+    
+        // When firing any event inside posted_async_events queue, this variable will contain the data that will be sent to the game.
+        extern int async_load;
+    
+    }
+                            </code>
+                        </pre>
+                    </figure>
+                    </p>
+                    <p>
+                        Notice the mutex implementation stuff? Just keep reading, I removed them later haha.
+                    </p>
+                    <p>
+                        Bascially, this queue will contain any event from any extension we have, which means we
+                        might face Race Condition problems. That's why I need to protect the queue from reading
+                        and writing at the same time. Actually, ENIGMA is single threaded so I will wait for
+                        confirmation from Robert that this is not needed.
                     </p>
                     <p>
                         This is how the new Async system works now and the problem is with oraganizing the code.
@@ -442,6 +591,83 @@
                         </p>
                         <cite>R0bert — 23/07/2023 22:07</cite>
                     </blockquote>
+                    </p>
+                    <p>
+                        The final structure to the new Async system:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.cpp
+
+    #include "Universal_System/Extensions/Steamworks/steamworks.h"
+
+    namespace enigma {
+
+        std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
+
+        std::mutex posted_async_events_mutex;
+
+        void fireEventsFromQueue() {
+            // Acquire lock and release it when out of scope of fireEventsFromQueue().
+            std::lock_guard&lt;std::mutex&gt; guard(posted_async_events_mutex);
+            while (!posted_async_events.empty()) {
+        
+                ...
+
+                enigma::fireSteamworksEvent();
+            }
+        }
+
+        int enigma_main(int argc, char** argv) {
+            enigma_user::async_load = enigma_user::ds_map_create();
+
+            ...
+
+            while (!game_isending) {
+
+                ...
+        
+                fireEventsFromQueue(&extension_steamworks_mutex);
+
+                ...
+
+            }
+
+            ...
+        }
+
+    }
+
+    namespace enigma_user {
+
+        int async_load;
+
+    }
+                                </code>
+                            </pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.h
+
+    namespace enigma {
+
+        extern std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
+
+        extern std::mutex posted_async_events_mutex;
+
+        void fireEventsFromQueue();
+
+    }
+
+    namespace enigma_user {
+
+        extern int async_load;
+
+    }
+
+                                </code>
+                            </pre>
+                    </figure>
                     </p>
                     <p>
                         This is my last day before the midterms evaluation so I will just focus on cleaning up

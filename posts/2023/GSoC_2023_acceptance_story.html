@@ -36,25 +36,30 @@
                     </blockquote>
                     </p>
                     <p>
-                        After long thought, I decided to work on the Steam Integration project.
+                        After long thought, I decided to work on the Steam Integration project. That was an interesting
+                        project by the way.
                     </p>
                     <p>
-                        I started by looking at the
-                        <a href="https://partner.steamgames.com/doc/home">official Steamworks</a>
-                        documentation. Actually, it took me a while to understand how Valve wrote its documentation. I
-                        noticed the example game they provided for developers in order to understand more about the
-                        Steamworks API. I downloaded the game and started to play with it. Although I've got some
-                        errors, I managed to fix them somehow. I started to read the code and understand how it works.
-                        The code was split into two parts, the first part is the engine itself with some shading and
-                        rendering code. The second part is the APIs. I didn't understand a single word, so I decided to
-                        start running a standalone program. I used CMake build system to link Steamworks library to my
-                        executable. It worked without any problem, so I started to write my proposal at this moment.
+                        I started by looking at the official
+                        <a href="https://partner.steamgames.com/doc/home">Steamworks documentation</a>. Actually, it
+                        took me a while to understand how Valve wrote its documentation. I noticed the example game they
+                        provided for developers in order to understand more about the Steamworks API. I downloaded the
+                        game and started to play with it. Although I've got some errors, I managed to fix them
+                        immediately. I started to read the code and understand how it works. The code was split into two
+                        parts, the first part is the engine itself with some shading and rendering code. The second part
+                        is the APIs. I decided to start running a standalone program. I used CMake build system to link
+                        Steamworks library to my executable. It worked without any problem, so I started to write my
+                        proposal at this moment.
                     </p>
                     <p>
                         Something really happened that I didn't give much attention to. I was using MinGW GCC compiler
                         to build and run, and it worked fine. When I tried to get the current Steam ID
                         <code>SteamUser()->GetSteamID()</code> of currently logged-in user, I got nothing in VSCode
                         terminal. I thought that there must be something wrong with my code, so I ignored it.
+                    </p>
+                    <p>
+                        Later on, while I am working on the project, I noticed that the same function and the same
+                        problem. Can you guess what was the problem?
                     </p>
                     <p>
                         I decided to write the starter code for the Steamworks extension. For ENIGMA, there are a bunch
@@ -67,7 +72,7 @@
                     <p>
                         I decided to start linking Steamworks library to ENIGMA instead of writing a standalone program.
                         I started to read about Makefile files and how to link libraries to ENIGMA. Actually, working on
-                        ENIGMA's build system was very beneficial for me. My mentor rpjohnst was very helpful.
+                        ENIGMA's build system was very beneficial for me.
                     <blockquote>
                         <p>
                             oh you need to -L the directory for linking, not -I
@@ -261,14 +266,27 @@
                     </blockquote>
                     </p>
                     <p>
-                        That's my first progress in the Steam API integration project &#x1F64C;.
+                        That's my first progress in the Steam API integration project &#x1F64C;. I managed to link the
+                        Steamworks library to ENIGMA. The Steamworks Overlay can now be accessed from my empty project
+                        by pressing Shift + Tab.
+                    <blockquote>
+                        <p>
+                            @R0bert @gfundies we r making progress here
+                        </p>
+                        <p>
+                            <img class="image-content"
+                                src="assets/GSoC_2023_acceptance_story/linking_steam_library_sucess.png"
+                                alt="Linking Steamworks library to ENIGMA">
+                        </p>
+                        <cite>Saif — 08/03/2023 22:27</cite>
+                    </blockquote>
                     </p>
                     <p>
                         Remember Dhruv and Kartik? They were applying for GSoC '22 with me. Remember when I said they
-                        helped me a lot? Well, they helped me a lot in GSoC '23 too. Dhruv helped me with the proposal
-                        and also with learning CLI of ENIGMA, he also gave me his credentials for GMS as I couldn't sign
-                        up due to something with YOYO Games server. Kartik reviewed my proposal like 100 times, I really
-                        can't forget their help.
+                        helped me a lot? Well, they helped me a lot in GSoC '23 too. Dhruv helped me with the proposal,
+                        he also gave me his credentials for GMS as I couldn't sign up due to something with YOYO Games
+                        server. Kartik reviewed my proposal like 100 times, I really can't forget their help so I
+                        decided to mention them here.
                     </p>
                     <p>
                         I submitted two PRs before getting accepted, <a
@@ -279,7 +297,7 @@
                     </p>
                     <p>
                         On 04/05/2023, I received the acceptance email from Google. Actually, what makes this special is
-                        that as claimed by Stephanie Taylor
+                        that as claimed by Stephanie Taylor:
                     <blockquote>
                         <p>
                             This is the most competitive year we have ever had for GSoC.

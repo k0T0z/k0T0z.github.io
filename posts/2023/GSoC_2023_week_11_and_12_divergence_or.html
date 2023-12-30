@@ -22,8 +22,9 @@
                 <div class="post-content e-content" itemprop="articleBody">
                     <p>
                         This blog post is related to my
-                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
-                            2023 Project</a>.
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
                     </p>
                     <p>
                     <ul>
@@ -251,7 +252,7 @@
                     </p>
                     <figure class="highlight">
                         <pre><code class="language-cpp" data-lang="c++">
-    leaderboard_entries_buffer &lt;&lt; '{';
+    leaderboard_entries_buffer &lt;&lt; '&#123;';
                         </code></pre>
                     </figure>
                     <p>
@@ -262,15 +263,16 @@
                     </p>
                     <figure class="highlight">
                         <pre><code class="language-cpp" data-lang="c++">
-    (*leaderboard_entries_buffer) += '{';
+    (*leaderboard_entries_buffer) += '&#123;';
                         </code></pre>
                     </figure>
                     <p>
                         Notice the difference? It's the concatenation operator. When using <code>sstream</code>,
-                        you have to use <code><<</code>. However when using normal <code>std::string</code> you
+                        you have to use <code>&lt;&lt;</code>. However when using normal <code>std::string</code> you
                         can use <code>+=</code> or <code>.append()</code> method. They both have the same effect.
                         Now I know what to do, let's test my theory. Let's remove every <code>+=</code> and
-                        replace it with <code><<</code>. I did that and it worked!!! &#127881; &#127881; &#127881;.
+                        replace it with <code>&lt;&lt;</code>. I did that and it worked!!! &#127881; &#127881;
+                        &#127881;.
                     </p>
                     <p>
                         This is not reasonable anyway but it's a solution. I will wait for an explanation from my

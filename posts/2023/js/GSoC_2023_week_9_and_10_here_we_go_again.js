@@ -1,4 +1,4 @@
-const postId = 10;
+const postId = 9;
 
 const isPreviousPostAvailable = (postId !== null && postId + 1 > 1);
 const isNextPostAvailable = (postId !== null && ((postId + 1) < posts.length));

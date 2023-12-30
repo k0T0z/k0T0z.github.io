@@ -117,17 +117,6 @@
                         </tr>
                     </table>
 
-                    <h2 id="project-goal">
-                        Project Goal
-                        <a href="#project-goal" class="permalink-headline-arrow"></a>
-                    </h2>
-                    <p>
-                        ENIGMA currently lacks third-party integration with various digital distribution platforms such
-                        as Steam, Xbox, or Origin. First-class support for these services would make it easier for Indie
-                        developers to publish ENIGMA-created games. Developers would like for it to be easier to
-                        monetize their games and enable them to release bigger and better updates to their users.
-                    </p>
-
                     <h2 id="completed-work">
                         Completed work
                         <a href="#completed-work" class="permalink-headline-arrow"></a>
@@ -158,83 +147,11 @@
                                     </a>
                                 </li>
                                 <li>
-                                    Wrote a new Async system for ENIGMA with the following structure:
-                                    <p>
-                                    <figure class="highlight">
-                                        <pre><code class="language-cpp" data-lang="c++">
-    // PFmain.cpp
-
-    #include "Universal_System/Extensions/Steamworks/steamworks.h"
-
-    namespace enigma {
-    
-        std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
-
-        std::mutex posted_async_events_mutex;
-    
-        void fireEventsFromQueue() {
-            // Acquire lock and release it when out of scope of fireEventsFromQueue().
-            std::lock_guard&lt;std::mutex&gt; guard(posted_async_events_mutex);
-            while (!posted_async_events.empty()) {
-                
-                ...
-            
-                enigma::fireSteamworksEvent();
-            }
-        }
-        
-        int enigma_main(int argc, char** argv) {
-            enigma_user::async_load = enigma_user::ds_map_create();
-
-            ...
-
-            while (!game_isending) {
-
-            ...
-                
-            fireEventsFromQueue(&extension_steamworks_mutex);
-
-            ...
-
-            }
-            
-            ...
-        }
-        
-    }
-    
-    namespace enigma_user {
-    
-        int async_load;
-        
-    }
-                                            </code>
-                                        </pre>
-                                    </figure>
-                                    <figure class="highlight">
-                                        <pre><code class="language-cpp" data-lang="c++">
-    // PFmain.h
-
-    namespace enigma {
-    
-        extern std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
-
-        extern std::mutex posted_async_events_mutex;
-
-        void fireEventsFromQueue();
-
-    }
-
-    namespace enigma_user {
-
-        extern int async_load;
-
-    }
-    
-                                            </code>
-                                        </pre>
-                                    </figure>
-                                    </p>
+                                    Wrote a new Async system for ENIGMA. The structure is explained in detail in
+                                    <a
+                                        href="https://k0t0z.github.io/posts/2023/GSoC_2023_week_6_and_7_ooooh_great_async_is_the_big_boss_now.html">
+                                        GSoC '23 - Week 6 & 7: Ooooh great, Async is the big boss now!
+                                    </a>
                                 </li>
                                 <li>
                                     Documentation

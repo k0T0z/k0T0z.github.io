@@ -22,8 +22,9 @@
                 <div class="post-content e-content" itemprop="articleBody">
                     <p>
                         This blog post is related to my
-                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">GSoC
-                            2023 Project</a>.
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
                     </p>
                     <p>
                         Here's my feedback from my mentors after passing the final evaluation:
@@ -33,8 +34,116 @@
                             alt="Final evaluation feedback" />
                     </p>
                     <p>
-                        Actually, I thought that I should make some modifications for my proposal so anyone can
-                        see the difference and here's my modified proposal:
+                        Overall, I think I did quite well, I learned a lot of interesting things. Maybe, the tricky
+                        part in this project was the deployment of the extension. Although the extension is ready for
+                        production usage, it only supports Ubuntu Linux for now. This is because ENIGMA is broken on
+                        MacOS and semi-broken on Windows at the time of writing this post.
+                    </p>
+                    <p>
+                        I missed only one goal, which is the <code>Cloud</code> API. In my proposal, I saved enough
+                        time for development and documentation, but didn't save enough time for testing and deployment.
+                    </p>
+                    <p>
+                        The problem with my approach is that, the CI pipeline will fail. That's because I am calling
+                        Steamworks API functions directly from the extension, and the CI pipeline doesn't have the
+                        Steamworks SDK installed. Moreover, the tests will depend on other factors such as the internet
+                        connection. The API call may fail for any reason which means that the test will fail. Which also
+                        means that the CI pipeline have for example 50% chance of failing or even more.
+                    </p>
+                    <p>
+                        Of course, a CI that has a probability of failing is not a good CI. To overcome this problem, I
+                        will need to mock the API calls. That was actually fundies' idea. At this moment, I will drop
+                        the Cloud API milestone and focus on refactoring the whole code. There was two difficulties in
+                        this approach:
+                    <ol>
+                        <li>
+                            Mocking the Steamworks SDK is not that easy. Steam has a weird way of doing specific things
+                            using macros.
+                        </li>
+                        <li>
+                            I will need to refactor the whole code, which is not that easy.
+                        </li>
+                    </ol>
+                    </p>
+                    <p>
+                        I skipped refactoring the code by creating another layer between the game_client and Steamworks
+                        SDK. This layer will be responsible for binding every function inside the Steamworks SDK to
+                        the user functions inside Steamworks extension.
+                    </p>
+                    <p>
+                        Mocking the Steamworks SDK is done, you can view it here:
+                        <a
+                            href="https://github.com/enigma-dev/enigma-dev/tree/master/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/steambinder/SteamFake/sdk">
+                            Universal_System/Extensions/Steamworks/gameclient/steambinder/SteamFake/sdk
+                        </a>. The concept is simple, but code style is not beginner-friendly.
+                    </p>
+                    <p>
+                        Another thing related to the deployment is the stub extensions:
+                        <a
+                            href="https://github.com/enigma-dev/enigma-dev/tree/master/ENIGMAsystem/SHELL/Universal_System/StubExtensions">
+                            Universal_System/StubExtensions
+                        </a>. After I used some user functions inside the engine code itself, the CI failed because the
+                        extensions from which these functions are defined are not enabled.
+                    </p>
+                    <p>
+                        I think I have talked about all CI problems in this post:
+                        <a
+                            href="https://k0t0z.github.io/posts/2023/GSoC_2023_week_14_and_15_and_16_ci_still_remember_me.html">
+                            GSoC '23 - Week 14 & 15 & 16: CI still remember me!
+                        </a>.
+                    </p>
+                    <p>
+                        I have to mention that also <code>Social</code> API is not fully implemented. I have explained
+                        why in my final report:
+                        <a href="https://k0t0z.github.io/posts/2023/GSoC_2023_final_evaluation_report.html">
+                            Google Summer of Code 2023 Final Evaluation Report
+                        </a>. It worth noting that this PR
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2361">#2361</a> will solve many problems
+                        including the <code>Social</code> API. Also, I have to mention that the demo game doesn't work
+                        under the <code>AST-Generation</code> branch due to the big changes to the compiler (JDI) so I
+                        had to implement a specific version of the demo game for this branch which is not included in
+                        the PR.
+                    </p>
+                    <p>
+                        Due to the deployment issue, I didn't have enough time to provide a proper test cases for the
+                        extension.
+                    </p>
+                    <P>
+                        I documented every user function very well actually and I still need to move all that to the
+                        wiki. I think I will do it outside Google Summerr of Code 2023 program.
+                    </P>
+                    <p>
+                        There is also some modifications to the extension's demo game due to Copyrights stuff.
+                    <blockquote>
+                        <p>
+                            @Saif what is the origin of these sprites in the game project file?
+                        </p>
+                        <cite>R0bert — 30/09/2023 04:00</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I wanna also mention my mistakes in my proposal. I have mentioned that and I quote: "This idea
+                        is about creating a C++ wrapper for Steamworks API – which is developed and maintained by Valve
+                        corporation – so ENIGMA can use it." Well, wrappers meant to port Steam SDK from C++ to another
+                        programming language such as C# or Java. This is to make it more easier to integrate Steamworks
+                        API with other programming languages. Some of these wrappers are mentioned on the Steamworks
+                        website: <a href="https://partner.steamgames.com/doc/sdk/api">doc/sdk/api</a>
+                        (See <code>Commercial engine and non-C++ language support</code> section). The thing is this
+                        project is not to create a wrapper, but to intergate Steamworks API with ENIGMA game engine.
+                    </p>
+                    <p>
+                        Another thing in my proposal is that, the <code>Authentication and Ownership</code> API isn't
+                        related to this part of the project. It was one of the primary goals of the project, but I
+                        figured out later, it should be moved to the 2nd phase of this project.
+                    </p>
+                    <p>
+                        The final problem in my proposal is that I didn't figure out how should I use the Steam console
+                        for testing. Is it for testing the SDK development or can be used for testing the integration
+                        with other game engines?
+                    </p>
+                    <p>
+                        I have to say it, I loved the lighting talks this year and also the Insulated Travel Tumbler
+                        gift from Google Open-source.
                     </p>
                     <p>
                         So this wraps up my GSoC project and this series of logs. If anyone was following it by any
