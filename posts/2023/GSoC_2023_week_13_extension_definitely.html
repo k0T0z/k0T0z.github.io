@@ -119,7 +119,24 @@
                         <code>[ { " 0 " : 1 , " 1 " : 2 } , 2 ]</code>. Both are valid JSONs so I think I need to look
                         into that PR again.
                     </p>
+
                     <h2>Starting with <code>Social</code> API</h2>
+                    <p>
+                        This is the worst working period in the whole summer. The Social API needs the buffer work from
+                        <a href="https://summerofcode.withgoogle.com/archive/2022/projects/BrXiUNA2">
+                            Google Summer of Code 2022 project: Data Buffers / Serialization
+                        </a>. These buffer functions are not merged into master but <code>AST-Generation</code> branch.
+                        Moreover, the demo game I worked on is not working anymore because that
+                        <code>AST-Generation</code> branch contains a total rewrite of the compiler. I created a new,
+                        special, and simple demo game for the Social API under <code>AST-Generation</code> branch. Also,
+                        LGM - the IDE for ENIGMA - needs to build every time I switch branches. The thing is that the
+                        build time is very long. So every time I need to test something on master, I switch and run:
+                        <code>make clean</code> and then <code>make</code>.
+                    </p>
+                    <p>
+                        The deployment process needs to be done as the final evaluation is coming. I will skip some
+                        functions in the Social API and I can finish them later.
+                    </p>
                 </div>
 
                 <a id="u-url-id" class="u-url" hidden></a>

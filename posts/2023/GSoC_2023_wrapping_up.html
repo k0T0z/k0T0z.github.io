@@ -102,7 +102,22 @@
                         including the <code>Social</code> API. Also, I have to mention that the demo game doesn't work
                         under the <code>AST-Generation</code> branch due to the big changes to the compiler (JDI) so I
                         had to implement a specific version of the demo game for this branch which is not included in
-                        the PR.
+                        the PR but you can get it from my blog:
+                        <a
+                            href="https://k0t0z.github.io/posts/2023/assets/GSoC_2023_wrapping_up/steamworks-demo-special.zip">
+                            steamworks-demo-special.zip
+                        </a>. To run this project, just run: <code>git pull upstream AST-Generation</code> and of course
+                        your upstream is: <code>https://github.com/enigma-dev/enigma-dev</code>. This is to get the
+                        latest changes from the <code>AST-Generation</code> branch into your clone. If you don't have
+                        the upstream set, you can run:
+                        <code>git remote add upstream https://github.com/enigma-dev/enigma-dev</code>. Then switch to
+                        <code>AST-Generation</code> branch by running: <code>git switch AST-Generation</code>. Then
+                        run: <code>git merge master</code>. You will have some conflicts, go and fix them by accepting
+                        the changes from the <code>AST-Generation</code> branch. Now it is time for builing LGM but
+                        before that, you need to clean the previous build by running: <code>make clean</code>. Then
+                        run: <code>make</code>. This will take a long time. After that, you can run LGM by running:
+                        <code>java -jar lateralgm.jar</code>. Now open the demo game project and enable the Steamworks
+                        and Json extensions from LGM. You should see your steam picture in the game window.
                     </p>
                     <p>
                         Due to the deployment issue, I didn't have enough time to provide a proper test cases for the
