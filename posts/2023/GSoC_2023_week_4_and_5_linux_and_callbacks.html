@@ -93,7 +93,26 @@
                             src="assets/GSoC_2023_week_4_and_5_linux_and_callbacks/GMS_steamworks_overlay_screen_final_look.gif"
                             alt="GMS Steamworks overlay screen final look" />
                     </p>
-                    <script src="https://gist.github.com/k0T0z/77bd429220ab2f73bc40daa1e8dbc0dd.js"></script>
+                    <p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    c_overlay::c_overlay()
+        : overlay_activated_(false), m_CallbackGameOverlayActivated(this, &c_overlay::on_game_overlay_activated) {}
+    
+    void c_overlay::on_game_overlay_activated(GameOverlayActivated_t* pCallback) {
+        if (pCallback->m_bActive) {
+            c_overlay::overlay_activated_ = true;
+            DEBUG_MESSAGE("Overlay activated successfully.", M_INFO);
+        } else {
+            c_overlay::overlay_activated_ = false;
+            DEBUG_MESSAGE("Overlay deactivated successfully.", M_INFO);
+        }
+    }
+    
+    bool c_overlay::overlay_activated() { return c_overlay::overlay_activated_; }
+                            </code></pre>
+                    </figure>
+                    </p>
                     <p>
                         On 27 June 2023, I stopped working on the project due to Eid Al-Adha and Arafah Day. It wasn't
                         my best Eid, but I hope it will be better next year. I will continue working on the project on 2
