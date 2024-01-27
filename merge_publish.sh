@@ -22,6 +22,9 @@ fi
 
 chmod +x tcp.sh
 
+echo "Switching to master branch if not already..."
+git switch master
+
 echo "Commiting and pushing to master branch first..."
 ./tcp.sh "Merge master branch into master-published branch"
 
@@ -47,6 +50,6 @@ fi
 echo "Pushing..."
 git push -f origin master-published
 
-echo "Switching back to temp branch..."
+echo "Switching back to master branch..."
 git switch master
 
