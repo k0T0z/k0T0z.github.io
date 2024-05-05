@@ -1,0 +1,37 @@
+#older-posts-button,
+#newer-posts-button {
+    flex: 1;
+    margin: 0 5px;
+    /* Add some spacing between the buttons */
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Add a hover effect to the buttons */
+#older-posts-button:hover,
+#newer-posts-button:hover {
+    background-color: #0056b3;
+}
+
+#older-newer-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    /* Add some spacing between the buttons and other content */
+}
+
+/* Disable the older-posts-button and newer-posts-button when they are disabled */
+#older-posts-button:disabled,
+#newer-posts-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

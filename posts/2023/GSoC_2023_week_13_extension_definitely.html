@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        I had to discuss with my mentors about the problem of assigning a cookie to a callback function.
+                        I want to do this basically because I need to assign an id for every callback I create. He said
+                        that this is normal and used very often just like web cookies. The problem is I looked carefully
+                        on Steamworks API and I didn't find any lamda that I can pass or something.
+
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    c_leaderboards_score_uploaded_cookies::m_SteamCallResultUploadScore.Set(
+        steam_api_call, this, <span style='color:#0000ff; '>&c_leaderboards_score_uploaded_cookies::on_upload_score</span>);
+                        </code></pre>
+                    </figure>
+                    <p>
+                        Robert said that instead of passing a function like we are doing above (see the blue part), try
+                        to pass a lambda function or find out how Steamworks handle that. The Steamworks API is too huge
+                        to follow by the way. Even though I found nothing related to "attach a payload to the callback".
+                    </p>
+                    <p>
+                        I came up with a very trivial solution for this problem which is to prevent any furthur
+                        callbacks as long as we have a running callback. Robert said that then why we have a queue in
+                        the new Async system? Now that is the a real problem. The thing is If I will have multiple
+                        callbacks running at the same time, then we may have a race condition. Every callback created
+                        will have to access the queue for pushing a new Async map which means we may have a read/write
+                        at the same time. I don't understand how ENIGMA is single-threaded yet but I think the upcoming
+                        stuff will explain it.
+                    <blockquote>
+                        <p>
+                            is it a problem to prevent any more requests while we are processing one?
+                        </p>
+                        <cite>Saif — 15/08/2023 20:10</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            yes, otherwise there'd be no need for a queue
+                        </p>
+                        <cite>R0bert — 16/08/2023 04:21</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I was thinking about a solution every day. Even outside home. A theoritical idea came to my mind
+                        and I went very quick trying to apply it. The idea is bascially about instantiating a new object
+                        for every callback we create. This object will have a unique id assigned to it at the creation
+                        time. When the callback is done, we will have a unique id for the callback to use. Now we have
+                        2 problems:
+                    <ul>
+                        <li>
+                            We need to build a system to flush the callback objects after the callbacks are done.
+                        </li>
+                        <li>
+                            We need to protect the queue from any double writes at the same time as well as reading
+                            while writing.
+                        </li>
+                    </ul>
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    void c_leaderboards_score_uploaded_cookies::set_call_result(SteamAPICall_t steam_api_call) {
+        c_leaderboards_score_uploaded_cookies::m_SteamCallResultUploadScore.Set(
+            steam_api_call, this, &c_leaderboards_score_uploaded_cookies::on_upload_score);
+    }
+                        </code></pre>
+                    </figure>
+                    <p>
+                        At the moment of instantiation, we will set the callback result as above inside the
+                        constructor. This way, we only have to instantiate the object and pass the unique id.
+                    </p>
+                    <p>
+                        My idea is working great but we will have to look into protecting every critical section
+                        outthere.
+                    </p>
+                    <p>
+                    <ul>
+                        <li>
+                            Patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2360">#2360</a> has been merged
+                            which provides:
+                            <ul>
+                                <li>
+                                    Fixing <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>
+                                    the right way.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        Patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> has some
+                        problems. I found out that for the short JSON <code>[ [ 1 , 2 ] , 2 ]</code>, there are two
+                        different outputs. The first one is
+                        <code>{ " 0 " : { " 0 " : 1 , " 1 " : 2 } , " 1 " : 2 }</code> and the second one is
+                        <code>[ { " 0 " : 1 , " 1 " : 2 } , 2 ]</code>. Both are valid JSONs so I think I need to look
+                        into that PR again.
+                    </p>
+
+                    <h2>Starting with <code>Social</code> API</h2>
+                    <p>
+                        This is the worst working period in the whole summer. The Social API needs the buffer work from
+                        <a href="https://summerofcode.withgoogle.com/archive/2022/projects/BrXiUNA2">
+                            Google Summer of Code 2022 project: Data Buffers / Serialization
+                        </a>. These buffer functions are not merged into master but <code>AST-Generation</code> branch.
+                        Moreover, the demo game I worked on is not working anymore because that
+                        <code>AST-Generation</code> branch contains a total rewrite of the compiler. I created a new,
+                        special, and simple demo game for the Social API under <code>AST-Generation</code> branch. Also,
+                        LGM - the IDE for ENIGMA - needs to build every time I switch branches. The thing is that the
+                        build time is very long. So every time I need to test something on master, I switch and run:
+                        <code>make clean</code> and then <code>make</code>.
+                    </p>
+                    <p>
+                        The deployment process needs to be done as the final evaluation is coming. I will skip some
+                        functions in the Social API and I can finish them later.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_13_extension_definitely.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

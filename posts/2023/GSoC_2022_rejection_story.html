@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        My rejected proposal <a href="assets/improve-build-systems-project-GSoC-2022-proposal.pdf">
+                            Improve Build System's Project Proposal</a> &#x1F910;.
+                    </p>
+                    <p>
+                        I actually decided to join Google Summer of Code 2022 program after reading about it in
+                        <a href="https://www.facebook.com/groups/cseknowledgeexchange">CSE Knowledge Exchange</a>
+                        Facebook group. I started with this
+                        <a href="https://www.facebook.com/groups/cseknowledgeexchange/permalink/2702845626477029">
+                            Ahmed ElSherif's Post
+                        </a> and this
+                        <a href="https://www.facebook.com/groups/cseknowledgeexchange/permalink/3397581077003477">
+                            Shehab Hosny's Post
+                        </a> which is talking about how to crack GSoC. Actually, you will find in those posts links to
+                        other posts like recursion, you need a whole day to read all of them &#x1F923;. I found these
+                        two posts - or 100 posts &#x1F603; - very useful as they contain also some accepted proposal
+                        examples.
+                    </p>
+                    <p>
+                        I started gathering all organizations that I am interested in such as ENIGMA, Dart, Blender,
+                        etc. Actually, I started prioritizing the organizations based on my interest, the difficulty of
+                        the project, and their community platform, as I prefer for example Discord over IRC.
+                    </p>
+                    <p>
+                        I joined the Discord server of ENIGMA on 09/03/2022 after deciding that I will work with ENIGMA.
+                        I started with building the software as recommended by mentor
+                        <a href="https://github.com/JoshDreamland">Josh</a>
+                    <blockquote>
+                        <p>
+                            welcome to both of you! the best first step is to follow the installation guide on the Wiki
+                            to get ENIGMA set up on your machine you can pick your OS on the download page, here:
+                            <a href="https://enigma-dev.org/download.htm">https://enigma-dev.org/download.htm</a>
+                            we're happy to help if you get stuck
+                        </p>
+                        <cite>Josh — 09/03/2022 17:22</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I first tried to build the software on my Windows machine using <code>make</code> but it failed.
+                        Actually, I was nearly unconscious (joking &#x1F605;). In
+                        <a href="https://enigma-dev.org/docs/Wiki/Install:Windows">step 4</a> of the installation
+                        guide, it says: add this code snippet to bla bla bla location, and I modified it, which took a
+                        lot of time for the mentors to figure out my mistake, which is I should only modify the java
+                        version in the code snippet. Thanks god my mentors know what they are doing &#x1F606;.
+                    <blockquote>
+                        <p>
+                            did you remove $PATH from that var?
+                        </p>
+                        <p>
+                            clearly it didn't cause it cant find make
+                            the only thing you shouldve changed was the version in the path
+                        </p>
+                        <cite>gfundies — 09/03/2022 22:23</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I thought I am now done with the setup, but... I tried to launch
+                        <a href="https://github.com/IsmAvatar/LateralGM">LGM</a> but it failed to launch, that is
+                        because <code>make</code> didn't complete successfully. I wasn't aware of what is
+                        <code>make</code>, actually, I wasn't aware of anything. The mentor doesn't want to repeat
+                        conversations and assumed that I can understand developers' conversations &#x1F606; and said
+                    <blockquote>
+                        <p>
+                            probably failed to build. scroll up too see what @Amań is working through
+                        </p>
+                        <cite>gfundies — 09/03/2022 22:23</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I had no choice but to read that conversation and try to understand what is going on. The next
+                        day I was still stuck, so I decided to ask @Amań for help, he managed to solve the problem
+                        somehow.
+                    <blockquote>
+                        <p>
+                            You should update the makefiles accordingly, pkg-config needs a patch, so only hard coding
+                            the two incorrect ones work.
+                        </p>
+                        <cite>Amań — 10/03/2022 11:30</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            sorry but where I can find these makefiles?
+                            to hard code both libraries
+                        </p>
+                        <p>
+                            Problem solved &#x1F44D;
+                        </p>
+                        <cite>Saif — 10/03/2022 16:58</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I decided then to try it on my own.
+                    </p>
+                    <p>
+                        At this moment I actually lost hope, I decided to walk away and surrender.
+                    </p>
+                    <p>
+                        After 4 days, I asked for a proposal template and Josh replied and
+                        <a href="https://github.com/fundies">gfundies</a> sent me
+                        <a href="https://google.github.io/gsocguides/student/proposal-example-1">
+                            google.github.io/gsocguides/student/proposal-example-1
+                        </a>
+                    <blockquote>
+                        <p>
+                            we're not too picky, but be sure to follow GSoC's guidelines
+                            if you're choosing one of our idea suggestions, we'll already know the milestones, but if
+                            you want to do something different, please include milestones in good detail
+                        </p>
+                        <cite>Josh — 14/03/2022 18:19</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I was actually hopeless, so I disappeared for about 2 weeks.
+                    </p>
+                    <p>
+                        After 2 weeks, I decided to try again, I asked again for help and Josh replied:
+                    <blockquote>
+                        <p>
+                            hey when trying to run lateralgm it says that it can't find compileEGMf.dll beside when
+                            running make ommand to build the compiler it give me an error
+                            can you give me a brief description of the problem and how to solve it to get started?
+                        </p>
+                        <cite>Saif — 28/03/2022 21:07</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            we're having that problem with the latest MSys packages; there's a workaround in the backlog
+                            for this channel
+                        </p>
+                        <cite>Josh — 28/03/2022 21:08</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            You should update the makefiles accordingly, pkg-config needs a patch, so only hard coding
+                            the two incorrect ones work.
+                            someone replies to me with this solution but I don't understand very much and what to do can
+                            you
+                            give me more details on this?
+                        </p>
+                        <cite>Saif — 28/03/2022 21:12</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            iiuc the problem is in the upstream packages, so we shouldn't change anything in our own
+                            code base
+                            (although it would be fine to pass around a patch for now)
+                            I can help you after work, if you are still stuck
+                        </p>
+                        <cite>Josh — 28/03/2022 21:15</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            okay
+                        </p>
+                        <cite>Saif — 28/03/2022 21:16</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            yep actually I'm very stuck right now
+                            thanks josh
+                        </p>
+                        <cite>Saif — 28/03/2022 21:17</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        After this conversation also, I decided to wait for Josh to help.
+                    </p>
+                    <p>
+                        The next day الحَمْدُ لِله, I received a message from Josh and Kartik. I was applying for
+                        GSoC 2022 with 3 competitors <a href="https://github.com/KartikShrivastava">Kartik</a>,
+                        <a href="https://github.com/dc03">Dhruv</a>, and Nilan. They helped me actually with a lot of
+                        things and mostly with this <code>pkg-config</code> problem. They replied
+                    <blockquote>
+                        <p>
+                            all right, I'm putting aside work for the day; what changes did you make locally, @Saif?
+                        </p>
+                        <cite>Josh — 29/03/2022 02:08</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Hi @Saif, I removed msys and windows build lately but if I remember correctly then following
+                            the previous discussions these are the steps which I followed to run make without errors in
+                            windows:
+                        <ul>
+                            <li>
+                                in msys run:
+                                pkg-config --cflags --libs grpc++
+                            </li>
+                            <li>copy its output</li>
+                            <li>
+                                go to enigma-dev/CommandLine/emake/Makefile
+                                search for -lgrpc++ and replace it with the copied text
+                            </li>
+                        </ul>
+                        </p>
+                        <cite>Kartik — 29/03/2022 06:29</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            does just injecting <code>$(shell pkg-config --cflags --libs grpc++)</code> not have the
+                            same effect?
+                        </p>
+                        <cite>Josh — 29/03/2022 06:36</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            thats the problem with the latest grpc pkg that i was trying to con someone into fixing for
+                            me a coulple of the libs are missing <code>-l</code> prefix in .pc file
+                        </p>
+                        <cite>gfundies — 29/03/2022 06:38</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            ah
+                        </p>
+                        <cite>Josh — 29/03/2022 06:38</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I tried that solution but it also failed. I wasn't hopeless because I made some progress, the
+                        error message now changed &#x1F918;. I sent the next error message and Josh replied
+                    <blockquote>
+                        <p>
+                            @Saif <code>advapi32</code> is missing a <code>-l</code> before it, like fundies mentioned
+                            see if adding that fixes it if it doesn't, try make clean before running make again
+                        </p>
+                        <p>
+                            oh, and there are actually two makefiles that list -lgrpc++
+                            both emake and libprotocols; make sure you hit both
+                        </p>
+                        <cite>Josh — 29/03/2022 16:43</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I tried that solution but again failed but now I can move forward with my own. I found another
+                        <code>Makefile</code> file that also needs hard coding. I hard-coded it and it again failed. I
+                        sent the error message again and Josh replied
+                    <blockquote>
+                        <p>
+                            looks as though <code>dbghelp</code> is also missing an <code>-l</code>
+                        </p>
+                        <p>
+                            "missing separator" is a make syntax error; I didn't see it in the changes you posted, but
+                            I'd suggest running a diff and checking over your local changes
+                        </p>
+                        <cite>Josh — 30/03/2022 15:59</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I tried those changes and it worked. I have now understood the first
+                        <code>trivial &#x1F605;</code> concept of all time, which is
+                        <code>what is meant by a separator in Makefile files</code>.
+                    </p>
+                    <p>
+                        The solution in detail was
+                    <ul>
+                        <li>
+                            Open MSYSx64 or whatever you use and type <code>pkg-config --cflags --libs grpc++</code>
+                            and hit enter
+                        </li>
+                        <li>Copy its output to an editor like visual studio code and search for a missing separator,
+                            a missing separator is <code>-l</code> before every dependency so for example
+                            <code>-labsl_strings_internal advapi32 -labsl_base</code> the <code>advapi32</code> must be
+                            <code>-ladvapi32</code>. Do that for all the text, search for something like this
+                        </li>
+                        <li>
+                            After you fix all the text, open these two files
+                            <code>/enigma-dev/CommandLine/emake/Makefile</code> and
+                            <code>/enigma-dev/shared/protos/Makefile</code> in your visual studio code
+                        </li>
+                        <li>
+                            Search in these two makefiles for <code>-lgrpc++</code> and replace it with your fixed text
+                        </li>
+                        <li>
+                            Make sure that there are no new lines in the fixed text and also every two dependencies
+                            must be separated by space for example this is correct -labsl_strings_internal -ladvapi32,
+                            this is incorrect -labsl_strings_internal-ladvapi32
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        I provided it in this issue
+                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2285">#2285</a>.
+                    </p>
+                    <p>
+                        Life is great and everything is going well. I picked
+                        <code>Tiled compatibility support Enigma</code>
+                        project to work on. Josh replied and thanks to him actually
+                    <blockquote>
+                        <p>
+                            someone else already seems to have a handle on that one
+                            currently, the room work appears to be covered, as well as the buffer work, maybe
+                        </p>
+                        <cite>Josh — 01/04/2022 00:17</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        So I decided to work on ENIGMA's build system.
+                    </p>
+                    <p>
+                        That generally was my start with ENIGMA in GSoC 2022. The next conversations are very technical
+                        and related to <code>Make</code> and <code>CMake</code> build systems. Dhruv and Kartik
+                        continued to help me along the road. I submitted the first version of my proposal on 09/04/2022.
+                        I found out later that only 4 applicants were applying to ENIGMA in GSoC 2022. Me, Dhruv,
+                        Kartik, and Nilan. I received my first review on 10/04/2022.
+                    <blockquote>
+                        <p>
+                            @Kartik @Dhruv Chawla @Saif I've commented on your proposals. Don't feel obliged to fix
+                            everything I've mentioned though
+                        </p>
+                        <cite>gfundies — 10/04/2022 19:25</cite>
+                    </blockquote>
+                    <p>
+                        I submitted my first PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2297">#2297</a>
+                        for ENIGMA on 12/04/2022, it was a trivial one that cleans up some dead files.
+                    </p>
+                    <p>
+                        fundies mentioned something interesting related to working outside Google Summer of Code for
+                        college credit. I talked to my professors and they agreed to give me credit for working on
+                        my project but that's only AFTER organizing the project with my mentors. It was too late at
+                        that moment anyway.
+                    <blockquote>
+                        <p>
+                            well if anyone doesn't get selected and doesnt mind working w/o the stipend, we can try to
+                            work with your colleges to structure it as an internship for credit
+                            I worked on things here for college credit when I was in school
+                        </p>
+                        <cite>gfundies — 15/04/2022 18:12</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        On 20/05/2022, I was the only one who got rejected, so I asked my mentors for some tips so I can
+                        do well in GSoC 2023 and Josh replied
+                    <blockquote>
+                        <p>
+                            there was nothing wrong with your proposal, @Saif; you were one of our electees as well, but
+                            Google only granted us three slots
+                        </p>
+                        <p>
+                            in fact, I'm surprised we got three
+                        </p>
+                        <cite>Josh — 20/05/2022 20:15</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        That's it for GSoC 2022, I will just go and finish my schoolwork &#x1F622;.
+                    </p>
+                </div>
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2022_rejection_story.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        Social API needs the buffer work from previous GSoC 2022 project.
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2361">#2361</a> provides the
+                        buffer work. We need to merge it to our branch and then start working on it. The code
+                        in this PR is based on <code>AST-Generation</code> branch, which is a branch that
+                        contains the total rewrite for the parser, which also means that it is a very
+                        dangerous branch to work on. So I decided to move on to the next phase which is the
+                        testing.
+                    </p>
+                    <p>
+                        The problem with testing is it will only pass locally on my machine because I have
+                        Steam.exe installed. For the CI, it doesn't have access to Steam which means that
+                        all tests are going to fail.
+                        <a
+                            href="https://stackoverflow.com/questions/71111067/how-does-mock-testing-rest-apis-test-the-api-when-the-actual-api-is-not-called">
+                            stackoverflow.com/questions/71111067
+                        </a> solves my problem. I need to mock the API calls somehow.
+                    </p>
+                    <p>
+                        I started mocking every every function that I used from Steam API. This was the easy
+                        part. Now if I want to link using the Mock API I specify this:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    SOURCES += $(wildcard Universal_System/Extensions/Steamworks/gameclient/SteamMock/sdk/public/steam/*.cpp)
+    override CXXFLAGS += -I$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/SteamMock/sdk/public/
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        And if I want the real API I specify this:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    override CXXFLAGS += -I$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/Steamv157/sdk/public/
+    override LDFLAGS += -L$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/Steamv157/sdk/redistributable_bin/linux64
+    override LDLIBS += -lsteam_api
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        Note that the above code is applicable for Linux only.
+                    </p>
+                    <p>
+                        Notice the problem? The CI won't do it this way. I need to find a way that
+                        automates it somehow. A way that I don't need to comment and uncomment codes
+                        everytime. I asked fundies about it:
+                    <blockquote>
+                        <p>
+                            you need to make a STEAM_SDk_PATH or similar variable for one
+                        </p>
+                        <p>
+                            you can make enviornmental variable that can be overriden at compile time
+                        </p>
+                        <p>
+                            <a
+                                href="https://github.com/enigma-dev/enigma-dev/blob/master/ENIGMAsystem/SHELL/Makefile#L28"></a>
+                            sets a variable in make if its not defined
+                        </p>
+                        <p>
+                            you make need to do something i dont remember for make to take in enviormental variable
+                            prepended to an emake run or lgm startup
+                        </p>
+                        <p>
+                            but it should be like STEAM_SDK_PATH=/a/path ./emake .....
+                        </p>
+                        <p>
+                            if you can get that working you need to plumb it into test harness execute command
+                        </p>
+                        <cite>gfundies — 09/09/2023 01:58</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Automate mock generation? Or inject a mock under certain circumstances?
+                        </p>
+                        <p>
+                            We have TestValues for that, but in general, the mock follows the same interface, so you can
+                            use any old global
+                        </p>
+                        <cite>Josh — 09/09/2023 03:47</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I had a very long conversation about that with fundies:
+                    <blockquote>
+                        <p>
+                            I might’ve just made the mock steam a dll and changed which it loads at runtime using
+                            LD_LIBRARY_PATH
+                        </p>
+                        <cite>gfundies — 14/09/2023 23:30</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            You can load dlls at runtime tho
+                        </p>
+                        <p>
+                            What im unsure about is if you can build the game without linking the dll and just load it a
+                            runtime or if you can always link the mock dll and load the real one at runtime
+                        </p>
+                        <cite>gfundies — 14/09/2023 23:33</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            the CI will load nothing
+                        </p>
+                        <p>
+                            but it will always find the mock to link
+                        </p>
+                        <p>
+                            good idea
+                        </p>
+                        <cite>Saif — 14/09/2023 23:44</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Not quite what im trying to say
+                        </p>
+                        <p>
+                            The game should look for the dll at load time
+                        </p>
+                        <p>
+                            On the ci you need to tell its where ever you built the mock dll
+                        </p>
+                        <p>
+                            Using ldlibrarypath before launching the game probably
+                        </p>
+                        <p>
+                            What i need you to figure out is how to make it so it only matters what dll is available at
+                            runtime
+                        </p>
+                        <p>
+                            Compile time it just needs to be aware that something provides steam funcs
+                        </p>
+                        <p>
+                            Afaik as long as the two dlls are abi compatible you should be able to swap them at will but
+                            I haven’t done this in practice
+                        </p>
+                        <cite>gfundies — 14/09/2023 23:45</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        So what I need to do now is to finish the Social API ASAP becuase we much work for the
+                        deployment. When I merged the <code>AST-Generation</code> branch to mine and started working on
+                        it, the new parser didn't like my demo game. I think the new parser hates the old parser
+                        &#129315;. Anyway let's modify the demo game so that our new parser likes it.
+                    </p>
+                    <p>
+                        You know what? I think I am gonna use only that branch for implementing my functions. That's
+                        becuase GMS wrote the demo game as I wrote.
+                    </p>
+                    <p>
+                        I implemented a simple demo game that runs very well with the new parser under the
+                        <code>AST-Generation</code> branch. When switching between <code>master</code> and
+                        <code>AST-Generation</code>, I have to run make which takes a noticeable time. I managed to
+                        implement most of the functions but specifically, <code>steam_image_get_rgba();</code> returns
+                        RGBA data in a buffer. Dhruv mentioned that ENIGMA expects ARGB. See the picture below:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC-2023-week-14-and-15-and-16-ci-still-remember-me/mixed-channels-image.png"
+                            alt="Mixed channels image" />
+                    </p>
+                    <p>
+                    <blockquote>
+                        <p>
+                            your channels may be mixed
+                        </p>
+                        <p>
+                            i think enigma expects ARGB
+                        </p>
+                        <cite>Dhruv Chawla — 11/09/2023 16:40</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Now I will leave the rest of the work after the deployment is done. Before working on the Fake
+                        API, I need to solve the Stub extensions problem. There are two places I need to inject to
+                        Testharness command. The first one is the stubs' location. The second one is the mock location.
+                    </p>
+                    <p>
+                        The easy one was the stubs' location. However, there are some tests that are not passing
+                        but I think they are not related to the stubs. Here is new structure:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    enigma-dev
+    ├── ...
+    └── ENIGMAsystem
+        └── SHELL
+            ├── Makefile   <--------- Main Makefile
+            ├── ...
+            └── Universal_System
+                ├── ...
+                └── StubExtensions
+                    ├── ...
+                    └── Steamworks
+                        ├── About.ey
+                        ├── Makefile
+                        └── stubs.cpp
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        This is was simple as adding a condition in the main Makefile to enable the stub if
+                        the real extension is not enabled.
+                    </p>
+                    <p>
+                        The fake API nearly implemented but it has a memory leak I need to fix later. The fake API was
+                        some source files for the original API headers. As fundies suggested, I will build those sources
+                        as a DLL and then load it dynamically if the real API is not available. This way the CI problem
+                        will be solved.
+                    </p>
+                    <p>
+                        After the fake API is implmeneted and tested, there is no major work left. All the upcoming work
+                        is considered as flushing, cleaning, and improving the Steamworks extension.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_14_and_15_and_16_ci_still_remember_me.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        My final evaluation PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>.
+                    </p>
+                    <p>
+                        I still didn't finish the Leaderboard API, so let's talk about the next steps.
+                    </p>
+                    <p>
+                        First of all, the Async system is working fine but I don't know how the
+                        <code>DataStructures</code> extension works, so lets look at the code and see
+                        what we can do.
+                    </p>
+                    <p>
+                        Actually, the problem is not with the new Async system because I already tested it
+                        before. The problem is with my new code I added. When I looked closer at the code, I
+                        found that I am returning <code>std::string&</code> and assigning it to my event map.
+                        Let's try to remove it and see what happens.
+                    </p>
+                    <p>
+                        The code is worked just fined, so let's add a TODO for studying this behavior later.
+                    </p>
+                    <p>
+                        Now, let's understand more about how ENIGMA's Async system works. From the output
+                        when firing an event it looks like this:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    INFO: Steam ASYNC: {  }
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        When I run the GMS official example game, the Async output is between those parenthesis.
+                        My output looks like this for now:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    INFO: Steam ASYNC: {  }
+    INFO: leaderboard_download
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        It is not inside the parenthesis, let's try to fix it. A new idea came to my mind to find out
+                        where the code that prints this output in the console. I remembered my old conversation with
+                        Josh, and he said that ENIGMA has a code generation system. I don't know how it works yet, but
+                        this means that the code in the main repo is not the full running code. Maybe if I can get to
+                        this generated code, I can find what I need so let's try that.
+                    </p>
+                    <p>
+                        Inside <code>~/.enigma/Preprocessor_Environment_Editable/</code> directory, I used VSCode search
+                        in files feature. I love VSCode because of this one by the way. I found that there is a file
+                        called <code>IDE_EDIT_objectfunctionality.h</code> that has the what I was looking for:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    <span class="k">variant</span> enigma::OBJ_Obj_Steam::<span class="nf">myevent_steam</span><span class="p">(</span><span class="p">)</span>
+    {
+        enigma::temp_event_scope ENIGMA_PUSH_ITERATOR_AND_VALIDATE<span class="p">(</span><span class="nb">this</span><span class="p">)</span>;
+        
+        <span class="si">{</span>
+        <span class="n">show_debug_message</span>(<span class="s2">"</span><span class="s2">Steam ASYNC: </span><span class="s2">"</span>+ json_encode(async_load));
+        
+        <span class="si">}</span>
+        ;
+        
+        return 0;
+    }
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        From what I see is that it uses <code>async_load</code> variable to get the output. This
+                        means that there is no output inside, which means that there is a problem with the new
+                        Async system I implemented. Let's look at the code again and see what we can do.
+                    </p>
+                    <p>
+                        I found that it's working perfectly nothing wrong with my code but where's the string
+                        inside the parenthesis? you know what, this means one thing the problem is with
+                        <code>json_encode()</code> function. Ooooh my god I rememebered now, I have already
+                        worked on that Json extension before getting accepted at GSoC. I have already talked
+                        with fundies about this but I also remember that he didn't say anything about this
+                        function being broken.
+                    <blockquote>
+                        <p>
+                            this function is useless
+                        </p>
+                        <p>
+                            then why it exists, dk
+                        </p>
+                        <cite>Saif — 17/03/2023 22:57</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            first person i blame wrote it
+                        </p>
+                        <p>
+                            that looks like a place holder
+                        </p>
+                        <p>
+                            its just there so game doesnt error
+                        </p>
+                        <p>
+                            its not functional
+                        </p>
+                        <cite>gfundies — 17/03/2023 22:58</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        It look like this now:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    string json_encode(variant ds_map)
+    {
+        Json::Value root;
+        return string("{  }");
+    }
+                        </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        Let's modify it now to return the data inside the <code>ds_map</code> variable.
+                    </p>
+                    <p>
+                        So I provided this patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a>
+                        to fix this issue. It still needs some tests so here's the TODO:
+                    <ul>
+                        <li>Implement some tests.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Finally, thanks to Robert for merging my patch
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> which is provided to fix
+                        both <a href="https://github.com/enigma-dev/enigma-dev/issues/1951">#1951</a> and
+                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>. There are still some
+                        changes that need to be done to the patch but it's good for now.
+                    <ul>
+                        <li>Move to <code>std::sstream</code> instead of <code>std::string</code>.</li>
+                        <li>Implement the error system.</li>
+                        <li>Improve tests and makefiles that links them.</li>
+                        <li>
+                            The number values are not fully implemented. Check
+                            <a href="https://leetcode.com/problems/valid-number">
+                                leetcode.com/problems/valid-number/
+                            </a>. Add GTests for them.
+                        </li>
+                        <li>Add SOGs.</li>
+                        <li>Improve documentation.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Back to the Steam issue I was facing on my Ubuntu, the problem is when I run Steam, it keeps ON
+                        and OFF without being opened. The solution is pretty simple by the way.
+                        <a href="https://askubuntu.com/questions/1349490/steam-opens-and-then-just-closes">
+                            askubuntu.com/questions/1349490/steam-opens-and-then-just-closes
+                        </a> solves the issue and it's basically about changing the NVIDIA drivers. Just choose any
+                        version other than the open-source one.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_9_and_10_here_we_go_again.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

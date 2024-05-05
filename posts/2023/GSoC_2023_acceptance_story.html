@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        My accepted proposal <a
+                            href="assets/steam-workshop-SDK-third-party-integration-for-ENIGMA-GSoC-2023-proposal.pdf">
+                            Steam Workshop SDK/Third Party Integration For ENIGMA</a> &#x1F64C;.
+                    </p>
+                    <p>
+                        My acceptance story is not fun as my rejection story, because I have much experience with
+                        ENIGMA's codebase now which means my questions are more technical than general. The Steam
+                        project was <a href="https://github.com/RobertBColton">Robert</a>'s idea
+                    <blockquote>
+                        <p>
+                            Would anybody be interested in working on steam integration?
+                        </p>
+                        <cite>R0bert — 02/02/2023 00:43</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        After long thought, I decided to work on the Steam Integration project. That was an interesting
+                        project by the way.
+                    </p>
+                    <p>
+                        I started by looking at the official
+                        <a href="https://partner.steamgames.com/doc/home">Steamworks documentation</a>. Actually, it
+                        took me a while to understand how Valve wrote its documentation. I noticed the example game they
+                        provided for developers in order to understand more about the Steamworks API. I downloaded the
+                        game and started to play with it. Although I've got some errors, I managed to fix them
+                        immediately. I started to read the code and understand how it works. The code was split into two
+                        parts, the first part is the engine itself with some shading and rendering code. The second part
+                        is the APIs. I decided to start running a standalone program. I used CMake build system to link
+                        Steamworks library to my executable. It worked without any problem, so I started to write my
+                        proposal at this moment.
+                    </p>
+                    <p>
+                        Something really happened that I didn't give much attention to. I was using MinGW GCC compiler
+                        to build and run, and it worked fine. When I tried to get the current Steam ID
+                        <code>SteamUser()->GetSteamID()</code> of currently logged-in user, I got nothing in VSCode
+                        terminal. I thought that there must be something wrong with my code, so I ignored it.
+                    </p>
+                    <p>
+                        Later on, while I am working on the project, I noticed that the same function and the same
+                        problem. Can you guess what was the problem?
+                    </p>
+                    <p>
+                        I decided to write the starter code for the Steamworks extension. For ENIGMA, there are a bunch
+                        of files that must be added in order for the extension to work correctly. <code>About.ey</code>,
+                        which contains name and description of the extension. <code>Makefile</code>, which contains the
+                        required codes for linking the extension to the executable. <code>include.h</code>, which
+                        contains the header files for the extension. My mentors: fundies and rpjohnst helped me a lot
+                        with it.
+                    </p>
+                    <p>
+                        I decided to start linking Steamworks library to ENIGMA instead of writing a standalone program.
+                        I started to read about Makefile files and how to link libraries to ENIGMA. Actually, working on
+                        ENIGMA's build system was very beneficial for me.
+                    <blockquote>
+                        <p>
+                            oh you need to -L the directory for linking, not -I
+                        </p>
+                        <p>
+                            and you probably want to put it in LDFLAGS?
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 21:52</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            maybe?
+                        </p>
+                        <cite>Saif — 08/03/2023 21:52</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            it may work in cxxflags, I'm just not sure whether cxxflags gets passed to the linker
+                            command
+                        </p>
+                        <p>
+                            and I'm also not sure whether ldflags exists, lol
+                        </p>
+                        <p>
+                            I'm just going from memory
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 21:53</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            the first directory works
+                        </p>
+                        <p>
+                            override CXXFLAGS +=
+                            -I$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks \
+                        </p>
+                        <p>
+                            this one works fine
+                        </p>
+                        <p>
+                            it can find headers
+                        </p>
+                        <cite>Saif — 08/03/2023 21:53</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            right, but finding headers and finding libs are two different things that use different
+                            flags on
+                            different commands
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 21:54</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            but dk what's the problem with those lib files
+                        </p>
+                        <cite>Saif — 08/03/2023 21:54</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            you've got -I (capital i) on the redistributable_bin directory
+                        </p>
+                        <p>
+                            but it should be -L
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 21:54</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            those capital and smaller stuff builds an error in my brain
+                        </p>
+                        <cite>Saif — 08/03/2023 21:56</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            lol yeah it's kind of arcane
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 21:57</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            it's failed again
+                        </p>
+                        <cite>Saif — 08/03/2023 21:59</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            oh now you've still got the .lib there in -lsteam_api.lib
+                        </p>
+                        <p>
+                            I think the two options are:
+                            - path_to/steam_api.lib
+                            - -Lpath_to/ ... -lsteam_api
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:00</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            okay let me try
+                        </p>
+                        <cite>Saif — 08/03/2023 22:02</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            rip
+                        </p>
+                        <p>
+                            probably you have a 32 bit steam_api and 64 bit game or vice versa?
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:07</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            it's working with cmake
+                        </p>
+                        <p>
+                            give me a sec
+                        </p>
+                        <cite>Saif — 08/03/2023 22:08</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            oh is there a steam_api64?
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:09</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            yeah
+                        </p>
+                        <p>
+                            but the steam_api.lib works perfectly with that cmake file
+                        </p>
+                        <cite>Saif — 08/03/2023 22:09</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            it's possible your cmake build is using a 32-bit compiler
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:09</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            i tried to look at the Makefile generated but nothing
+                        </p>
+                        <cite>Saif — 08/03/2023 22:09</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            it might fail the same way if it were using a 64-bit compiler
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:09</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            maybe?
+                        </p>
+                        <p>
+                            i won't believe it if works
+                        </p>
+                        <p>
+                            i ill try
+                        </p>
+                        <p>
+                            @rpjohnst tell me when u want to give up
+                        </p>
+                        <cite>Saif — 08/03/2023 22:10</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            well again you have to leave out the .lib extension
+                        </p>
+                        <p>
+                            we're making progress here- once you got the -L/-l split working properly we got a new error
+                            message
+                            about the 32/64-bit mismatch
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:15</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            it's working now actually, thank u
+                        </p>
+                        <cite>Saif — 08/03/2023 22:16</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            nice
+                        </p>
+                        <cite>rpjohnst — 08/03/2023 22:16</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        That's my first progress in the Steam API integration project &#x1F64C;. I managed to link the
+                        Steamworks library to ENIGMA. The Steamworks Overlay can now be accessed from my empty project
+                        by pressing Shift + Tab.
+                    <blockquote>
+                        <p>
+                            @R0bert @gfundies we r making progress here
+                        </p>
+                        <p>
+                            <img class="image-content"
+                                src="assets/GSoC-2023-acceptance-story/linking-steam-library-sucess.png"
+                                alt="Linking Steamworks library to ENIGMA">
+                        </p>
+                        <cite>Saif — 08/03/2023 22:27</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Remember Dhruv and Kartik? They were applying for GSoC '22 with me. Remember when I said they
+                        helped me a lot? Well, they helped me a lot in GSoC '23 too. Dhruv helped me with the proposal,
+                        he also gave me his credentials for GMS as I couldn't sign up due to something with YOYO Games
+                        server. Kartik reviewed my proposal like 100 times, I really can't forget their help so I
+                        decided to mention them here.
+                    </p>
+                    <p>
+                        I submitted two PRs before getting accepted, <a
+                            href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a>,
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2337">#2337</a>, and another two after
+                        getting accepted, <a href="https://github.com/enigma-dev/enigma-dev/pull/2341">#2341</a>,
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2340">#2340</a>.
+                    </p>
+                    <p>
+                        On 04/05/2023, I received the acceptance email from Google. Actually, what makes this special is
+                        that as claimed by Stephanie Taylor:
+                    <blockquote>
+                        <p>
+                            This is the most competitive year we have ever had for GSoC.
+                        </p>
+                        <cite>Stephanie Taylor - GSoC Program Lead at Google</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Let's leave schoolwork aside for now because it seems that it is gonna be a busy summer
+                        &#x1F60E;.
+                    </p>
+                    <blockquote style="border-left: 6px solid #ff3e3e;">
+                        <p>
+                            وَمَا بِكُم مِّن نِّعْمَةٍۢ فَمِنَ ٱللَّهِ ۖ ثُمَّ إِذَا مَسَّكُمُ ٱلضُّرُّ فَإِلَيْهِ
+                            تَجْـَٔرُونَ
+                        </p>
+                        <p>
+                            Whatever blessings you have are from Allah. Then whenever hardship touches you, to Him
+                            ˹alone˺
+                            you cry ˹for help˺.
+                        </p>
+                        <cite>The Noble Qur'an, An-Nahl 53</cite>
+                    </blockquote>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_acceptance_story.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        After 1 year of waiting, I have finally been selected for GSoC 2023! I really can't wait to work
+                        with my mentors <a href="https://github.com/RobertBColton">Robert</a>,
+                        <a href="https://github.com/JoshDreamland">Josh</a>,
+                        <a href="https://github.com/rpjohnst">rpjohnst</a>, and
+                        <a href="https://github.com/hpgDesigns">Hugar</a> this summer.
+                    </p>
+                    <p>
+                        I decided to work on issue
+                        <a href="https://github.com/enigma-dev/enigma-dev/issues/1881">#1881</a>
+                        (<code>Steam Workshop SDK/Third Party Integration</code>) idea for GSoC 2023. The idea is to
+                        implement a wrapper around the Steamworks API, and then implement User functions' APIs for
+                        ENIGMA game engine. Game developers can then use these functions (AKA scripts) to integrate
+                        their games with Steamworks.
+                    </p>
+                    <p>
+                        I figured out that creating the wrapper itself isn't the project. ENIGMA is used for creating
+                        games by writing EDL scripts, it's not like Unreal Engine for example, as it uses C++ mainly for
+                        creating games, but for ENIGMA, we will create the wrapper itself and then write the necessary
+                        user functions for different APIs mentioned in my proposal. This is not enough, ENIGMA uses EDL
+                        for creating games but it's written in C++ so why create a wrapper in the first place? Steam SDK
+                        is also written in C++ so I can directly go ahead and write the user functions. "I think it'd be
+                        better if you did that and did not use the abstraction" Robert replied.
+                    </p>
+                    <p>
+                        Before getting started, I must familiarize myself with ENIGMA's extension system as it is the
+                        basis of this project. I wrote a Makefile file (thanks to rpjohnst) to link the Steam lib with
+                        the executable. Here's the main structure:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    override CXXFLAGS += -I$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/steambinder/Steamv157/sdk/public/
+                    
+    ifeq ($(TARGET-PLATFORM), Windows)
+
+        override LDFLAGS += -L$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/steambinder/Steamv157/sdk/redistributable_bin/win64/
+        override LDLIBS += -lsteam_api64
+    
+    else ifeq ($(TARGET-PLATFORM), Linux)
+    
+        override LDFLAGS += -L$(ENIGMA_ROOT)/ENIGMAsystem/SHELL/Universal_System/Extensions/Steamworks/gameclient/steambinder/Steamv157/sdk/redistributable_bin/linux64
+        override LDLIBS += -lsteam_api
+    
+    endif
+                            </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        This file is written before getting accepted into the program, I will be using it through the
+                        summer, and will be modified if needed.
+                        <a href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html">
+                            www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html
+                        </a> is a very good resource for this.
+                    </p>
+                    <P>
+                        As I mentioned in my proposal that I will start by creating the example game that will showcase
+                        the extension capabilities. I won't anything creative, I will just try to use GMS's style. I
+                        am not a GUI designer anyway.
+                    </P>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_bonding_period_getting_started.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

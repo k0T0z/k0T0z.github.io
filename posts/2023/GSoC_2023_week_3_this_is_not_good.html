@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        I actually did some progress regarding the example game and here's my 2nd version:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC-2023-week-3-this-is-not-good/ENIGMA-steamworks-main-screen-2nd-version-look.jpg"
+                            alt="ENIGMA Steamworks main screen 2nd version look" />
+                    </p>
+                    <p>
+                        and this is the final output I wish to reach:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC-2023-week-2-still-finals/GMS-steamworks-main-screen-final-look.jpg"
+                            alt="GMS Steamworks main screen final look" />
+                    </p>
+                    <p>
+                        Although I faced some problems because I am very bad at game development, everything is going
+                        well so far. My mentor <a href="https://github.com/hpgDesigns">Hugar</a> really helped me a lot.
+                    </p>
+                    <p>
+                        Before getting accepted to GSoC, my mentor Robert talked with me about something that I might
+                        face while working called ABI Compatibility Issues and he linked these resources:
+                        <a
+                            href="https://www.ibm.com/docs/en/xl-c-and-cpp-aix/16.1?topic=migration-compatibility-considerations-when-mixing-object-files">
+                            Compatibility considerations when mixing object files, IBM
+                        </a>, and
+                        <a
+                            href="https://www.reddit.com/r/learnprogramming/comments/yn0xsf/comment/iv6l3wx/?utm_source=share&utm_medium=web2x&context=3">
+                            How is code created by different compilers able to be linked together, such as when using
+                            libraries?, Reddit
+                        </a>. I have explained it in my
+                        <a href="assets/steam-workshop-SDK-third-party-integration-for-ENIGMA-GSoC-2023-proposal.pdf">
+                            Steam Workshop SDK/Third Party Integration For ENIGMA
+                        </a> proposal so check it out if you are interested. The thing is I tested only a prototype of
+                        my project, I didn't dig deep into it, which by definition doesn't cause any ABI Compatibility
+                        Issues. I mentioned also that I don't expect any ABI Compatibility Issues to happen, but I was
+                        wrong. I was very confident because I tested it even with advanced C++ Classes and it worked
+                        fine just as rpjohnst said.
+                    <blockquote>
+                        <p>
+                            mingw mostly matches msvc's abi
+                        </p>
+                        <p>
+                            you only run into problems if you start mixing c++ standard libraries or if you use
+                            relatively fancy
+                            language features in the API
+                        </p>
+                        <p>
+                            you really don't want to be mixing object files but that's not what's happening here
+                        </p>
+                        <cite>rpjohnst — 02/03/2023 23:52</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            like digging into c++20 for example?
+                        </p>
+                        <cite>Saif — 02/03/2023 23:53</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            no even stuff like class methods
+                        </p>
+                        <p>
+                            but it sounds like this is a C api
+                        </p>
+                        <cite>rpjohnst — 02/03/2023 23:53</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            I would assume it is
+                        </p>
+                        <p>
+                            I'd be pretty shocked if it were some kind of C++ DLL
+                        </p>
+                        <p>
+                            even if the API is C++, the ABI is probably still extremely boring C, locked down to stdcall
+                        </p>
+                        <cite>Josh — 02/03/2023 23:54</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Remember the function I was testing before I got accepted into GSoC? The
+                        <code>SteamUser()->GetSteamID()</code>? Well, this function won't work with ENIGMA. ENIGMA is
+                        compiled with MinGW, and Steamworks SDK is compiled with MSVC. Of course, there are some
+                        functions that will work fine, but this one fails. I need MSVC support for ENIGMA, in order to
+                        work with Steamworks SDK without any problems. Back then, I wasn't aware of this issue, even
+                        now, I debugged my code and nothing wrong with it.
+                    </p>
+                    <p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // game_client.cpp
+
+    #include "steam_api.h"
+
+    CSteamID get_c_steam_id_local_user() {
+        return SteamUser()->GetSteamID();
+    }
+                                </code></pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // general.cpp
+
+    #include "game_client.h"
+
+    CSteamID steam_get_user_steam_id() {
+        return get_c_steam_id_local_user();
+    }
+                                </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        This error message showed up when used the debugger:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    Thread 1 "MainThrd" received signal SIGSEGV, Segmentation fault.
+    0x00007ffe35878be5 in steamclient64!Steam_TerminateGameConnection ()
+        from C:\Program Files (x86)\Steam\steamclient64.dll
+                            </code></pre>
+                    </figure>
+                    <p>
+                        Let's view the stack trace:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    (gdb) bt
+    #0  0x00007ffe35878be5 in <span style='color:#0000ff; '>steamclient64!Steam_TerminateGameConnection ()</span>
+        from <span style='color:#0000ff; '>C:\Program Files (x86)\Steam\steamclient64.dll</span>
+    #1  0x00007ffe357586a3 in <span style='color:#0000ff; '>steamclient64!Steam_TerminateGameConnection ()</span>
+        from <span style='color:#0000ff; '>C:\Program Files (x86)\Steam\steamclient64.dll</span>
+    #2  0x00007ff733c6886d in <span style='color:#0000ff; '>enigma_user::steam_get_user_steam_id() ()</span>
+    #3  0x00007ff733b84bf7 in enigma::OBJ_Obj_Steam_GeneralInfo::myevent_draw() ()
+    #4  0x00007ff733bdc11b in draw_tiles() ()
+    #5  0x00007ff733bddfce in enigma_user::screen_redraw() ()
+    #6  0x00007ff733b862ea in enigma::ENIGMA_events() ()
+    #7  0x00007ff733b8f67e in enigma::enigma_main(int, char**) ()
+    #8  0x00007ff733b99c1a in WinMain ()
+    #9  0x00007ff733b812ee in __tmainCRTStartup ()
+        at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:272
+    #10 0x00007ff733b81406 in mainCRTStartup () at C:/M/B/src/mingw-w64/mingw-w64-crt/crt/crtexe.c:193  
+                            </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        Only Segmentation fault not very helpful. I tried to look at other wrappers, the documentation,
+                        ChatGPT, and even searched online, and I found nothing. I thought at first that this issue is
+                        due to Steamworks API, but if that is the case then why the official example
+                        (<a href="https://partner.steamgames.com/doc/sdk/api/example">SpaceWar</a>) game works fine? or
+                        why the GMS's example
+                        (<a href="https://marketplace.yoyogames.com/assets/10709/steamworks-ext">Demo</a>) works fine as
+                        well? then it's an issue due to something with ENIGMA. I asked my mentor for help and he
+                        replied:
+                    <blockquote>
+                        <p>
+                            You can check this by writing a standalone program
+                        </p>
+                        <p>
+                            Just call whatever you’re calling in a single cpp program and build it with mingw and see if
+                            it crashes
+                        </p>
+                        <cite>gfundies — 17/06/2023 16:52</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        This is exactly what I did before the bonding period. Let's leave ENIGMA for now and use
+                        <code>g++ main.cpp -o main.exe -Lredistributable_bin/win64 -lsteam_api64</code>, and nothing
+                        happens, the code works fine until it reaches <code>SteamUser()->GetSteamID()</code> function,
+                        then nothing happens. I tried it again but using Git Bash terminal this time, and now I saw the
+                        error message. I don't know why it didn't show up in VSCode terminal, but I am glad it showed
+                        up. The error message is saying <code>Segmentation fault</code>. I asked my mentor again for
+                        help and he replied:
+                    <blockquote>
+                        <p>
+                            @Saif you try same thing in msvc?
+                        </p>
+                        <cite>gfundies — 17/06/2023 18:42</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I tried it in MSVC and it worked fine &#x1F631;. This is not a good thing by the way, actually,
+                        this is not good at all. Remember the ABI thing I mentioned earlier? well, it seems that we
+                        have got an ABI problem here.
+                    </p>
+                    <p>
+                        I asked my mentor again for help but this time it was serious. Robert told me to wait for Josh's
+                        reply, and recommended installing Linux. fundies also told me to install Linux.
+                    <blockquote>
+                        <p>
+                            i still recommend you switch to linux
+                        </p>
+                        <cite>gfundies — 18/06/2023 22:25</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            @Saif i think you have 100% chance of success using linux &#128539;.
+                        </p>
+                        <cite>R0bert — 19/06/2023 01:28</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        These are some solutions to this problem I gathered from mentors' conversations:
+                    <ul>
+                        <li>Add MSVC support for ENIGMA, but this is a project on its own.</li>
+                        <li>Decompile Steamworks SDK, but this is against the terms.</li>
+                        <li>We can't link to MinGW, so we will use RPC. Don't know what is this!</li>
+                        <li>Use Linux instead of Windows, and I will start with this one.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Let's try Linux then &#128566;.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_3_this_is_not_good.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

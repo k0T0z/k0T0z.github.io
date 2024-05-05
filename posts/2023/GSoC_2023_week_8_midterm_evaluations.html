@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        Before talking about how the evaluation works for me, let's talk about some things
+                        that I leaned during the past week. First of all I for the first time understood
+                        how <code>extern</code> works in c++. Let me explain a bit. When you define a variable
+                        in the header file and initialize it in the source file, then try to include that header
+                        file in multiple source files, you will get a linker error. This is because the linker
+                        tracked multiple definitions of the same variable. To solve this problem, the definition
+                        will be in the source file, and <code>extern</code> to this variable in the header file
+                        like so:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    <span class="c2">// leaderboards.cpp</span>
+
+    unsigned lb_max_entries{10};
+                            </code></pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    <span class="c2">// leaderboards.h</span>
+
+    extern unsigned lb_max_entries;
+                            </code></pre>
+                    </figure>
+                    </p>
+                    <p>
+                        Another thing I learned is that compilers has unexpected behavior so you must be careful
+                        especially when you are using a build system such as GNU Make. Employ macros for header
+                        guards and <code>extern</code> instead of normal definitions. Actually, when working on
+                        something like this, you must do it step by step. If you wrote a whole bunch of lines at
+                        once, it's very likely going to fail. Even with very deep understanding of the buid system
+                        and the compiler theory. That's just uncontrolled complexity.
+                    </p>
+                    <p>
+                        The evaluation is going great actually, and no problems at all.
+                    <blockquote>
+                        <p>
+                            @Saif / @Fares Atef in case this isn't clear to you, you're both getting good marks on
+                            your midterm evaluations; I hope neither of you is stressing about timing
+                        </p>
+                        <cite>Josh — 27/07/2023 05:06</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        The midterm evaluation is just a couple of questions Google asks to you by using a simple
+                        form such as if I were a GSoC student in 2022, or how many weeks I have been contributing
+                        to my organization before applying to GSoC 2023 ...etc. I won't bother myself with it more
+                        than that. I will just take some rest to take care of other stuff in my life.
+                    </p>
+                    <p>
+                        The TODO for the next phase now became bigger and bigger:
+                    <ul>
+                        <li>Implement the rest APIs.</li>
+                        <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
+                        <li>Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
+                            we need Steam to be running in order the tests to pass.
+                        </li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>
+                            Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
+                            Management manually.
+                        </li>
+                        <li>
+                            For functions such as <code>steam_download_scores</code>, with <code>id</code>
+                            to be saved for each download request, I will use the new ENIGMA's approach for
+                            that with is: <code>AssetArray</code> from <code>Universal System</code>.
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        And don't forget of course the minor tasks for the documentation:
+                    <ul>
+                        <li>CPP source files need to be documented.</li>
+                        <li>Check the license for committing DLLs and headers.</li>
+                        <li>Check Steamworks's official example comments.</li>
+                        <li>Check GMS Manual for documenting user function's layer.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Another special TODO:
+                    <ul>
+                        <li>
+                            Check Robert's PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>
+                        </li>
+                        <li>Fixing Steam.exe as it's not showing up and this going to make me crazy.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Issues solved:
+                    <ul>
+                        <li>Implementing ENIGMA's new thread-safe <code>Async System</code> (as the old
+                            one is not thread safe).</li>
+                    </ul>
+                    </p>
+                    <p>
+                        <img src="assets/GSoC-2023-week-8-midterm-evaluation/GSoC-email-passing-midterm-evaluation.jpg"
+                            alt="GSoC email passing midterm evaluation" />
+                    </p>
+                    <p>
+                        Here's my feedback from my mentors after passing the midterm evaluation:
+                    </p>
+                    <p>
+                        <img src="assets/GSoC-2023-week-8-midterm-evaluation/midterm-evaluation-feedback.jpg"
+                            alt="Midterm evaluation feedback" />
+                    </p>
+                    <p>
+                        Let's take a break for now and see you soon.
+                    <blockquote>
+                        <p>
+                            im gonna take a rest to take care of other stuff a couple of days i think
+                        </p>
+                        <cite>Saif — 27/07/2023 05:02</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            that's totally fine, please do, it'll be good to get some rest
+                        </p>
+                        <p>
+                            you've been touching on some really complex topics here tbh lol
+                        </p>
+                        <p>
+                            so i get the need for some rest
+                        </p>
+                        <cite>R0bert — 27/07/2023 05:02</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            thanks to u bascially 👍 😁
+                        </p>
+                        <cite>Saif — 27/07/2023 05:03</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            lol yeah i like to tear things apart to make sure i understand them correctly myself
+                        </p>
+                        <p>
+                            that's partly why i'm digging
+                        </p>
+                        <p>
+                            it took me a while to understand async proper
+                        </p>
+                        <cite>R0bert — 27/07/2023 05:04</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Actually, it's not full rest but I need it anyway.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_8_midterm_evaluations.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

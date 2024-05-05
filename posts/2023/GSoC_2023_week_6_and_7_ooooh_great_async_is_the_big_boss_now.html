@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                        When the <code>Stats and Achievements</code> API is done, I continued to work on the
+                        <code>Leaderboard</code> API. I started learning about <code>CallResults</code> because I am
+                        going to use it in the <code>Leaderboard</code> API.
+                    </p>
+                    <p>
+                        Actually, learning about <code>CallResults</code> was not that hard as I know how to
+                        use <code>Callbacks</code> which has a similar concept.
+                    </p>
+                    <p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // c_leaderboards.h
+                        
+    // Called when SteamUserStats()->FindOrCreateLeaderboard() returns asynchronously
+    void on_find_leaderboard(LeaderboardFindResult_t* pFindLearderboardResult, bool bIOFailure);
+    CCallResult<c_leaderboards, LeaderboardFindResult_t> m_callResultFindLeaderboard;
+    
+    // Set the CallResult to call on_find_leaderboard function on finished
+    c_leaderboards::m_callResultFindLeaderboard.Set(steam_api_call, this, &c_leaderboards::on_find_leaderboard);
+    
+    void c_leaderboards::on_find_leaderboard(LeaderboardFindResult_t* pFindLeaderboardResult, bool bIOFailure) {
+        c_leaderboards::loading_ = false;
+    
+        if (!pFindLeaderboardResult->m_bLeaderboardFound || bIOFailure) return;
+
+        c_leaderboards::current_leaderboard_ = pFindLeaderboardResult->m_hSteamLeaderboard;
+
+        DEBUG_MESSAGE("Calling FindOrCreateLeaderboard succeeded.", M_INFO);
+    }
+                            </code>
+                        </pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // c_overlay.h
+
+    STEAM_CALLBACK(c_overlay, on_game_overlay_activated, GameOverlayActivated_t, m_CallbackGameOverlayActivated);
+
+    // The constructor be something like:
+    c_overlay::c_overlay() : m_CallbackGameOverlayActivated(this, &c_overlay::on_game_overlay_activated) {}
+    
+    void c_overlay::on_game_overlay_activated(GameOverlayActivated_t* pCallback) {
+        if (pCallback->m_bActive) {
+            c_overlay::overlay_activated_ = true;
+            DEBUG_MESSAGE("Overlay activated successfully.", M_INFO);
+        } else {
+            c_overlay::overlay_activated_ = false;
+            DEBUG_MESSAGE("Overlay deactivated successfully.", M_INFO);
+        }
+    }
+                            </code>
+                        </pre>
+                    </figure>
+                    </p>
+                    <p>
+                        The real problem that I faced is with ENIGMA's <code>Async</code> system. The
+                        <code>Async</code> system will need some modifications as it is not Thread safe which
+                        means that I can't depend on it. The
+                        <a
+                            href="https://github.com/enigma-dev/enigma-dev/tree/master/ENIGMAsystem/SHELL/Universal_System/Extensions/Asynchronous">
+                            Universal_System/Extensions/Asynchronous
+                        </a> extension is the one we are talking about here. As Robert said, this extension
+                        will need some work as it's not thread safe. I will have to create an issue for that
+                        to be fixed later.
+                    </p>
+                    <p>
+                        The <code>Async</code> system is used to send and store data inside a user variable
+                        called <code>async_load</code>. The game developer can then read that variable and
+                        get the value for each key inside it using the <code>DataStructures</code> extension.
+                    </p>
+                    <p>
+                        I will leave the testing for later. Creating SOGs and make the CI handles them
+                        is tricky because we need <code>Steam.exe</code> to be running in the background.
+                    <blockquote>
+                        <p>
+                            we'll follow up in the second half of this project about sogs, if we'll make it
+                            to doing them or can even get it to work
+                        </p>
+                        <cite>R0bert — 18/07/2023 07:37</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        The changes to the <code>Async</code> system are not final yet.
+                    <blockquote>
+                        <p>
+                            @Saif later we will change your queue to be a an std::pair with first item
+                            being event string name, and second item being the posted event map, then
+                            we can switch (event_name) and make your queue processing fire more events
+                            than just the myevent_asyncsteam
+                        </p>
+                        <cite>R0bert — 18/07/2023 19:57</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        I had a long discussion with Josh about Robert's requested changes to the
+                        <code>Async</code> System and Josh suggested to use the old system for some
+                        reason:
+                    <blockquote>
+                        <p>
+                            I think I'm gonna need to chat about this with him, first
+                        </p>
+                        <cite>Josh — 22/07/2023 07:53</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Actually, after this discussion, I learned about the code generation system that
+                        ENIGMA uses:
+                    <blockquote>
+                        <p>
+                            it has to be the bottommost one, ObjectLocals
+                        </p>
+                        <p>
+                            however, that would mean that you need to build any routine that's calling the
+                            event against the generated ObjectLocals sources
+                        </p>
+                        <p>
+                            if you check your codegen folder, you should see an entry by that name in ObjectLocals
+                        </p>
+                        <p>
+                            ~/.enigma
+                        </p>
+                        <p>
+                            or on Windows, {APP_DATA}/.enigma
+                        </p>
+                        <p>
+                            specifically,
+                            <code>~/.enigma/Preprocessor_Environment_Editable/IDE_EDIT_objectdeclarations.h</code>
+                        </p>
+                        <p>
+                            to give a little better detail before I pass out, the reason we have those extension cast
+                            routines
+                            is so that we don't need to know about object_locals in the extension source code
+                        </p>
+                        <p>
+                            otherwise, we'd have to rebuild every extension every time the game changed
+                        </p>
+                        <p>
+                            no, it's just the name of the bottommost parent class
+                        </p>
+                        <p>
+                            it's generated code
+                        </p>
+                        <p>
+                            iiuc, if you open that header file, you should see myevent_steam declared in struct
+                            object_locals
+                        </p>
+                        <p>
+                            if you instead go the extension route, you can declare your own event by that name and use
+                            the
+                            generated cast routine from a separate source
+                        </p>
+                        <p>
+                            so uncomment the stuff you showed me earlier, but rename the event to match what's in
+                            events.ey
+                        </p>
+                        <cite>Josh — 22/07/2023 08:20</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        The code works fine when I added the changes to <code>PFMain.h</code> and
+                        <code>PFmain.cpp</code> files.
+                    </p>
+                    <p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.cpp
+
+    namespace enigma {
+
+        namespace extension_cast {
+            extension_steamworks* as_extension_steamworks(object_basic*);
+        }
+        
+        }  // namespace enigma
+        
+        namespace enigma {
+        
+            std::queue<std::map<std::string, variant>> posted_async_events;
+        
+            int extension_steamworks_mutex {1}; // Must be initialized to 1.
+            
+            void wait(int* mutex) {
+                while (*mutex <= 0);
+                (*mutex)--;
+            }
+        
+            void signal(int* mutex) {
+                (*mutex)++;
+            }
+        
+            void fireEventsFromQueue(int* mutex) {
+                // wait(mutex);
+                while (!posted_async_events.empty()) {
+                    enigma_user::ds_map_clear(enigma_user::async_load);
+    
+                    std::map<std::string, variant> event = posted_async_events.front();
+    
+                    posted_async_events.pop();
+    
+                    for (auto& [key, value] : event) {
+                        enigma_user::ds_map_add(enigma_user::async_load, key, value);
+                    }
+    
+                    instance_event_iterator = &dummy_event_iterator;
+                    for (iterator it = instance_list_first(); it; ++it) {
+                        object_basic* const inst = ((object_basic*)*it);
+                        extension_steamworks* const inst_steamworks = extension_cast::as_extension_steamworks(inst);
+                        inst_steamworks->myevent_steam();
+                    }
+                }
+            }
+            
+            int enigma_main(int argc, char** argv) {
+                    enigma_user::async_load = enigma_user::ds_map_create();
+        
+                    ...
+        
+                    while (!game_isending) {
+        
+                        ...
+                        
+                        fireEventsFromQueue(&extension_steamworks_mutex);
+                        ...
+                    }
+                
+                    ...
+            }
+            
+        }
+        
+        namespace enigma_user {
+        
+            int async_load;
+            
+        }
+                                </code>
+                            </pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.h
+
+    namespace enigma {
+
+        // This queue will contain any event that will be fired inside the main loop.
+        extern std::queue<std::map<std::string, variant>> posted_async_events;
+    
+        // The following semaphore code is for the new Async system to protect the posted_async_events queue
+        // from reading and writing at the same time. Steamworks extension writes to the queue.
+        // mutex to protect the async queue from race conditions when the Steamworks extension is writing into it.
+        extern int extension_steamworks_mutex;
+        void wait(int* mutex);
+        void signal(int* mutex);
+    
+    }
+
+    namespace enigma_user {
+    
+        // When firing any event inside posted_async_events queue, this variable will contain the data that will be sent to the game.
+        extern int async_load;
+    
+    }
+                            </code>
+                        </pre>
+                    </figure>
+                    </p>
+                    <p>
+                        Notice the mutex implementation stuff? Just keep reading, I removed them later haha.
+                    </p>
+                    <p>
+                        Bascially, this queue will contain any event from any extension we have, which means we
+                        might face Race Condition problems. That's why I need to protect the queue from reading
+                        and writing at the same time. Actually, ENIGMA is single threaded so I will wait for
+                        confirmation from Robert that this is not needed.
+                    </p>
+                    <p>
+                        This is how the new Async system works now and the problem is with oraganizing the code.
+                    <blockquote>
+                        <p>
+                            probably make the layer class core/universal system or something like add a way to register
+                            event types in an extension by string name with pointer function that the process queue uses
+                            to dispatch, idk
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:12</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Now let's keep that aside and talk about another changes requested (if possible) by Robert
+                        regarding Steam <code>Callbacks</code>. The problem is ENIGMA is single threaded and we don't
+                        know if Steam <code>Callbacks</code> are using threads or not.
+                    <blockquote>
+                        <p>
+                            normally nothing in ENIGMA is threaded, so it doesn't matter when we check for things
+                        </p>
+                        <p>
+                            but in this case, some 3-p API is using threads, and we want to adapt that to our
+                            single-thread system
+                        </p>
+                        <cite>Josh — 23/07/2023 20:25</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            idk that it's using threads, Saif can't prove that yet, it's not in any Steamworks docs or
+                            anything but, yeh
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:26</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            if there's a single-threaded routine that checks if something has happened, then we don't
+                            need the system you're proposing at all
+                        </p>
+                        <cite>Josh — 23/07/2023 20:25</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            if it weren't using threads, it would be using semaphores and locks itself or something to
+                            have IPC internally
+                        </p>
+                        <p>
+                            hypothetically ofc
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:26</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            that is 100% conducive to our completely standard way of doing all events
+                        </p>
+                        <cite>Josh — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            that is 100% conducive to our completely standard way of doing all events
+                        </p>
+                        <cite>Josh — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            Josh just mentioned, you can look for a non-async method
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            the only reason we'd need new/custom infrastructure here is if a 3p API was
+                            forcing us to use a thread
+                        </p>
+                        <cite>Josh — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            @Saif look for a poll_ leaderboard function that's not async
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            i.e, the only way the API gives us to know that something has happened is to give it a
+                            routine to run in a background thread
+                        </p>
+                        <p>
+                            because we have a way to just check, in the main thread, if something has occurred?
+                        </p>
+                        <p>
+                            in that case, no need for new infrastructure; continue using the system I created for
+                            extensions which iiuc Saif has already successfully done &#x1F61B;
+                        </p>
+                        <cite>Josh — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            @Saif look for a non callback version, one that lets you poll it directly is what Josh is
+                            asking me now
+                        </p>
+                        <p>
+                            then you can just poll it once a frame and say "Hey steam, have the leaderboards loaded
+                            yet?"
+                        </p>
+                        <p>
+                            it may not have something like that
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:27</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        So the problem is basically without using <code>Callbacks</code>, I need to handle the State
+                        Management code myself and the reason I said possible above is that I don't know if that's
+                        possible with Steamworks API or not. I told Robert that it's not a good time for that change but
+                        I will add it as a TODO for later.
+                    </p>
+                    <p>
+                        To wrap what will be done after the midterms evaluation:
+                    <ul>
+                        <li>Implement the rest APIs.</li>
+                        <li>Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because we
+                            need Steam to be running in order the tests to pass.
+                        </li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
+                            Management manually.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        I will just leave the following conversation here for reference:
+                    <blockquote>
+                        <p>
+                            callbacks are very important because for example when the user opens the Overlay i can set a
+                            variable to true but what happens when close it, i don't call a function to close the
+                            overlay the user can close it from the X button at the top right so no way i can know if
+                            it's closed or not that's why callbacks are very important, any event happens like closing
+                            or opening the overlay the callback function is called and i know the event type as well,
+                            how im gonna build that behavior without callbacks idk
+                        </p>
+                        <cite>Saif — 23/07/2023 20:32</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            have you used React?
+                        </p>
+                        <p>
+                            have you made a dialog in React?
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:32</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            no Flutter maybe
+                        </p>
+                        <p>
+                            it's the same just explain ur point
+                        </p>
+                        <cite>Saif — 23/07/2023 20:32</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            typically you do this...
+                        </p>
+                        <figure class="highlight">
+                            <pre><code class="language-cpp" data-lang="c++">
+    myOpenDialogIsOpen = useState&lt;boolean&gt;(false)
+
+        &lt;MyDialog
+            isOpen={myOpenDialogIsOpen}&gt;
+            ...
+        &lt;/MyDialog&gt;
+                                </code></pre>
+                        </figure>
+                        <p>
+                            this sounds detached but i'm telling you abstractly the answer to your question above
+                        </p>
+                        <p>
+                            just like how modern OpenGL and Vulkan don't give you ANY state management, you have to do
+                            it yourself
+                        </p>
+                        <p>
+                            did you ever do any older OpenGL with immediate mode glBegin and stuff?
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:32</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            unfortunately no
+                        </p>
+                        <cite>Saif — 23/07/2023 20:35</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>
+                            ok, well those older GL apis are deprecated
+                        </p>
+                        <p>
+                            because they required a stack to implement, aka state management
+                        </p>
+                        <p>
+                            all the Graphics APIs, D3D, GL, Vulkan (it started with AMD Mantle and Apple Metal) moved to
+                            being low-level
+                        </p>
+                        <p>
+                            that dropped everything but triangle primitives (no quads, fans etc) and all the upper-level
+                            state management and provided only programmable graphics shaders
+                        </p>
+                        <p>
+                            so basically people/game engines have had to reimplement state machines on top of that
+                        </p>
+                        <p>
+                            @Saif and i am using that as an analogy for why the steam callbacks are "wrong"
+                        </p>
+                        <p>
+                            they are low-level, which is very efficient, but they are NOT providing that state
+                            management for us (we don't know, that was Josh's question!), but we end up having to write
+                            a queue and do synchronization ourselves
+                        </p>
+                        <p>
+                            @Saif which again as i said is totally normally expected with libraries
+                        </p>
+                        <p>
+                            it's actually a Unix principle do something "simple" and do it "really well"
+                        </p>
+                        <p>
+                            "This is the Unix philosophy: Write programs that do one thing and do it well."
+                        </p>
+                        <p>
+                            let me know if that's clear explanatio or not
+                        </p>
+                        <p>
+                            @Saif let me give pseudo code example (ignore ENIGMA/GM, think only C++)
+                            Async version:
+                        </p>
+                        <figure class="highlight">
+                            <pre><code class="language-cpp" data-lang="c++">
+    load_me_a_leaderboard_async(my_leaderboard_callback);
+
+    <span class="c2">// this might happen on a thread</span>
+    void my_leaderboard_callback(LeaderboardData leaderboard_data) {
+        <span class="c2">// do something with leaderboard data</span>
+    }  
+                                </code></pre>
+                        </figure>
+                        <p>
+                            Async polling version:
+                        </p>
+                        <figure class="highlight">
+                            <pre><code class="language-cpp" data-lang="c++">
+    load_me_a_leaderboard();
+
+    <span class="c2">// you should poll on the main thread</span>
+    <span class="c2">// inside main loop....</span>
+    leaderboard_data = poll_leaderboard_data_async();
+    if (leaderboard_data != nullptr) {
+        <span class="c2">// do something with leaderboard data</span>
+    } else {
+        <span class="c2">// leaderboard data not ready yet, try again next frame</span>
+    }   
+                                </code></pre>
+                        </figure>
+                        <p>
+                            @Saif the latter is like how we do input in XInput extension for Xbox 360 controller,
+                            extension polls the state of the controller 1-time every single frame, caches that, and all
+                            the functions are just returning state from that cached value, ideally if Steam had an API
+                            to do that for leaderboards it would be great and that's what Josh was questioning if
+                            existed
+                        </p>
+                        <p>
+                            again idk if Steam supports that way of doing it or not, but feel free to look into the docs
+                            and let us know
+                        </p>
+                        <p>
+                            the reason Josh favors that way is because, albeit it looks slightly more verbose than the
+                            other way, but it's not when you consider the other way required us to add a queue and
+                            synchronization primitive which are exactly the things Josh feels "wrong" about muddying up
+                            our main loop with
+                        </p>
+                        <cite>R0bert — 23/07/2023 20:39</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        So the new Async system basically is for me to work using Thread safe code
+                    <blockquote>
+                        <p>
+                            right, and agreed, for now we just want Saif's to work and be thread safe
+                        </p>
+                        <cite>R0bert — 23/07/2023 22:07</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        The final structure to the new Async system:
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.cpp
+
+    #include "Universal_System/Extensions/Steamworks/steamworks.h"
+
+    namespace enigma {
+
+        std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
+
+        std::mutex posted_async_events_mutex;
+
+        void fireEventsFromQueue() {
+            // Acquire lock and release it when out of scope of fireEventsFromQueue().
+            std::lock_guard&lt;std::mutex&gt; guard(posted_async_events_mutex);
+            while (!posted_async_events.empty()) {
+        
+                ...
+
+                enigma::fireSteamworksEvent();
+            }
+        }
+
+        int enigma_main(int argc, char** argv) {
+            enigma_user::async_load = enigma_user::ds_map_create();
+
+            ...
+
+            while (!game_isending) {
+
+                ...
+        
+                fireEventsFromQueue(&extension_steamworks_mutex);
+
+                ...
+
+            }
+
+            ...
+        }
+
+    }
+
+    namespace enigma_user {
+
+        int async_load;
+
+    }
+                                </code>
+                            </pre>
+                    </figure>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    // PFmain.h
+
+    namespace enigma {
+
+        extern std::queue&lt;std::map&lt;std::string, variant&gt;&gt; posted_async_events;
+
+        extern std::mutex posted_async_events_mutex;
+
+        void fireEventsFromQueue();
+
+    }
+
+    namespace enigma_user {
+
+        extern int async_load;
+
+    }
+
+                                </code>
+                            </pre>
+                    </figure>
+                    </p>
+                    <p>
+                        This is my last day before the midterms evaluation so I will just focus on cleaning up
+                        <code>Leaderboard</code> API and document all the implemented APIs.
+                    </p>
+                    <p>
+                        <span style="color: red; font-weight: bold; font-family: 'Arial', sans-serif;">
+                            الحَمْدُ لِله دائما وأبدا
+                        </span>
+                    </p>
+                    <p>
+                        My POE ChatGPT account is now become paid. The POE was just starting out so when they became
+                        stable, they started to charge for their services. I tried to find a way to register but
+                        couldn't. My father helped me alot with that as his cousin lives in Poland. He gave me his
+                        number to register an account with it. It was very easy that way. Actually, if he knew what
+                        I did to activate my account... I don't even want to think about it. Anyway, enough with the
+                        drama, let's get ready for Midterm Evaluations.
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_6_and_7_ooooh_great_async_is_the_big_boss_now.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

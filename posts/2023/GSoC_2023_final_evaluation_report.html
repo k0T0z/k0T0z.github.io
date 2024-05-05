@@ -1,0 +1,644 @@
+<!-- You MUST NOT change the original link of this post which is https://k0t0z.github.io/posts/2023/GSoC_2023_final_evaluation_report.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="css/GSoC_2023_final_evaluation_report.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <div class="custom-header">
+                <img class="custom-logo" src="assets/logo-GSoC.svg" alt="Google Summer of Code Logo">
+                <span style="font-size: 96px; font-weight: bold;">@</span>
+                <img class="custom-logo" src="assets/logo-ENIGMA.png" alt="The ENIGMA Team Logo">
+            </div>
+
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+                <div class="post-content e-content" itemprop="articleBody">
+                    <table border="1">
+                        <tr>
+                            <td>Contributor Name</td>
+                            <td>Saif Kandil</td>
+                        </tr>
+                        <tr>
+                            <td>GitHub</td>
+                            <td><a href="https://github.com/k0T0z">k0T0z</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td><a href="https://www.linkedin.com/in/saifkandil02">saifkandil02</a></td>
+                        </tr>
+                        <tr>
+                            <td>Organization</td>
+                            <td>
+                                <a
+                                    href="https://summerofcode.withgoogle.com/programs/2023/organizations/the-enigma-team">
+                                    The ENIGMA Team
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Organization GitHub</td>
+                            <td>
+                                <a href="https://github.com/enigma-dev">enigma-dev</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Project Description</td>
+                            <td>
+                                <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                                    Steam Workshop SDK/Third Party Integration For ENIGMA
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Primary Mentor's GitHub</td>
+                            <td>
+                                <ul>
+                                    <li><a href="https://github.com/RobertBColton">Robert Colton</a></li>
+                                    <li><a href="https://github.com/JoshDreamland">Josh Ventura</a></li>
+                                    <li><a href="https://github.com/rpjohnst">Russell Johnston</a></li>
+                                    <li><a href="https://github.com/hpgDesigns">Patrick Greene</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Secondary Mentor's GitHub</td>
+                            <td>
+                                <ul>
+                                    <li><a href="https://github.com/fundies">Greg Williamson</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Repositories Worked On</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev">enigma-dev/enigma-dev</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Issues Worked On</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/1881">#1881</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/1951">#1951</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2354">#2354</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/enigma-dev/enigma-dev/issues/2338">#2338</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h2 id="completed-work">
+                        Completed work
+                        <a href="#completed-work" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <ul>
+                        <li>
+                            Part 1: <a href="https://github.com/enigma-dev/enigma-dev/pull/2343">#2343</a>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Management">
+                                        Management API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/General">
+                                        General API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Overlay">
+                                        Overlay API
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Stats-and-Achievements">
+                                        Stats and Achievements API
+                                    </a>
+                                </li>
+                                <li>
+                                    Wrote a new Async system for ENIGMA. The structure is explained in detail in
+                                    <a
+                                        href="https://k0t0z.github.io/posts/2023/GSoC-2023-week-6-and-7-ooooh-great-async-is-the-big-boss-now.html">
+                                        GSoC '23 - Week 6 & 7: Ooooh great, Async is the big boss now!
+                                    </a>
+                                </li>
+                                <li>
+                                    Documentation
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Part 2: <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Leaderboards">
+                                        Leaderboards API
+                                    </a>
+                                </li>
+                                <li>
+                                    Maintained ENIGMA's Json extension
+                                </li>
+                                <li>
+                                    <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">
+                                        Social API
+                                    </a>
+                                    <p>
+                                        This API is tested under <code>AST-Generation</code> branch, which contains
+                                        the buffer work from previous GSoC 2022 project. Social API depends on that
+                                        buffer work.
+                                    </p>
+                                </li>
+                                <li>
+                                    Testing
+                                    <ul>
+                                        <li>GTests and SOGs</li>
+                                        <li>Extensions Stubs</li>
+                                        <li>Steamworks Fake API (AKA Mocking)</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Documentation
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>Final Project Structure</h3>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #000080;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 1: Steamworks SDK</span>
+                    </div>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #006400;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 2: Steam Binder</span>
+                    </div>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #800000;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">Layer 3: Game Client</span>
+                    </div>
+                    <div class="custom-legend">
+                        <div class="custom-legend-icon" style="background-color: #800080;">
+                        </div>
+                        <span style="display: inline-block; vertical-align: middle;">
+                            Layer 4: Steamworks Extension
+                        </span>
+                    </div>
+                    <figure class="highlight">
+                        <pre>
+                        <code class="language-cpp" data-lang="c++">
+    <span style='color:#800080; '>Steamworks</span>
+    <span style='color:#800080; '>├── gameclient</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── steambinder</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── SteamFake</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>└── sdk</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    ├── public</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │   └── steam</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │       ├── *.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │       └── *.cpp</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    └── README.md</span>  
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── SteamvXXX</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>└── sdk</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    ├── public</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │   └── steam</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │       └── *.h</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    │</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>   <span style='color:#000080; '>    └── Readme.txt</span>    
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── .gitignore</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>├── steambinder.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>   <span style='color:#006400; '>└── steambinder.cpp</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── utils</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│   ├── *.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│   └── *.cpp</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>│</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── gameclient.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── gameclient.cpp</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>├── *.h</span>
+    <span style='color:#800080; '>│</span>   <span style='color:#800000; '>└── *.cpp</span>
+    <span style='color:#800080; '>│</span>
+    <span style='color:#800080; '>├── steamworks_demo</span>
+    <span style='color:#800080; '>│   ├── *</span>
+    <span style='color:#800080; '>│   └── demo.project.gmx</span>
+    <span style='color:#800080; '>│</span>
+    <span style='color:#800080; '>├── .gitignore</span>
+    <span style='color:#800080; '>├── About.ey</span>
+    <span style='color:#800080; '>├── implement.h</span>
+    <span style='color:#800080; '>├── include.h</span>
+    <span style='color:#800080; '>├── CMakelists.txt</span>
+    <span style='color:#800080; '>├── Makefile</span>
+    <span style='color:#800080; '>├── README.md</span>
+    <span style='color:#800080; '>├── *.svg</span>
+    <span style='color:#800080; '>├── steamworks.h</span>
+    <span style='color:#800080; '>├── steamworks.cpp</span>
+    <span style='color:#800080; '>├── *.h</span>
+    <span style='color:#800080; '>└── *.cpp</span>
+                        </code>
+                    </pre>
+                    </figure>
+                    </p>
+
+                    <h2 id="work-to-be-done">
+                        Work To Be Done
+                        <a href="#work-to-be-done" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <ul>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Lobbies">Lobbies API</a></li>
+                        <li>
+                            <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Cloud">Cloud API</a> (My only
+                            missed goal)
+                        </li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/DLC">DLC API</a></li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/UGC">UGC API</a></li>
+                        <li>
+                            <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Inventory">Inventory API</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Networking">Networking API</a>
+                        </li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Input">Input API</a></li>
+                        <li><a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Utils">Utils API</a></li>
+                        <li>
+                            Fixing the memory leak inside the Fake API. Check
+                            <code>Steamworks/gameclient/SteamFake/sdk/public/steam/fake_steam_api_internal.cpp</code>
+                        </li>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>
+                            There is a bunch of TODOs in the
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>'s description that
+                            need to be done as well.
+                        </li>
+                        <li>
+                            Currently, all the documentation is in the code files, it should exists in the
+                            <a href="https://enigma-dev.org/docs/Wiki/Category:Function:ENIGMA">
+                                docs/Wiki/Category:Function:ENIGMA
+                            </a> as well.
+                        </li>
+                        <li>
+                            Adding support for other platforms in the Steam Binder as it currently supports Ubuntu
+                            Linux only. Testing Steamworks extension on other Linux distros is the easier part.
+                            Windows requires MSVC support for ENIGMA which is a project on its own. Upgrading the
+                            engine's build system from GNU Make to CMake will make it more easier
+                            (<a href="https://github.com/enigma-dev/enigma-dev/pull/2334">#2334</a>). Currently,
+                            ENIGMA is failing on macOS which means we can't test the Steamworks extension on it yet.
+
+                        </li>
+                        <li>
+                            Implement user functions related to
+                            <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>.
+                        </li>
+                        <li>Work on LGM and RGM GUI with the Steamworks extension.</li>
+                        <li>
+                            currently, ENIGMA's asset array class doesn't support pointers, so maybe we
+                            need to look into that as well.
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h2 id="list-of-merged-patches">
+                        List of merged patches
+                        <a href="#list-of-merged-patches" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <table border="1">
+                        <tr>
+                            <th>Patch Link</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a> (Unrelated)</td>
+                            <td>
+                                Created 2 user functions for dealing with short JSONs and fixed
+                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>. Actually, I
+                                need to look more into this later because I may need to redefine what is a short JSON.
+                                I found out that for example, consider this short JSON: <code>[ [ 1 , 2 ] , 2 ]</code>,
+                                what will be its JSON? It can be
+                                <code>{ " 0 " : { " 0 " : 1 , " 1 " : 2 }, " 1 " : 2}</code> or
+                                <code>[ { " 0 " : 1 , " 1 " : 2 } , 2 ]</code>. Two different outputs for the same
+                                input. This is a complete miss!!!
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2340">#2340</a> (Unrelated)</td>
+                            <td>This issue was becasue of a newer GCC version used.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2341">#2341</a> (Unrelated)</td>
+                            <td>This issue was becasue of a newer GCC version used.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a> (Related)</td>
+                            <td>The <code>json_encode()</code> function was unimplemented.</td>
+                        </tr>
+
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a> (Related)</td>
+                            <td>
+                                In this one, I provided a fix for a weird issue that I explained here
+                                <a
+                                    href="https://k0t0z.github.io/posts/2023/GSoC-2023-week-11-and-12-divergence-or.html#solving-seven-day-problem">
+                                    GSoC '23 - Week 11 & 12: Divergence? or...
+                                </a> and using <code>std::sstream</code> instead of <code>std::string</code> in my use
+                                case is better as recommended by <a href="https://github.com/JoshDreamland">Josh</a>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2355">#2355</a> (Related)</td>
+                            <td>
+                                This one is related to
+                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2354">#2354</a>. I provided
+                                a fix for the issue related to Json extension.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2357">#2357</a> (Related)
+                            </td>
+                            <td>
+                                Fixed another bug found in the Json extension. Overall, with this
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2358">#2358</a> merged, the
+                                Json extension is now fully functional.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2360">#2360</a> (Related)</td>
+                            <td>
+                                In <a href="https://github.com/enigma-dev/enigma-dev/pull/2335">#2335</a>, I provided
+                                a fix for <a href="https://github.com/enigma-dev/enigma-dev/issues/2339">#2339</a>
+                                but it was wrong solution. This patch fixes the issue with the right and perfect
+                                solution.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2297">#2297</a> (Unelated)</td>
+                            <td>
+                                This is my first patch when I started working on ENIGMA. It's simple cleaning for dead
+                                files.
+                            </td>
+                        </tr>
+                    </table>
+                    <P
+                        style="background-color: antiquewhite; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">
+                        Note that related/unrelated means that the patch is related/unrelated to the Steam SDK
+                        integration project.
+                    </P>
+                    </p>
+
+                    <h2 id="list-of-unmerged-patches">
+                        List of unmerged patches
+                        <a href="#list-of-unmerged-patches" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <table border="1">
+                        <tr>
+                            <th>Patch Link</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2358">#2358</a> (Related)</td>
+                            <td>
+                                The <code>json_encode()</code> function requires a recursive algorithm to handle nested
+                                JSONs. Solutions to this are theoretical till now. Currently, the function will print
+                                the ID of any nested JSON instead of printing the JSON itself.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2361">#2361</a> (Related)</td>
+                            <td>
+                                The <a href="https://github.com/YoYoGames/GMEXT-Steamworks/wiki/Social">
+                                    Social API
+                                </a> requires the buffer work from the previous GSoC 2022 project as the current buffer
+                                work is completely broken. The
+                                <a href="https://summerofcode.withgoogle.com/programs/2022/projects/BrXiUNA2">
+                                    Data Buffers / Serialization
+                                </a> project is the one. This code is merged into <code>AST-Generation</code> branch
+                                so I had to test my Social API inside that branch. My both PRs in the Completed Work
+                                section are intended to be merged into <code>master</code> branch. After discussing
+                                with Dhruv (Original author of the buffer work), he suggested to split the buffer work
+                                into a separate PR and merge it into <code>master</code> branch. So, I created a new
+                                PR for the buffer work.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2337">#2337</a> (Unrelated)</td>
+                            <td>
+                                Before getting familiar with <code>pacman</code>, I downloaded GTest and built it from
+                                source. I got only the <code>*.a</code> files with no <code>*.dll</code>s. ENIGMA links
+                                to <code>*.dll</code>s so the code crashes obviously. I provided my report for
+                                <a href="https://github.com/rpjohnst">rpjohnst</a> and he suggested to use
+                                <code>pacman</code> as it downloads the <code>*.dll</code>s as well. The thing is using
+                                the <code>dll</code>, GTest will be linked dynamically. Also, using the <code>.a</code>,
+                                GTest will be linked statically. So that patch changes the way we link GTest which are
+                                two different approaches with pros and cons. I don't think this should be merged.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2334">#2334</a> (Unrelated)</td>
+                            <td>
+                                This is related to
+                                <a href="https://github.com/enigma-dev/enigma-dev/issues/2286">#2286</a>. This is my
+                                PR for upgrading the build system from GNU Make to CMake. This was my Google Summer of
+                                Code 2022 project before getting rejected. I intend to work on it after stabilizing the
+                                Steamworks extension.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="https://github.com/enigma-dev/enigma-dev/pull/2333">#2333</a>, <a
+                                    href="https://github.com/enigma-dev/enigma-dev/pull/2321">2321</a>, and <a
+                                    href="https://github.com/enigma-dev/enigma-dev/pull/2314">#2314</a> (All unrelated)
+                            </td>
+                            <td>
+                                No longer needed PRs, these are just was for testing things out.
+                            </td>
+                        </tr>
+                    </table>
+                    <P
+                        style="background-color: antiquewhite; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">
+                        Note that related/unrelated means that the patch is related/unrelated to the Steam SDK
+                        integration project.
+                    </P>
+                    </p>
+
+                    <h2 id="other-patches">
+                        Other patches
+                        <a href="#other-patches" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <table border="1">
+                        <tr>
+                            <th>Patch Link</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2356">#2356</a> (Related)</td>
+                            <td>
+                                There was a missing function that I requested from Robert and actually there was no
+                                problem with not adding it because I can just use <code>instance_create()</code> and
+                                set the <code>depth</code>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a> (Related)</td>
+                            <td>
+                                This PR is for firing events from the Steamworks extension manually. The functions are
+                                not implemented yet. These are just useful constants for the user to use. Also Robert
+                                submitted this PR. Actually, this is a TODO that I mentioned in the work to be done.
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+
+                    <h2 id="challenges-faced-and-Learnt-Lessons">
+                        Challenges faced and Learnt Lessons
+                        <a href="#challenges-faced-and-Learnt-Lessons" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <ul>
+                        <li>
+                            I started working on Windows on this project until I faced an ABI (Application Binary
+                            Interface) problem. I explained this problem in my proposal and expected that I won't
+                            face it but I did. I spent nearly 3-5 days trying to figure out where is the problem
+                            until my mentor suggested building the same code using GCC and MSVC. As expected the
+                            code worked well on MSVC but it gives SEGMENTATION FAULT on GCC. I switched to Linux after
+                            this problem.
+                        </li>
+                        <li>
+                            Implementing a new Async system for ENIGMA. As the old Async system is not thread safe.
+                            <a href="https://github.com/RobertBColton">Robert</a> helped with implementing the new one.
+                        </li>
+                        <li>
+                            <p>
+                                Solving CI problem by 2 steps:
+                            <ol>
+                                <li>
+                                    Creating the Steamworks Fake API.
+                                </li>
+                                <li>
+                                    Creating Stubs for the <code>Steamworks</code> and <code>DataStructures</code>
+                                    extensions.
+                                </li>
+                            </ol>
+                            </p>
+                            <p>
+                                There are 2 approaches when creating the Fake API:
+                            <ol>
+                                <li>
+                                    Linking the libsteam_api.so statically in the <code>Makefile</code> file.
+                                </li>
+                                <li>
+                                    Linking a Fake API (AKA Mocking) statically in the <code>Makefile</code> file
+                                    and load the real <code>libsteam_api.so</code> dynamically at runtime.
+                                </li>
+                            </ol>
+                            </p>
+                            <p>
+                                I started with the first approach until I realized the CI problem. The CI needs to
+                                know which API (Fake/Real API) to link statically. We want to link the Fake API
+                                when running tests (GTests and SOGs (Single Object Games)) but at the same time
+                                we want to link the Real API when running a real game. There is only one solution
+                                for this problem:
+                            <ol>
+                                <li>
+                                    Sending a flag when running tests to indicate that we are running tests and we
+                                    need to link the Fake API. When running from the IDE, this flag won't be sent
+                                    so we will link the Real API.
+                                </li>
+                            </ol>
+                            </p>
+                            <p>
+                                Instead, <a href="https://github.com/fundies">fundies</a> suggested the second
+                                approach. This approach requires adding another layer between the
+                                <code>Steamworks SDK</code> and <code>Game Client</code> layers. I will call this layer
+                                <code>Steam Binder</code>.
+                            </p>
+                        </li>
+                        <li>
+                            Implementing the Steamworks Fake API. I had to dig deeper into Steamworks official
+                            headers to understand how the API works and then mock main interfaces.
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h2 id="steam-sdk-integration-demo-on-youtube">
+                        <a href="https://youtu.be/EfhD1yMTIXk">Steam SDK Integration Demo</a> On YouTube
+                        <a href="#steam-sdk-integration-demo-on-youtube" class="permalink-headline-arrow"></a>
+                    </h2>
+
+                    <h2 id="acknowledgement">
+                        Acknowledgement
+                        <a href="#acknowledgement" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                    <p>
+                        الحَمْدُ لِله دائما وأبدا
+                    </p>
+                    <p>
+                        First things first, Thanks to everyone who has contributed to the success of my Google Summer of
+                        Code 2023 project. This journey would not have been possible without the support, guidance, and
+                        collaboration of many individuals and organizations.
+                    </p>
+                    <p>
+                        First and foremost, I would like to extend my deepest appreciation to Robert, Josh, Russell
+                        (rpjohnst), Patrick (Hugar), and Greg (fundies), my mentors throughout this program. Their
+                        expertise, patience, and continuous guidance have been invaluable. I have learned immeasurable
+                        skills and insights under their mentorship.
+                    </p>
+                    <p>
+                        Thank you.
+                    </p>
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_final_evaluation_report.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>

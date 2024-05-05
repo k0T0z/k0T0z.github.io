@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content-type="text/html">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website" />
+
+    <link rel="stylesheet" href="../../css/index.css">
+
+    <link rel="icon" type="image/jpeg" href="../../assets/main-logo.jpeg">
+
+    <title></title>
+</head>
+
+<body>
+    <main id="main-content" class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article id="post-main-content" class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+                <div class="post-content e-content" itemprop="articleBody">
+                    <p>
+                        This blog post is related to my
+                        <a href="https://summerofcode.withgoogle.com/programs/2023/projects/kHDskccO">
+                            Google Summer of Code 2023 project
+                        </a>.
+                    </p>
+                    <p>
+                    <ul>
+                        <li>
+                            Patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a> has been merged
+                            which provides:
+                            <ul>
+                                <li>Implementation for <code>json_encode()</code> user function.</li>
+                                <li>SOG (Single Object Game) file is written for testing the function.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h2 id="solving-seven-day-problem">
+                        Solving 7+ days problem...
+                        <a href="#solving-seven-day-problem" class="permalink-headline-arrow"></a>
+                    </h2>
+                    <p>
+                        There is a problem with string passed to the event map. it contains weird stream of text. This
+                        text is actually a <code>DEBUG</code> messages that I created for debugging purposes.
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    INFO: Steam ASYNC: { <span style='color:#0000ff; '>"entries":"{</span><span style='color:#ff0000; '>wnload scores from lDownloaded scores from leaderboaleaderboard_downSteamClient020</span><span style='color:#0000ff; '>[</span>
+    <span style='color:#0000ff; '>AlEw</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>196198</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>1</span><span style='color:#ff0000; '>m/Extensions/Steamworks/</span>
+    <span style='color:#ff0000; '>game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198448852929</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,El Pice</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span>
+    <span style='color:#0000ff; '>58158</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>2</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198376924302</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,saif</span><span style='color:#ff0000; '>ersal_System/Extensions</span>
+    <span style='color:#ff0000; '>/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>505</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>3</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span>
+    <span style='color:#0000ff; '>76561199167979105</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,Bucciarati (Couter55)</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>336</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>4</span><span style='color:#ff0000; '>m</span>
+    <span style='color:#ff0000; '>/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198239127226</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,Haiyatin</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/</span>
+    <span style='color:#ff0000; '>c_main.cpp:</span><span style='color:#0000ff; '>236</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>5</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561199032162694</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,Kaito</span><span style='color:#ff0000; '>ersal_System/</span>
+    <span style='color:#ff0000; '>Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>137</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>6</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span>
+    <span style='color:#0000ff; '>76561198968916658</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,gamesadasteam</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>96</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>7</span><span style='color:#ff0000; '>m/</span>
+    <span style='color:#ff0000; '>Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561199289756099</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,Bashkash2013</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client</span>
+    <span style='color:#ff0000; '>/c_main.cpp:</span><span style='color:#0000ff; '>7</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>8</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198193841849</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,silveradagio</span><span style='color:#ff0000; '>ersal_System</span>
+    <span style='color:#ff0000; '>/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>0</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>9</span><span style='color:#ff0000; '>m/Extensions/Steamworks/game_client/c_main.cpp:</span>
+    <span style='color:#0000ff; '>76561199095741658</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>,HappyStarXiXi</span><span style='color:#ff0000; '>ersal_System/Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>0</span><span style='color:#ff0000; '>_downSteamClient020</span><span style='color:#0000ff; '>10</span><span style='color:#ff0000; '>m/</span>
+    <span style='color:#ff0000; '>Extensions/Steamworks/game_client/c_main.cpp:</span><span style='color:#0000ff; '>76561198963365650</span><span style='color:#ff0000; '>�</span><span style='color:#0000ff; '>]}","event_type":"leaderboard_download","id":1,"lb_name":"",</span>
+    <span style='color:#0000ff; '>"num_entries":10,"status":0</span> }
+                        </code></pre>
+                    </figure>
+                    <p>
+                        I actually need only the blue data but the rest is undefined behavior. Look what is the
+                        interesting part, before accumulating anything inside the string, it's fine and empty. But after
+                        accumulating even a single bracket, it starts to contains that concatenated DEBUG messages.
+                    </p>
+                    <p>
+                        I didn't faced something like this before, so Jsoh resommended to use
+                        <a href="https://valgrind.org/">Valgrind</a>, <code>TSAN</code>, and <code>ASAN</code> to find
+                        the problem.
+                    <blockquote>
+                        <p>
+                            two possibilities:
+                        <ul>
+                            <li>Someone is stashing a pointer to that string somewhere out-of-thread</li>
+                            <li>You have a buffer overflow somewhere and are facing memory corruption</li>
+                        </ul>
+                        </p>
+                        <p>
+                            try building your code with TSAN/ASAN enabled to see if you can detect that
+                        </p>
+                        <p>
+                            if you're on Linux, another option is Valgrind; it will find everything wrong, but will slow
+                            the code to a crawl, so make sure you can reproduce the problem quickly and easily
+                        </p>
+                        <p>
+                            these are good tools to have under your belt and will help you later
+                        </p>
+                        <p>
+                            cool; make sure the game is built with debugging symbols (-g) so Valgrind output will be
+                            useful
+                        </p>
+                        <p>
+                            set the "mode" var to DEBUG for ENIGMA's make system
+                        </p>
+                        <cite>Josh — 13/08/2023 18:15</cite>
+                    </blockquote>
+                    </p>
+                    <p>
+                        Now that's a higher level of debugging and we are diverging. I started using
+                        <a href="https://valgrind.org/">Valgrind</a> and by the way found a small memory leak in ENIGMA,
+                        that can be very annoying when working for long periods which explains why it was freezing my
+                        8GB Virtual Machine.
+                    </p>
+                    <p>
+                        I have got this output right after the <code>RequestCurrentStats</code> succeeded.
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    ==23675== ----------------------------------------------------------------
+    ==23675== 
+    ==23675== Possible data race during read of size 4 at 0x8F0A564 by thread #1
+    ==23675== Locks held: none
+    ==23675==    at 0x78F6C2D: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x78F6F10: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x78BCD92: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x7841ADF: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x73B6FE8: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x761CCC1: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x754EC0C: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    <span style='color:#ff0000; '>by 0x487A074: ??? (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    <span style='color:#ff0000; '>by 0x4885F4C: ??? (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    <span style='color:#ff0000; '>by 0x4887A6A: ??? (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    <span style='color:#ff0000; '>by 0x4878114: glXSwapBuffers (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    by 0x13F4AE: <span style='color:#ff0000; '>enigma::ENIGMA_events()</span> (in /tmp/egm5186009574818550152.tmp)
+    ==23675== 
+    ==23675== This conflicts with a previous write of size 4 by thread #2
+    ==23675== Locks held: none
+    ==23675==    at 0x730FEB4: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x50B5F67: __pthread_once_slow (pthread_once.c:116)
+    ==23675==    by 0x730DE07: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x735D7CA: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+    ==23675==    by 0x50B0B42: <span style='color:#ff0000; '>start_thread</span> (pthread_create.c:442)
+    ==23675==    by 0x5141BB3: clone (clone.S:100)
+    ==23675==  Address 0x8f0a564 is in the BSS segment of /usr/lib/x86_64-linux-gnu/dri/iris_dri.so
+    ==23675== 
+    ==23675== ----------------------------------------------------------------
+    ==23675== 
+    ==23675== Possible data race during read of size 4 at 0x8F0A584 by thread #1
+    ==23675== Locks held: none
+    ==23675==    at 0x78F6C34: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x78F6F10: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x78BCD92: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x7841ADF: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x73B6FE8: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x761CCC1: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x754EC0C: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    <span style='color:#ff0000; '>by 0x487A074: ??? (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    <span style='color:#ff0000; '>by 0x4885F4C: ??? (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    <span style='color:#ff0000; '>by 0x4887A6A: ??? (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    <span style='color:#ff0000; '>by 0x4878114: glXSwapBuffers (in /home/saif/.local/share/Steam/ubuntu12_64/gameoverlayrenderer.so)</span>
+    ==23675==    by 0x13F4AE: <span style='color:#ff0000; '>enigma::ENIGMA_events()</span> (in /tmp/egm5186009574818550152.tmp)
+    ==23675== 
+    ==23675== This conflicts with a previous write of size 8 by thread #2
+    ==23675== Locks held: none
+    ==23675==    at 0x730FEB1: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x50B5F67: __pthread_once_slow (pthread_once.c:116)
+    ==23675==    by 0x730DE07: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x735D7CA: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+    ==23675==    by 0x50B0B42: <span style='color:#ff0000; '>start_thread</span> (pthread_create.c:442)
+    ==23675==    by 0x5141BB3: clone (clone.S:100)
+    ==23675==  Address 0x8f0a584 is in the BSS segment of /usr/lib/x86_64-linux-gnu/dri/iris_dri.so
+    ==23675==
+                        </code></pre>
+                    </figure>
+                    <p>
+                        Notice that the <code>start_thread</code>? and the <code>enigma::ENIGMA_events()</code>? That
+                        looks like the problem is here. Another thing is that the <code>gameoverlayrenderer.so</code>
+                        library which is responsible for rendering the Steam overlay is also involved. Actually this
+                        <code>enigma::ENIGMA_events</code> function is generated by the compiler, I mean I can't
+                        debug it directly. I have to debug the code that generates it which is the compiler itself.
+                    </p>
+                    <p>
+                        The next output is after closing the running exmaple game, it's the summary of the
+                        <code>Valgrind</code> output. Let's keep it here for reference.
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    ==23675== ---Thread-Announcement------------------------------------------
+    ==23675==
+    ==23675== Thread #9 was created
+    ==23675== at 0x5141BA3: clone (clone.S:76)
+    ==23675== by 0x5142A9E: __clone_internal (clone-internal.c:83)
+    ==23675== by 0x50B0758: create_thread (pthread_create.c:295)
+    ==23675== by 0x50B127F: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+    ==23675== by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+    ==23675== by 0x735D9E3: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x730EAC7: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x730D9AC: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x730E27D: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x842AE42: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x8436D32: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x8038587: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675==
+    ==23675== ----------------------------------------------------------------
+    ==23675==
+    ==23675== Possible data race during write of size 4 at 0x1FFEFFF998 by thread #1
+    ==23675== Locks held: none
+    ==23675== at 0x730DE43: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x5CAAC1F: ???
+    ==23675== by 0x730E3F5: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x842AEE8: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x8027DC2: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x789875B: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x73B4C2D: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x73B62DB: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x7301592: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x7128382: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+    ==23675== by 0x7119FDD: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+    ==23675== by 0x711A06C: ??? (in /usr/lib/x86_64-linux-gnu/libGLX_mesa.so.0.0.0)
+    ==23675==
+    ==23675== This conflicts with a previous read of size 4 by thread #9
+    ==23675== Locks held: none
+    ==23675== at 0x50AE9BD: pthread_barrier_wait@@GLIBC_2.34 (pthread_barrier_wait.c:113)
+    ==23675== by 0x4854FC0: pthread_barrier_wait (in
+    /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+    ==23675== by 0x730EDAC: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x730DA5C: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x730DBC7: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x735D7CA: ??? (in /usr/lib/x86_64-linux-gnu/dri/iris_dri.so)
+    ==23675== by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+    ==23675== by 0x50B0B42: start_thread (pthread_create.c:442)
+    ==23675== Address 0x1ffefff998 is on thread #1's stack
+    ==23675==
+    AL lib: (EE) alc_cleanup: 1 device not closed
+    ==23675==
+    ==23675== Use --history-level=approx or =none to gain increased speed, at
+    ==23675== the cost of reduced accuracy of conflicting-access information
+    ==23675== ERROR SUMMARY: 5370 errors from 124 contexts (suppressed: 9793 from 119)
+                        </code></pre>
+                    </figure>
+                    <p>
+                        Even though I don't know what is the problem and can't understand what is going on in
+                        <a href="https://valgrind.org/">Valgrind</a> output, but the problem is with concatenating
+                        strings over and over to create the Async output format. Josh then recommended to use
+                        <code>stringstream</code> instead of <code>std::string</code> to concatenate strings. I tried
+                        this but as always didn't work.
+                    </p>
+                    <p>
+                        An idea came to mind to try to concatenate outside the function, just after the
+                        <code>sstream</code> definition. I started with only writing a single bracket:
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    leaderboard_entries_buffer &lt;&lt; '&#123;';
+                        </code></pre>
+                    </figure>
+                    <p>
+                        I viewed the string using <code>leaderboard_entries_buffer.str()</code> and it's very
+                        clean!!!. I tried then concatenating the whole string outside the function and it again
+                        failed. I remember that even the first line was failing before and now it's working!!!
+                        Why? Wait a second that's my first trial inside the function:
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    (*leaderboard_entries_buffer) += '&#123;';
+                        </code></pre>
+                    </figure>
+                    <p>
+                        Notice the difference? It's the concatenation operator. When using <code>sstream</code>,
+                        you have to use <code>&lt;&lt;</code>. However when using normal <code>std::string</code> you
+                        can use <code>+=</code> or <code>.append()</code> method. They both have the same effect.
+                        Now I know what to do, let's test my theory. Let's remove every <code>+=</code> and
+                        replace it with <code>&lt;&lt;</code>. I did that and it worked!!! &#127881; &#127881;
+                        &#127881;.
+                    </p>
+                    <p>
+                        This is not reasonable anyway but it's a solution. I will wait for an explanation from my
+                        mentors about this. Here's the final output:
+                    </p>
+                    <figure class="highlight">
+                        <pre><code class="language-cpp" data-lang="c++">
+    INFO: Steam ASYNC: { <span style='color:#0000ff; '>"entries":"{"entries":[{"name":"AlEw","score":196198,"rank":1,"userID":"76561198448852929"},</span>
+    <span style='color:#0000ff; '>{"name":"El Pice","score":58158,"rank":2,"userID":"76561198376924302"},{"name":"saif","score":505,"rank":3,"userID":"76561199167979105"},</span>
+    <span style='color:#0000ff; '>{"name":"Bucciarati (Couter55)","score":336,"rank":4,"userID":"76561198239127226"},{"name":"Haiyatin","score":236,"rank":5,"userID":"76561199032162694"},</span>
+    <span style='color:#0000ff; '>{"name":"Kaito","score":137,"rank":6,"userID":"76561198968916658"},{"name":"gamesadasteam","score":96,"rank":7,"userID":"76561199289756099"},</span>
+    <span style='color:#0000ff; '>{"name":"Bashkash2013","score":7,"rank":8,"userID":"76561198193841849"},{"name":"silveradagio","score":0,"rank":9,"userID":"76561199095741658"},</span>
+    <span style='color:#0000ff; '>{"name":"HappyStarXiXi","score":0,"rank":10,"userID":"76561198963365650"}]}","event_type":"leaderboard_download","id":1,"lb_name":"","num_entries":10,"status":0</span> }
+                        </code></pre>
+                    </figure>
+                    <p>
+                        It's just the <code>lb_name</code> is empty but it's a simple issue we can fix later. Let's move
+                        to the next phase.
+                    </p>
+                    <h2>More diverging...</h2>
+                    <p>
+                        There are two important TODOs that must be done here which are:
+                    <ul>
+                        <li>
+                            Updating my patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2352">#2352</a>
+                            to use <code>sstream</code> instead of <code>std::string</code>.
+                        </li>
+                        <li>
+                            For functions such as <code>steam_download_scores</code>, with <code>id</code>
+                            to be saved for each download request, I will use the new ENIGMA's approach for
+                            that with is: <code>AssetArray</code> from <code>Universal System</code>.
+                        </li>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        This patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2353">#2353</a> solves the
+                        first TODO.
+                    </p>
+                    <p>
+                        Let's move to the second TODO. I will use the <code>AssetArray</code> to save the id for each
+                        download request made by the player. In order to do that, I will follow simple approach of
+                        preventing any requests as long as we have a pending request. The tricky part here is that
+                        when we are ready to accpet a new request? Well, when we save the entries we got in the
+                        <code>AssetArray</code>, we are ready. So set the <code>loading_</code> to <code>false</code>
+                        after saving the entries.
+                    </p>
+                    <p>
+                        Working with <code>AssetArray</code> is very easy. I guess now we are done with the second
+                        TODO.
+                    </p>
+                    <p>
+                        Another thing that I need to mention here is that GMS has a function called
+                        <code>instance_create_depth()</code>, while ENIGMA has <code>instance_create()</code> and
+                        <code>depth</code> variable. I may provide a patch to combine them both as GMS does to
+                        maintain compatibility. But for now I will just use <code>instance_create()</code> and
+                        set the depth manually.
+                    </p>
+                    <p>
+                        Here's the TODO list again:
+                    <ul>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Implement <code>instance_create_depth()</code> user function.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        Now the problem is with the <code>json_decode()</code> user function. It took me the whole day
+                        to find the problem which is bascially <code>Json</code> extension doesn't convert the Json to
+                        DS map correctly. It parses Jsons correctly and also the <code>DataStructures</code> extension
+                        working fine. The layer between them both is broken.
+                    </p>
+                    <p>
+                        I provided Patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2355">#2355</a> for
+                        issue <a href="https://github.com/enigma-dev/enigma-dev/issues/2354">#2354</a>:
+                    <ul>
+                        <li>Fixes <code>Json</code> extension not converting to DS map properly.</li>
+                        <li>Wrote SOG file to test the changes.</li>
+                        <li>
+                            Renamed a SOG file which belongs to short Json PR (I renamed it to better naming while I am
+                            here).
+                        </li>
+                    </ul>
+                    </p>
+                    <p>
+                        After fixing the <code>json_decode()</code> user function, the leaderboard entries started to
+                        view some data. Here is the output:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC-2023-week-11-and-12-divergence-or/ENIGMA-steamworks-leaderboard-screen-1st-version-look.jpg"
+                            alt="ENIGMA Steamworks leaderboard screen first look" />
+                    </p>
+                    <p>
+                        Here is the GMS output:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC-2023-week-11-and-12-divergence-or/GMS-steamworks-leaderboard-screen-final-look.jpg"
+                            alt="GMS Steamworks leaderboard screen final look" />
+                    </p>
+                    <p>
+                        Robert finished my 3rd TODO in patch
+                        <a href="https://github.com/enigma-dev/enigma-dev/pull/2356">#2356</a>. I tested it and it's
+                        working fine. Besides that he talked to me about attaching the id of the download request to
+                        the Callback function somehow instead of saving it statically so I think we have got another
+                        TODO here.
+                    <ul>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Changing the way I save download requests' ids.</li>
+                    </ul>
+                    </p>
+                    <p>
+                        There is something wrong with Json extension again!!! The keys are there, but there values are
+                        contain garbage values like weird integers. I debugged the code and fixed the problem for the
+                        100 time in patch <a href="https://github.com/enigma-dev/enigma-dev/pull/2357">#2357</a>.
+                    </p>
+                    <p>
+                        Now the Leaderboards API looks complete:
+                    </p>
+                    <p>
+                        <img class="image-content"
+                            src="assets/GSoC-2023-week-11-and-12-divergence-or/ENIGMA-steamworks-leaderboard-screen-final-look.jpg"
+                            alt="ENIGMA Steamworks leaderboard screen final look" />
+                    </p>
+                    <p>
+                        Here is the TODO for the next week:
+                    <ul>
+                        <li>Implementing a new draw function for drawing leaderboards.</li>
+                        <li>
+                            Get this done:
+                            <p>
+                            <blockquote>
+                                <p>
+                                    @Saif print that debug message three times and I'll bet you it looks different every
+                                    time
+                                </p>
+                                <p>
+                                    you seem to be seeing stream contamination, not actual memory corruption; I'm
+                                    guessing your memory is fine
+                                </p>
+                                <p>
+                                    print the string to a file instead if you want to see it unmolested
+                                </p>
+                                <cite>Josh — 14/08/2023 17:50</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        <li>Changing the way I save download requests' ids.</li>
+                        <li>Implement the rest APIs.</li>
+                        <li>Getting an <code>AppId</code> and upload a game on Steam for testing.</li>
+                        <li>
+                            Creating SOGs and trying to make it work as I mentioned earlier that it's tricky because
+                            we need Steam to be running in order the tests to pass.
+                        </li>
+                        <li>Cleaning up and organizing the new Async System to match Robert's needs.</li>
+                        <li>
+                            Checking if <code>Callbacks</code> uses Threads. If so then try to handle the State
+                            Management manually.
+                        </li>
+                        <li>CPP source files need to be documented.</li>
+                        <li>Check the license for committing DLLs and headers.</li>
+                        <li>Check Steamworks's official example comments.</li>
+                        <li>Check GMS Manual for documenting user function's layer.</li>
+                        <li>
+                            Check Robert's PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2349">#2349</a>
+                        </li>
+                        <li>
+                            Creating stub for Steamworks extension to take its place when disabled.
+                            <p>
+                            <blockquote>
+                                <p>
+                                    you need a stub for when the extension isnt enabled
+                                </p>
+                                <p>
+                                    its just an empty function
+                                </p>
+                                <cite>gfundies — 16/08/2023 10:44</cite>
+                            </blockquote>
+                            </p>
+                        </li>
+                        </li>add <code>instance_create_depth()</code> user function to the WIKI.</li>
+                        <li>Document and maintain <code>Json</code> extension.</li>
+                        <li>Document and maintain <code>Asynchronous</code> system.</li>
+                        <li>Explain the Steamworks extension's structure and what goes where.</li>
+                    </ul>
+                    </p>
+                </div>
+
+                <a id="u-url-id" class="u-url" hidden></a>
+            </article>
+        </div>
+    </main>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/posts.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="js/GSoC_2023_week_11_and_12_divergence_or.js"></script>
+    <script src="../../js/posts-utils.js"></script>
+</body>
+
+</html>
