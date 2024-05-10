@@ -16,5 +16,6 @@ const posts = [
     { id: 11, title: "GSoC '23 - Week 13: Extension? Definitely!", postTitle: "GSoC &#39;23 - Week 13: Extension? Definitely!", fileName: "GSoC_2023_week_13_extension_definitely", year: 2023 },
     { id: 12, title: "GSoC '23 - Week 14 & 15 & 16: CI still remember me!", postTitle: "GSoC &#39;23 - Week 14 &amp; 15 &amp; 16: CI still remember me!", fileName: "GSoC_2023_week_14_and_15_and_16_ci_still_remember_me", year: 2023 },
     { id: 13, title: "GSoC '23: Wrapping up", postTitle: "GSoC &#39;23: Wrapping up", fileName: "GSoC_2023_wrapping_up", year: 2023 },
-    { id: 14, title: "Google Summer of Code 2023 Final Evaluation Report", postTitle: "Google Summer of Code 2023 Final Evaluation Report", fileName: "GSoC_2023_final_evaluation_report", year: 2023 }
+    { id: 14, title: "Google Summer of Code 2023 Final Evaluation Report", postTitle: "Google Summer of Code 2023 Final Evaluation Report", fileName: "GSoC_2023_final_evaluation_report", year: 2023 },
+    { id: 15, title: "Google Summer of Code 2024 - Acceptance story", postTitle: "Google Summer of Code 2024 - Acceptance story", fileName: "GSoC_2024_acceptance_story", year: 2024 }
 ];
