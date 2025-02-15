@@ -30,21 +30,21 @@
                         My final evaluation PR <a href="https://github.com/enigma-dev/enigma-dev/pull/2350">#2350</a>.
                     </p>
                     <p>
-                        I still didn't finish the Leaderboard API, so let's talk about the next steps.
+                        I still haven't finished the Leaderboard API, so let's talk about the next steps.
                     </p>
                     <p>
                         First of all, the Async system is working fine but I don't know how the
-                        <code>DataStructures</code> extension works, so lets look at the code and see
+                        <code>DataStructures</code> extension works, so let us look at the code and see
                         what we can do.
                     </p>
                     <p>
                         Actually, the problem is not with the new Async system because I already tested it
                         before. The problem is with my new code I added. When I looked closer at the code, I
-                        found that I am returning <code>std::string&</code> and assigning it to my event map.
+                        found that I was returning <code>std::string&</code> and assigning it to my event map.
                         Let's try to remove it and see what happens.
                     </p>
                     <p>
-                        The code is worked just fined, so let's add a TODO for studying this behavior later.
+                        The code is working just fine, so let's add a TODO for studying this behavior later.
                     </p>
                     <p>
                         Now, let's understand more about how ENIGMA's Async system works. From the output
@@ -101,8 +101,8 @@
                     <p>
                         I found that it's working perfectly nothing wrong with my code but where's the string
                         inside the parenthesis? you know what, this means one thing the problem is with
-                        <code>json_encode()</code> function. Ooooh my god I rememebered now, I have already
-                        worked on that Json extension before getting accepted at GSoC. I have already talked
+                        <code>json_encode()</code> function. Ooooh my god I remembered now, I have already
+                        worked on that JSON extension before getting accepted at GSoC. I have already talked
                         with fundies about this but I also remember that he didn't say anything about this
                         function being broken.
                     <blockquote>
@@ -161,7 +161,7 @@
                     <ul>
                         <li>Move to <code>std::sstream</code> instead of <code>std::string</code>.</li>
                         <li>Implement the error system.</li>
-                        <li>Improve tests and makefiles that links them.</li>
+                        <li>Improve tests and makefiles that link them.</li>
                         <li>
                             The number values are not fully implemented. Check
                             <a href="https://leetcode.com/problems/valid-number">

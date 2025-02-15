@@ -35,7 +35,7 @@
                     </p>
                     <p>
                         Overall, I think I did quite well, I learned a lot of interesting things. Maybe, the tricky
-                        part in this project was the deployment of the extension. Although the extension is ready for
+                        part of this project was the deployment of the extension. Although the extension is ready for
                         production usage, it only supports Ubuntu Linux for now. This is because ENIGMA is broken on
                         MacOS and semi-broken on Windows at the time of writing this post.
                     </p>
@@ -47,13 +47,13 @@
                         The problem with my approach is that, the CI pipeline will fail. That's because I am calling
                         Steamworks API functions directly from the extension, and the CI pipeline doesn't have the
                         Steamworks SDK installed. Moreover, the tests will depend on other factors such as the internet
-                        connection. The API call may fail for any reason which means that the test will fail. Which also
+                        connection. The API call may fail for any reason which means that the test will fail. This also
                         means that the CI pipeline have for example 50% chance of failing or even more.
                     </p>
                     <p>
                         Of course, a CI that has a probability of failing is not a good CI. To overcome this problem, I
                         will need to mock the API calls. That was actually fundies' idea. At this moment, I will drop
-                        the Cloud API milestone and focus on refactoring the whole code. There was two difficulties in
+                        the Cloud API milestone and focus on refactoring the whole code. There were two difficulties in
                         this approach:
                     <ol>
                         <li>
@@ -106,26 +106,32 @@
                         <a
                             href="https://k0t0z.github.io/posts/2023/assets/GSoC_2023_wrapping_up/steamworks-demo-special.zip">
                             steamworks-demo-special.zip
-                        </a>. To run this project, just run: <code>git pull upstream AST-Generation</code> and of course
+                        </a>. To run this project, just run: <code>git pull upstream AST-Generation</code> and of course,
                         your upstream is: <code>https://github.com/enigma-dev/enigma-dev</code>. This is to get the
                         latest changes from the <code>AST-Generation</code> branch into your clone. If you don't have
                         the upstream set, you can run:
                         <code>git remote add upstream https://github.com/enigma-dev/enigma-dev</code>. Then switch to
                         <code>AST-Generation</code> branch by running: <code>git switch AST-Generation</code>. Then
                         run: <code>git merge master</code>. You will have some conflicts, go and fix them by accepting
-                        the changes from the <code>AST-Generation</code> branch. Now it is time for builing LGM but
+                        the changes from the <code>AST-Generation</code> branch. Now it is time for building LGM but
                         before that, you need to clean the previous build by running: <code>make clean</code>. Then
                         run: <code>make</code>. This will take a long time. After that, you can run LGM by running:
                         <code>java -jar lateralgm.jar</code>. Now open the demo game project and enable the Steamworks
-                        and Json extensions from LGM. Hit the run button. You should see your steam picture in the game
+                        and Json extensions from LGM. Hit the run button. You should see your Steam picture in the game
                         window.
+                    </p>
+                    <p>
+                        Ahead of time note from 2024, the <code>Social</code> API has functions to reorganize color channels for 
+                        images that I tried to implement before running out of time, here is Godot's implementation: 
+                        <a href="https://github.com/godotengine/godot/blob/master/core/math/color.h#L49-L54">core/math/color.h#L49-L54</a>
+                        , you can learn from it and implement your own.
                     </p>
                     <p>
                         Maybe, I will record a video for how to setup Steamworks extension and how to test it and upload
                         it to my YouTube channel in the future ISA.
                     </p>
                     <p>
-                        Due to the deployment issue, I didn't have enough time to provide a proper test cases for the
+                        Due to the deployment issue, I didn't have enough time to provide proper test cases for the
                         extension.
                     </p>
                     <P>
@@ -134,7 +140,7 @@
                         it outside Google Summer of Code 2023 program.
                     </P>
                     <p>
-                        There is also some modifications to the extension's demo game due to Copyrights stuff.
+                        There are also some modifications to the extension's demo game due to copyright stuff.
                     <blockquote>
                         <p>
                             @Saif what is the origin of these sprites in the game project file?
@@ -147,10 +153,10 @@
                         is about creating a C++ wrapper for Steamworks API – which is developed and maintained by Valve
                         corporation – so ENIGMA can use it." Well, wrappers are meant to port Steam SDK from C++ to
                         another programming language such as C# or Java. This is to make it more easier to integrate
-                        Steamworks API with other programming languages. Some of these wrappers are mentioned on the
+                        Steamworks API with other programming languages. Some of these wrappers are mentioned in the
                         Steamworks website: <a href="https://partner.steamgames.com/doc/sdk/api">doc/sdk/api</a> (See
                         <code>Commercial engine and non-C++ language support</code> section). The thing is this project
-                        is not to create a wrapper, but to intergate Steamworks API with ENIGMA game engine.
+                        is not to create a wrapper, but to integrate Steamworks API with ENIGMA game engine.
                     </p>
                     <p>
                         Another thing in my proposal is that, the <code>Authentication and Ownership</code> API isn't
@@ -168,7 +174,7 @@
                     </p>
                     <p>
                         So this wraps up my GSoC project and this series of logs. If anyone was following it by any
-                        chance, huge thank to you. Have a nice year ahead!
+                        chance, huge thanks to you. Have a nice year ahead!
                     </p>
                 </div>
 
